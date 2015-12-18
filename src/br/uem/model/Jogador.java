@@ -1,4 +1,4 @@
-package czx;
+package br.uem.model;
 
 /**
  * @author V.Camargo
@@ -6,6 +6,6 @@ package czx;
  * @Date 18/12/2015
  */
 
-public class Nova {
+public class Jogador {
 
 }
