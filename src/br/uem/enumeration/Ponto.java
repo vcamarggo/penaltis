@@ -1,5 +1,7 @@
 package br.uem.enumeration;
 
+import java.util.Random;
+
 /**
  * @author V.Camargo
  * 
@@ -8,4 +10,10 @@ package br.uem.enumeration;
 
 public enum Ponto {
 
+	ESQUERDA_CIMA, ESQUERDABAIXO, DIREITACIMA, DIREITABAIXO, MEIOCIMA, MEIOBAIXO;
+
+	public int errar() {
+		Random r = new Random();
+		return r.nextInt(1);
+	}
 }
