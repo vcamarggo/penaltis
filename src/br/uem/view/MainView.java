@@ -1,6 +1,8 @@
 package br.uem.view;
 
 import java.awt.Label;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
@@ -33,17 +35,28 @@ public class MainView {
 		getFrmPenaltis().setBounds(100, 100, 244, 244);
 		getFrmPenaltis().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getFrmPenaltis().getContentPane().setLayout(null);
-		
+
 		JButton btnComecarJogo = new JButton("Começar Jogo");
+		btnComecarJogo.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frmPenaltis.dispose();
+				TimeView timeview = new TimeView();
+				timeview.setVisible(true);
+			}
+		});
+
 		btnComecarJogo.setBounds(31, 52, 162, 23);
 		getFrmPenaltis().getContentPane().add(btnComecarJogo);
-		
+
 		JButton btnConfiguracao = new JButton("Configurações");
 		btnConfiguracao.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent arg0) {
 				btnConfiguracao.setText("Com Focus");
 			}
+
 			@Override
 			public void focusLost(FocusEvent e) {
 				btnConfiguracao.setText("Configurações");
@@ -51,7 +64,7 @@ public class MainView {
 		});
 		btnConfiguracao.setBounds(31, 100, 162, 23);
 		getFrmPenaltis().getContentPane().add(btnConfiguracao);
-		
+
 		Label label = new Label("V 0.1");
 		label.setAlignment(Label.CENTER);
 		label.setBounds(83, 173, 62, 22);
