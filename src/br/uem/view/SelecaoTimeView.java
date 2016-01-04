@@ -4,19 +4,23 @@ import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Enumeration;
 
+import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
+import br.uem.controller.SelecaoTimeController;
 
 /**
  * @author V.Camargo
@@ -24,22 +28,50 @@ import java.awt.event.ActionEvent;
  * @Date 29/12/2015
  */
 
-public class TimeView extends JFrame {
+public class SelecaoTimeView extends JFrame {
 
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JRadioButton btnBrasil = new JRadioButton("Brasil");
+	public JRadioButton btnBrasil = new JRadioButton("Brasil");
 	private final JLabel bandeiraBrasil = new JLabel("");
+
 	private JRadioButton btnArgentina = new JRadioButton("Argentina");
 	private final JLabel bandeiraArgentina = new JLabel("");
+
 	private JRadioButton btnDeustchland = new JRadioButton("Alemanha");
 	private final JLabel bandeiraDeustchland = new JLabel("");
+
 	private JRadioButton btnEspanha = new JRadioButton("Espanha");
 	private final JLabel bandeiraEspanha = new JLabel("");
-	private JRadioButton btnFranca = new JRadioButton("Franca");
+
+	private JRadioButton btnFranca = new JRadioButton("França");
 	private final JLabel bandeiraFranca = new JLabel("");
+
 	private JRadioButton btnItalia = new JRadioButton("Italia");
 	private final JLabel bandeiraItalia = new JLabel("");
+
 	private final JButton btnOK = new JButton("OK");
+
+	private String nomeTimeEscolhido;
+
+	private SelecaoTimeController selecaoTimeController;
+
+	public SelecaoTimeController getSelecaoTimeController() {
+		return selecaoTimeController;
+	}
+
+	public void setSelecaoTimeController(
+			SelecaoTimeController selecaoTimeController) {
+		this.selecaoTimeController = selecaoTimeController;
+	}
+
+	public String getNomeTimeEscolhido() {
+		return nomeTimeEscolhido;
+	}
+
+	public void setNomeTimeEscolhido(String nomeTimeEscolhido) {
+		this.nomeTimeEscolhido = nomeTimeEscolhido;
+	}
 
 	/**
 	 * Launch the application.
@@ -48,7 +80,7 @@ public class TimeView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TimeView frame = new TimeView();
+					SelecaoTimeView frame = new SelecaoTimeView();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -60,7 +92,7 @@ public class TimeView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TimeView() {
+	public SelecaoTimeView() {
 		setTitle("Pênaltis - Seleção de time");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 376, 282);
@@ -85,7 +117,8 @@ public class TimeView extends JFrame {
 				btnArgentina.setSelected(true);
 			}
 		});
-		bandeiraArgentina.setIcon(new ImageIcon("bandeiras/ar.png"));
+		bandeiraArgentina.setIcon(new ImageIcon(SelecaoTimeController.class
+				.getResource("/ar.png")));
 		contentPane.add(bandeiraArgentina, gbc_bandeiraArgentina);
 		GridBagConstraints gbc_btnArgentina = new GridBagConstraints();
 		gbc_btnArgentina.anchor = GridBagConstraints.NORTHWEST;
@@ -104,13 +137,15 @@ public class TimeView extends JFrame {
 				btnBrasil.setSelected(true);
 			}
 		});
-		bandeiraBrasil.setIcon(new ImageIcon("bandeiras/br.png"));
+		bandeiraBrasil.setIcon(new ImageIcon(SelecaoTimeController.class
+				.getResource("/br.png")));
 		contentPane.add(bandeiraBrasil, gbc_bandeiraBrasil);
 		GridBagConstraints gbc_btnBrasil = new GridBagConstraints();
 		gbc_btnBrasil.anchor = GridBagConstraints.NORTHWEST;
 		gbc_btnBrasil.insets = new Insets(0, 0, 5, 0);
 		gbc_btnBrasil.gridx = 5;
 		gbc_btnBrasil.gridy = 1;
+		btnBrasil.setSelected(true);
 		contentPane.add(btnBrasil, gbc_btnBrasil);
 
 		GridBagConstraints gbc_bandeiraDeustchland = new GridBagConstraints();
@@ -123,7 +158,8 @@ public class TimeView extends JFrame {
 				btnDeustchland.setSelected(true);
 			}
 		});
-		bandeiraDeustchland.setIcon(new ImageIcon("bandeiras/de.png"));
+		bandeiraDeustchland.setIcon(new ImageIcon(SelecaoTimeController.class
+				.getResource("/de.png")));
 		contentPane.add(bandeiraDeustchland, gbc_bandeiraDeustchland);
 		GridBagConstraints gbc_btnDeustchland = new GridBagConstraints();
 		gbc_btnDeustchland.anchor = GridBagConstraints.NORTHWEST;
@@ -142,7 +178,8 @@ public class TimeView extends JFrame {
 				btnEspanha.setSelected(true);
 			}
 		});
-		bandeiraEspanha.setIcon(new ImageIcon("bandeiras/es.png"));
+		bandeiraEspanha.setIcon(new ImageIcon(SelecaoTimeController.class
+				.getResource("/es.png")));
 		contentPane.add(bandeiraEspanha, gbc_bandeiraEspanha);
 		GridBagConstraints gbc_btnEspanha = new GridBagConstraints();
 		gbc_btnEspanha.anchor = GridBagConstraints.NORTHWEST;
@@ -161,7 +198,8 @@ public class TimeView extends JFrame {
 				btnFranca.setSelected(true);
 			}
 		});
-		bandeiraFranca.setIcon(new ImageIcon("bandeiras/fr.png"));
+		bandeiraFranca.setIcon(new ImageIcon(SelecaoTimeController.class
+				.getResource("/fr.png")));
 		contentPane.add(bandeiraFranca, gbc_bandeiraFranca);
 		GridBagConstraints gbc_btnFranca = new GridBagConstraints();
 		gbc_btnFranca.anchor = GridBagConstraints.NORTHWEST;
@@ -180,7 +218,8 @@ public class TimeView extends JFrame {
 				btnItalia.setSelected(true);
 			}
 		});
-		bandeiraItalia.setIcon(new ImageIcon("bandeiras/it.png"));
+		bandeiraItalia.setIcon(new ImageIcon(SelecaoTimeController.class
+				.getResource("/it.png")));
 		contentPane.add(bandeiraItalia, gbc_bandeiraItalia);
 		GridBagConstraints gbc_btnItalia = new GridBagConstraints();
 		gbc_btnItalia.anchor = GridBagConstraints.NORTHWEST;
@@ -202,10 +241,23 @@ public class TimeView extends JFrame {
 		gbc_btnOK.gridy = 6;
 		btnOK.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				for (Enumeration<AbstractButton> buttons = group.getElements(); buttons
+						.hasMoreElements();) {
+					AbstractButton button = buttons.nextElement();
+
+					if (button.isSelected()) {
+						nomeTimeEscolhido = button.getText();
+					}
+				}
+
+				selecaoTimeController = new SelecaoTimeController();
+				selecaoTimeController.selectTime(nomeTimeEscolhido);
+				dispose();
+				QuemIniciaView iniciaView = new QuemIniciaView();
+				iniciaView.setVisible(true);
 			}
 		});
 		contentPane.add(btnOK, gbc_btnOK);
-		
-	}
 
+	}
 }

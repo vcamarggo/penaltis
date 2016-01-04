@@ -8,6 +8,11 @@ package br.uem.model;
 
 public class Perfil {
 
+	public Perfil(int qualidade, int confianca) {
+		this.qualidade = qualidade;
+		this.confianca = confianca;
+	}
+
 	private int qualidade;
 	
 	private int confianca;

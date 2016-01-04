@@ -3,8 +3,6 @@ package br.uem.view;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -42,7 +40,7 @@ public class MainView {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frmPenaltis.dispose();
-				TimeView timeview = new TimeView();
+				SelecaoTimeView timeview = new SelecaoTimeView();
 				timeview.setVisible(true);
 			}
 		});
@@ -51,17 +49,6 @@ public class MainView {
 		getFrmPenaltis().getContentPane().add(btnComecarJogo);
 
 		JButton btnConfiguracao = new JButton("Configurações");
-		btnConfiguracao.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent arg0) {
-				btnConfiguracao.setText("Com Focus");
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				btnConfiguracao.setText("Configurações");
-			}
-		});
 		btnConfiguracao.setBounds(31, 100, 162, 23);
 		getFrmPenaltis().getContentPane().add(btnConfiguracao);
 

@@ -12,10 +12,14 @@ public abstract class Jogador {
 
 	private String name;
 
-	private String time;
-	
+	private Time time;
+
+	public void setTime(Time time) {
+		this.time = time;
+	}
+
 	private Perfil perfil;
-	
+
 	public String getName() {
 		return name;
 	}
@@ -24,12 +28,8 @@ public abstract class Jogador {
 		this.name = name;
 	}
 
-	public String getTime() {
+	public Time getTime() {
 		return time;
-	}
-
-	public void setTime(String time) {
-		this.time = time;
 	}
 
 	public Perfil getPerfil() {
