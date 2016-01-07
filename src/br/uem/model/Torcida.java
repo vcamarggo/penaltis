@@ -1,5 +1,7 @@
 package br.uem.model;
 
+import java.util.List;
+
 /**
  * @author V.Camargo
  * 
@@ -10,16 +12,8 @@ public class Torcida {
 
 	private Time time;
 
-	private Torcedor torcedor;
+	private List<Torcedor> torcedores;
 	
-	public Torcedor getTorcedor() {
-		return torcedor;
-	}
-
-	public void setTorcedor(Torcedor torcedor) {
-		this.torcedor = torcedor;
-	}
-
 	public Time getTime() {
 		return time;
 	}
@@ -40,6 +34,14 @@ public class Torcida {
 	}
 
 	public void lamentar() {
+	}
+
+	public List<Torcedor> getTorcedores() {
+		return torcedores;
+	}
+
+	public void setTorcedores(List<Torcedor> torcedores) {
+		this.torcedores = torcedores;
 	}
 
 }

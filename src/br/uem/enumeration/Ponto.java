@@ -10,10 +10,10 @@ import java.util.Random;
 
 public enum Ponto {
 
-	ESQUERDA_CIMA, ESQUERDABAIXO, DIREITACIMA, DIREITABAIXO, MEIOCIMA, MEIOBAIXO;
+	ESQUERDA_CIMA, ESQUERDA_BAIXO, DIREITA_CIMA, DIREITA_BAIXO, MEIO_CIMA, MEIO_BAIXO;
 
 	public int errar() {
 		Random r = new Random();
-		return r.nextInt(1);
+		return r.nextInt(2);
 	}
 }

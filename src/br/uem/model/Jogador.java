@@ -14,10 +14,6 @@ public abstract class Jogador {
 
 	private Time time;
 
-	public void setTime(Time time) {
-		this.time = time;
-	}
-
 	private Perfil perfil;
 
 	public String getName() {
@@ -30,6 +26,10 @@ public abstract class Jogador {
 
 	public Time getTime() {
 		return time;
+	}
+
+	public void setTime(Time time) {
+		this.time = time;
 	}
 
 	public Perfil getPerfil() {

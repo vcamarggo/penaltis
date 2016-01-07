@@ -12,6 +12,9 @@ public class Perfil {
 		this.qualidade = qualidade;
 		this.confianca = confianca;
 	}
+	
+	public Perfil(){
+	}
 
 	private int qualidade;
 	

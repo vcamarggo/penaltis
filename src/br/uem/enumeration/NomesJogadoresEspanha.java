@@ -11,14 +11,14 @@ public enum NomesJogadoresEspanha {
 			"Villa"), BUSQUETS("Busquets"), MATA("Mata"), AZPILLICUETA(
 			"Azpillicueta"), KOKE("Koke"), CAZORLA("Cazorla");
 
-	private final String toString;
+	private final String nome;
 
 	@Override
 	public String toString() {
-		return toString;
+		return nome;
 	}
 
-	private NomesJogadoresEspanha(String toString) {
-		this.toString = toString;
+	private NomesJogadoresEspanha(String nome) {
+		this.nome = nome;
 	}
 }

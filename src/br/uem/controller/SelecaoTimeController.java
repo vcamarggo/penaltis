@@ -10,11 +10,11 @@ import br.uem.model.Time;
 
 public class SelecaoTimeController {
 
-	public Time selectTime(String nomeDoTime) {
+	public Time criarTime(String nomeDoTime) {
 		Time t = new Time();
 		t.setNome(nomeDoTime.toUpperCase());
 		t.setJogadores(JogadorController.criaListaJogadores(t.getNome(), t));
 
-		return null;
+		return t;
 	}
 }

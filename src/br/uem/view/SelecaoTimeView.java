@@ -251,7 +251,7 @@ public class SelecaoTimeView extends JFrame {
 				}
 
 				selecaoTimeController = new SelecaoTimeController();
-				selecaoTimeController.selectTime(nomeTimeEscolhido);
+				selecaoTimeController.criarTime(nomeTimeEscolhido);
 				dispose();
 				QuemIniciaView iniciaView = new QuemIniciaView();
 				iniciaView.setVisible(true);

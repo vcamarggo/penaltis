@@ -11,14 +11,14 @@ public enum NomesJogadoresItalia {
 			"Rossi"), ALTAFINI("Altafini"), BARESI("Baresi"), CANNAVARO(
 			"Cannavaro"), CAPELLO("Capello"), BALOTELLI("Balotelli");
 
-	private final String toString;
+	private final String nome;
 
 	@Override
 	public String toString() {
-		return toString;
+		return nome;
 	}
 
-	private NomesJogadoresItalia(String toString) {
-		this.toString = toString;
+	private NomesJogadoresItalia(String nome) {
+		this.nome = nome;
 	}
 }

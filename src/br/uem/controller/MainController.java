@@ -10,7 +10,7 @@ import br.uem.view.MainView;
  * @Date 29/12/2015
  */
 
-public class mainController {
+public class MainController {
 	/**
 	 * Launch the application.
 	 */

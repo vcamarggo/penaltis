@@ -8,10 +8,17 @@ package br.uem.enumeration;
 
 public enum Times {
 
-	ARGENTINA, ALEMANHA, BRASIL, ITALIA, FRANÇA, ESPANHA;
+	ARGENTINA("Argentina"), ALEMANHA("Alemanha"), BRASIL("Brasil"), ITALIA("Itália"), FRANÇA("França"), ESPANHA("Espanha");
 
+	private final String nome;
+
+	@Override
 	public String toString() {
-		return toString();
+		return nome;
+	}
+
+	private Times(String nome) {
+		this.nome = nome;
 	}
 	
 }

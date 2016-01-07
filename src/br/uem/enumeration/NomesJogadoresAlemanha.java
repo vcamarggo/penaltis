@@ -11,14 +11,14 @@ public enum NomesJogadoresAlemanha {
 			"Kroos"), LAHM("Lahm"), HUMMELS("Hummels"), BOATENG("Boateng"), KHEDIRA(
 			"Khedira"), REUS("Reus"), BECKENBAUER("Beckenbauer");
 
-	private final String toString;
+	private final String nome;
 
 	@Override
 	public String toString() {
-		return toString;
+		return nome;
 	}
 
-	private NomesJogadoresAlemanha(String toString) {
-		this.toString = toString;
+	private NomesJogadoresAlemanha(String nome) {
+		this.nome = nome;
 	}
 }

@@ -12,11 +12,11 @@ public class Torcedor {
 
 	public int apoiar() {
 		Random r = new Random();
-		return r.nextInt(10);
+		return r.nextInt(11);
 	}
 
 	public int xingar() {
 		Random r = new Random();
-		return r.nextInt(10);
+		return r.nextInt(11);
 	}
 }
