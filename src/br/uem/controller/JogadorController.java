@@ -27,100 +27,49 @@ public class JogadorController {
 
 	public static List<Jogador> criaListaJogadores(String nomeTime, Time t) {
 		List<Jogador> listaJogadores = new ArrayList<Jogador>();
-		Random r = new Random();
 
 		switch (Times.valueOf(nomeTime)) {
 		case ALEMANHA:
 			for (NomesJogadoresAlemanha nome : NomesJogadoresAlemanha.values()) {
-				Batedor batedor = new Batedor();
-				batedor.setName(nome.toString());
-				batedor.setPerfil(new Perfil(r.nextInt(10), r.nextInt(10)));
-				batedor.setTime(t);
-				listaJogadores.add(batedor);
+				listaJogadores.add(criarBatedor(nome.toString(), t));
 			}
-			Goleiro goleiroAlemanha = new Goleiro();
-			goleiroAlemanha.setName("Neuer");
-			goleiroAlemanha.setTime(t);
-			goleiroAlemanha.setPerfil(new Perfil(r.nextInt(10), r.nextInt(10)));
-			listaJogadores.add(goleiroAlemanha);
-
+			listaJogadores.add(criarGoleiro("Neuer", t));
 			break;
 
 		case ARGENTINA:
 			for (NomesJogadoresArgentina nome : NomesJogadoresArgentina
 					.values()) {
-				Batedor batedor = new Batedor();
-				batedor.setName(nome.toString());
-				batedor.setPerfil(new Perfil(r.nextInt(10), r.nextInt(10)));
-				batedor.setTime(t);
-				listaJogadores.add(batedor);
+				listaJogadores.add(criarBatedor(nome.toString(), t));
 			}
-			Goleiro goleiroArgentina = new Goleiro();
-			goleiroArgentina.setName("Romero");
-			goleiroArgentina.setTime(t);
-			goleiroArgentina
-					.setPerfil(new Perfil(r.nextInt(10), r.nextInt(10)));
-			listaJogadores.add(goleiroArgentina);
+			listaJogadores.add(criarGoleiro("Rojo", t));
 			break;
 
 		case BRASIL:
 			for (NomesJogadoresBrasil nome : NomesJogadoresBrasil.values()) {
-				Batedor batedor = new Batedor();
-				batedor.setName(nome.toString());
-				batedor.setPerfil(new Perfil(r.nextInt(10), r.nextInt(10)));
-				batedor.setTime(t);
-				listaJogadores.add(batedor);
+				listaJogadores.add(criarBatedor(nome.toString(), t));
 			}
-			Goleiro goleiroBrasil = new Goleiro();
-			goleiroBrasil.setName("Rogério Ceni");
-			goleiroBrasil.setTime(t);
-			goleiroBrasil.setPerfil(new Perfil(r.nextInt(10), r.nextInt(10)));
-			listaJogadores.add(goleiroBrasil);
+			listaJogadores.add(criarGoleiro("Júlio César", t));
 			break;
 
 		case ESPANHA:
 			for (NomesJogadoresEspanha nome : NomesJogadoresEspanha.values()) {
-				Batedor batedor = new Batedor();
-				batedor.setName(nome.toString());
-				batedor.setPerfil(new Perfil(r.nextInt(10), r.nextInt(10)));
-				batedor.setTime(t);
-				listaJogadores.add(batedor);
+				listaJogadores.add(criarBatedor(nome.toString(), t));
 			}
-			Goleiro goleiroEspanha = new Goleiro();
-			goleiroEspanha.setName("Casillas");
-			goleiroEspanha.setTime(t);
-			goleiroEspanha.setPerfil(new Perfil(r.nextInt(10), r.nextInt(10)));
-			listaJogadores.add(goleiroEspanha);
+			listaJogadores.add(criarGoleiro("Casillas", t));
 			break;
 
 		case FRANÇA:
 			for (NomesJogadoresFranca nome : NomesJogadoresFranca.values()) {
-				Batedor batedor = new Batedor();
-				batedor.setName(nome.toString());
-				batedor.setPerfil(new Perfil(r.nextInt(10), r.nextInt(10)));
-				batedor.setTime(t);
-				listaJogadores.add(batedor);
+				listaJogadores.add(criarBatedor(nome.toString(), t));
 			}
-			Goleiro goleiroFranca = new Goleiro();
-			goleiroFranca.setName("Hugo Lloris");
-			goleiroFranca.setTime(t);
-			goleiroFranca.setPerfil(new Perfil(r.nextInt(10), r.nextInt(10)));
-			listaJogadores.add(goleiroFranca);
+			listaJogadores.add(criarGoleiro("Hugo Lloris", t));
 			break;
 
 		case ITALIA:
 			for (NomesJogadoresItalia nome : NomesJogadoresItalia.values()) {
-				Batedor batedor = new Batedor();
-				batedor.setName(nome.toString());
-				batedor.setPerfil(new Perfil(r.nextInt(10), r.nextInt(10)));
-				batedor.setTime(t);
-				listaJogadores.add(batedor);
+				listaJogadores.add(criarBatedor(nome.toString(), t));
 			}
-			Goleiro goleiroItalia = new Goleiro();
-			goleiroItalia.setName("Buffon");
-			goleiroItalia.setTime(t);
-			goleiroItalia.setPerfil(new Perfil(r.nextInt(10), r.nextInt(10)));
-			listaJogadores.add(goleiroItalia);
+			listaJogadores.add(criarGoleiro("Buffon", t));
 			break;
 
 		default:
@@ -129,5 +78,23 @@ public class JogadorController {
 		}
 
 		return listaJogadores;
+	}
+
+	public static Jogador criarBatedor(String nome, Time t) {
+		Random r = new Random();
+		Batedor batedor = new Batedor();
+		batedor.setName(nome.toString());
+		batedor.setPerfil(new Perfil(r.nextInt(10) + 1, r.nextInt(10) + 1));
+		batedor.setTime(t);
+		return batedor;
+	}
+
+	public static Jogador criarGoleiro(String nome, Time t) {
+		Random r = new Random();
+		Goleiro goleiro = new Goleiro();
+		goleiro.setName(nome.toString());
+		goleiro.setPerfil(new Perfil(r.nextInt(10) + 1, r.nextInt(10) + 1));
+		goleiro.setTime(t);
+		return goleiro;
 	}
 }

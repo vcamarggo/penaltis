@@ -42,7 +42,7 @@ public class SelecaoTimeView extends JFrame {
 	private JRadioButton btnDeustchland = new JRadioButton(Times.ALEMANHA.toString());
 	private final JLabel bandeiraDeustchland = new JLabel("");
 
-	private JRadioButton btnEspanha = new JRadioButton(Times.ITALIA.toString());
+	private JRadioButton btnEspanha = new JRadioButton(Times.ESPANHA.toString());
 	private final JLabel bandeiraEspanha = new JLabel("");
 
 	private JRadioButton btnFranca = new JRadioButton(Times.FRANÇA.toString());
