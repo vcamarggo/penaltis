@@ -8,7 +8,7 @@ package br.uem.enumeration;
 
 public enum Times {
 
-	ARGENTINA, ALEMANHA, BRASIL, ITALIA, FRANCA, ESPANHA;
+	ARGENTINA, ALEMANHA, BRASIL, ITALIA, FRANÇA, ESPANHA;
 
 	public String toString() {
 		return toString();
