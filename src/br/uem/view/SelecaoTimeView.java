@@ -21,6 +21,7 @@ import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
 
 import br.uem.controller.SelecaoTimeController;
+import br.uem.enumeration.Times;
 
 /**
  * @author V.Camargo
@@ -32,22 +33,22 @@ public class SelecaoTimeView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	public JRadioButton btnBrasil = new JRadioButton("Brasil");
+	public JRadioButton btnBrasil = new JRadioButton(Times.BRASIL.toString());
 	private final JLabel bandeiraBrasil = new JLabel("");
 
-	private JRadioButton btnArgentina = new JRadioButton("Argentina");
+	private JRadioButton btnArgentina = new JRadioButton(Times.ARGENTINA.toString());
 	private final JLabel bandeiraArgentina = new JLabel("");
 
-	private JRadioButton btnDeustchland = new JRadioButton("Alemanha");
+	private JRadioButton btnDeustchland = new JRadioButton(Times.ALEMANHA.toString());
 	private final JLabel bandeiraDeustchland = new JLabel("");
 
-	private JRadioButton btnEspanha = new JRadioButton("Espanha");
+	private JRadioButton btnEspanha = new JRadioButton(Times.ITALIA.toString());
 	private final JLabel bandeiraEspanha = new JLabel("");
 
-	private JRadioButton btnFranca = new JRadioButton("França");
+	private JRadioButton btnFranca = new JRadioButton(Times.FRANÇA.toString());
 	private final JLabel bandeiraFranca = new JLabel("");
 
-	private JRadioButton btnItalia = new JRadioButton("Italia");
+	private JRadioButton btnItalia = new JRadioButton(Times.ITALIA.toString());
 	private final JLabel bandeiraItalia = new JLabel("");
 
 	private final JButton btnOK = new JButton("OK");

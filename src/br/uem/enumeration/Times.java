@@ -8,7 +8,7 @@ package br.uem.enumeration;
 
 public enum Times {
 
-	ARGENTINA("Argentina"), ALEMANHA("Alemanha"), BRASIL("Brasil"), ITALIA("Itália"), FRANÇA("França"), ESPANHA("Espanha");
+	ARGENTINA("Argentina"), ALEMANHA("Alemanha"), BRASIL("Brasil"), ITALIA("Italia"), FRANÇA("França"), ESPANHA("Espanha");
 
 	private final String nome;
 
