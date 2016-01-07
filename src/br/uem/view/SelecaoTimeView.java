@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Enumeration;
+import java.util.Random;
 
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
@@ -22,6 +23,7 @@ import javax.swing.border.EmptyBorder;
 
 import br.uem.controller.SelecaoTimeController;
 import br.uem.enumeration.Times;
+import br.uem.model.Time;
 
 /**
  * @author V.Camargo
@@ -36,10 +38,12 @@ public class SelecaoTimeView extends JFrame {
 	public JRadioButton btnBrasil = new JRadioButton(Times.BRASIL.toString());
 	private final JLabel bandeiraBrasil = new JLabel("");
 
-	private JRadioButton btnArgentina = new JRadioButton(Times.ARGENTINA.toString());
+	private JRadioButton btnArgentina = new JRadioButton(
+			Times.ARGENTINA.toString());
 	private final JLabel bandeiraArgentina = new JLabel("");
 
-	private JRadioButton btnDeustchland = new JRadioButton(Times.ALEMANHA.toString());
+	private JRadioButton btnDeustchland = new JRadioButton(
+			Times.ALEMANHA.toString());
 	private final JLabel bandeiraDeustchland = new JLabel("");
 
 	private JRadioButton btnEspanha = new JRadioButton(Times.ESPANHA.toString());
@@ -252,7 +256,20 @@ public class SelecaoTimeView extends JFrame {
 				}
 
 				selecaoTimeController = new SelecaoTimeController();
-				selecaoTimeController.criarTime(nomeTimeEscolhido);
+				Time timeJogador = selecaoTimeController
+						.criarTime(nomeTimeEscolhido);
+				
+				int auxEscolhaTimeMaquina = 0;
+				String nomeTimeMaquina;
+				do {
+					auxEscolhaTimeMaquina = new Random().nextInt(Times.values().length);
+					nomeTimeMaquina = Times.values()[auxEscolhaTimeMaquina]
+							.toString();
+				} while (nomeTimeMaquina == nomeTimeEscolhido);
+				
+				Time timeMaquina = selecaoTimeController
+						.criarTime(nomeTimeMaquina);
+
 				dispose();
 				QuemIniciaView iniciaView = new QuemIniciaView();
 				iniciaView.setVisible(true);
