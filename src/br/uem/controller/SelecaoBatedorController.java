@@ -47,7 +47,7 @@ public class SelecaoBatedorController {
 				choice.add(nome.toString());
 			}
 			break;
-		case ITALIA:
+		case ITÁLIA:
 			for (NomesJogadoresItalia nome : NomesJogadoresItalia.values()) {
 				choice.add(nome.toString());
 			}

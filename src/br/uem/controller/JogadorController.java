@@ -65,7 +65,7 @@ public class JogadorController {
 			listaJogadores.add(criarJogador("Hugo Lloris", t, false));
 			break;
 
-		case ITALIA:
+		case ITÁLIA:
 			for (NomesJogadoresItalia nome : NomesJogadoresItalia.values()) {
 				listaJogadores.add(criarJogador(nome.toString(), t, true));
 			}
