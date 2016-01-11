@@ -10,7 +10,10 @@ import br.uem.view.MainView;
  * @Date 29/12/2015
  */
 
-public class MainController {
+public class InicializadorGameController {
+
+	private static MainGameController mainGameController;
+
 	/**
 	 * Launch the application.
 	 */
@@ -25,5 +28,17 @@ public class MainController {
 				}
 			}
 		});
+	}
+
+	public static MainGameController getMainGameController() {
+		if (mainGameController == null) {
+			mainGameController = new MainGameController();
+		}
+		return mainGameController;
+	}
+
+	public static void setMainGameController(
+			MainGameController mainGameController) {
+		InicializadorGameController.mainGameController = mainGameController;
 	}
 }

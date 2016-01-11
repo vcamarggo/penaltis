@@ -1,6 +1,7 @@
 package br.uem.view;
 
 import java.awt.Label;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -29,6 +30,9 @@ public class MainView {
 	 */
 	private void initialize() {
 		setFrmPenaltis(new JFrame());
+		getFrmPenaltis().setIconImage(
+				Toolkit.getDefaultToolkit().getImage(
+						SelecaoBatedoresView.class.getResource("/bola.jpg")));
 		getFrmPenaltis().setTitle("Pênaltis");
 		getFrmPenaltis().setBounds(100, 100, 244, 244);
 		getFrmPenaltis().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

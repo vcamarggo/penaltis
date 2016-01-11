@@ -4,12 +4,12 @@ import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Enumeration;
-import java.util.Random;
 
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
@@ -21,9 +21,9 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
 
-import br.uem.controller.SelecaoTimeController;
+import br.uem.controller.InicializadorGameController;
+import br.uem.controller.MainGameController;
 import br.uem.enumeration.Times;
-import br.uem.model.Time;
 
 /**
  * @author V.Camargo
@@ -59,25 +59,6 @@ public class SelecaoTimeView extends JFrame {
 
 	private String nomeTimeEscolhido;
 
-	private SelecaoTimeController selecaoTimeController;
-
-	public SelecaoTimeController getSelecaoTimeController() {
-		return selecaoTimeController;
-	}
-
-	public void setSelecaoTimeController(
-			SelecaoTimeController selecaoTimeController) {
-		this.selecaoTimeController = selecaoTimeController;
-	}
-
-	public String getNomeTimeEscolhido() {
-		return nomeTimeEscolhido;
-	}
-
-	public void setNomeTimeEscolhido(String nomeTimeEscolhido) {
-		this.nomeTimeEscolhido = nomeTimeEscolhido;
-	}
-
 	/**
 	 * Launch the application.
 	 */
@@ -98,6 +79,8 @@ public class SelecaoTimeView extends JFrame {
 	 * Create the frame.
 	 */
 	public SelecaoTimeView() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(
+				SelecaoBatedoresView.class.getResource("/bola.jpg")));
 		setTitle("Pênaltis - Seleção de time");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 376, 282);
@@ -122,7 +105,7 @@ public class SelecaoTimeView extends JFrame {
 				btnArgentina.setSelected(true);
 			}
 		});
-		bandeiraArgentina.setIcon(new ImageIcon(SelecaoTimeController.class
+		bandeiraArgentina.setIcon(new ImageIcon(MainGameController.class
 				.getResource("/ar.png")));
 		contentPane.add(bandeiraArgentina, gbc_bandeiraArgentina);
 		GridBagConstraints gbc_btnArgentina = new GridBagConstraints();
@@ -142,7 +125,7 @@ public class SelecaoTimeView extends JFrame {
 				btnBrasil.setSelected(true);
 			}
 		});
-		bandeiraBrasil.setIcon(new ImageIcon(SelecaoTimeController.class
+		bandeiraBrasil.setIcon(new ImageIcon(MainGameController.class
 				.getResource("/br.png")));
 		contentPane.add(bandeiraBrasil, gbc_bandeiraBrasil);
 		GridBagConstraints gbc_btnBrasil = new GridBagConstraints();
@@ -163,7 +146,7 @@ public class SelecaoTimeView extends JFrame {
 				btnDeustchland.setSelected(true);
 			}
 		});
-		bandeiraDeustchland.setIcon(new ImageIcon(SelecaoTimeController.class
+		bandeiraDeustchland.setIcon(new ImageIcon(MainGameController.class
 				.getResource("/de.png")));
 		contentPane.add(bandeiraDeustchland, gbc_bandeiraDeustchland);
 		GridBagConstraints gbc_btnDeustchland = new GridBagConstraints();
@@ -183,7 +166,7 @@ public class SelecaoTimeView extends JFrame {
 				btnEspanha.setSelected(true);
 			}
 		});
-		bandeiraEspanha.setIcon(new ImageIcon(SelecaoTimeController.class
+		bandeiraEspanha.setIcon(new ImageIcon(MainGameController.class
 				.getResource("/es.png")));
 		contentPane.add(bandeiraEspanha, gbc_bandeiraEspanha);
 		GridBagConstraints gbc_btnEspanha = new GridBagConstraints();
@@ -203,7 +186,7 @@ public class SelecaoTimeView extends JFrame {
 				btnFranca.setSelected(true);
 			}
 		});
-		bandeiraFranca.setIcon(new ImageIcon(SelecaoTimeController.class
+		bandeiraFranca.setIcon(new ImageIcon(MainGameController.class
 				.getResource("/fr.png")));
 		contentPane.add(bandeiraFranca, gbc_bandeiraFranca);
 		GridBagConstraints gbc_btnFranca = new GridBagConstraints();
@@ -223,7 +206,7 @@ public class SelecaoTimeView extends JFrame {
 				btnItalia.setSelected(true);
 			}
 		});
-		bandeiraItalia.setIcon(new ImageIcon(SelecaoTimeController.class
+		bandeiraItalia.setIcon(new ImageIcon(MainGameController.class
 				.getResource("/it.png")));
 		contentPane.add(bandeiraItalia, gbc_bandeiraItalia);
 		GridBagConstraints gbc_btnItalia = new GridBagConstraints();
@@ -255,21 +238,10 @@ public class SelecaoTimeView extends JFrame {
 					}
 				}
 
-				selecaoTimeController = new SelecaoTimeController();
-				Time timeJogador = selecaoTimeController
-						.criarTime(nomeTimeEscolhido);
-				
-				int auxEscolhaTimeMaquina = 0;
-				String nomeTimeMaquina;
-				do {
-					auxEscolhaTimeMaquina = new Random().nextInt(Times.values().length);
-					nomeTimeMaquina = Times.values()[auxEscolhaTimeMaquina]
-							.toString();
-				} while (nomeTimeMaquina == nomeTimeEscolhido);
-				
-				Time timeMaquina = selecaoTimeController
-						.criarTime(nomeTimeMaquina);
-
+				// InicializadorGameController
+				// .setMainGameController(new MainGameController());
+				InicializadorGameController.getMainGameController()
+						.createTimes(nomeTimeEscolhido);
 				dispose();
 				QuemIniciaView iniciaView = new QuemIniciaView();
 				iniciaView.setVisible(true);
@@ -278,4 +250,13 @@ public class SelecaoTimeView extends JFrame {
 		contentPane.add(btnOK, gbc_btnOK);
 
 	}
+
+	public String getNomeTimeEscolhido() {
+		return nomeTimeEscolhido;
+	}
+
+	public void setNomeTimeEscolhido(String nomeTimeEscolhido) {
+		this.nomeTimeEscolhido = nomeTimeEscolhido;
+	}
+
 }

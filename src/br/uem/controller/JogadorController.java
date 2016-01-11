@@ -31,45 +31,45 @@ public class JogadorController {
 		switch (Times.valueOf(nomeTime)) {
 		case ALEMANHA:
 			for (NomesJogadoresAlemanha nome : NomesJogadoresAlemanha.values()) {
-				listaJogadores.add(criarBatedor(nome.toString(), t));
+				listaJogadores.add(criarJogador(nome.toString(), t, true));
 			}
-			listaJogadores.add(criarGoleiro("Neuer", t));
+			listaJogadores.add(criarJogador("Neuer", t, false));
 			break;
 
 		case ARGENTINA:
 			for (NomesJogadoresArgentina nome : NomesJogadoresArgentina
 					.values()) {
-				listaJogadores.add(criarBatedor(nome.toString(), t));
+				listaJogadores.add(criarJogador(nome.toString(), t, true));
 			}
-			listaJogadores.add(criarGoleiro("Rojo", t));
+			listaJogadores.add(criarJogador("Rojo", t, false));
 			break;
 
 		case BRASIL:
 			for (NomesJogadoresBrasil nome : NomesJogadoresBrasil.values()) {
-				listaJogadores.add(criarBatedor(nome.toString(), t));
+				listaJogadores.add(criarJogador(nome.toString(), t, true));
 			}
-			listaJogadores.add(criarGoleiro("Júlio César", t));
+			listaJogadores.add(criarJogador("Júlio César", t, false));
 			break;
 
 		case ESPANHA:
 			for (NomesJogadoresEspanha nome : NomesJogadoresEspanha.values()) {
-				listaJogadores.add(criarBatedor(nome.toString(), t));
+				listaJogadores.add(criarJogador(nome.toString(), t, true));
 			}
-			listaJogadores.add(criarGoleiro("Casillas", t));
+			listaJogadores.add(criarJogador("Casillas", t, false));
 			break;
 
 		case FRANÇA:
 			for (NomesJogadoresFranca nome : NomesJogadoresFranca.values()) {
-				listaJogadores.add(criarBatedor(nome.toString(), t));
+				listaJogadores.add(criarJogador(nome.toString(), t, true));
 			}
-			listaJogadores.add(criarGoleiro("Hugo Lloris", t));
+			listaJogadores.add(criarJogador("Hugo Lloris", t, false));
 			break;
 
 		case ITALIA:
 			for (NomesJogadoresItalia nome : NomesJogadoresItalia.values()) {
-				listaJogadores.add(criarBatedor(nome.toString(), t));
+				listaJogadores.add(criarJogador(nome.toString(), t, true));
 			}
-			listaJogadores.add(criarGoleiro("Buffon", t));
+			listaJogadores.add(criarJogador("Buffon", t, false));
 			break;
 
 		default:
@@ -80,21 +80,18 @@ public class JogadorController {
 		return listaJogadores;
 	}
 
-	public static Jogador criarBatedor(String nome, Time t) {
+	public static Jogador criarJogador(String nome, Time t, boolean isBatedor) {
 		Random r = new Random();
-		Batedor batedor = new Batedor();
-		batedor.setName(nome.toString());
-		batedor.setPerfil(new Perfil(r.nextInt(10) + 1, r.nextInt(10) + 1));
-		batedor.setTime(t);
-		return batedor;
+		Jogador jogador;
+		if (isBatedor) {
+			jogador = new Batedor();
+		} else {
+			jogador = new Goleiro();
+		}
+		jogador.setName(nome.toString());
+		jogador.setPerfil(new Perfil(r.nextInt(10) + 1, r.nextInt(10) + 1));
+		jogador.setTime(t);
+		return jogador;
 	}
 
-	public static Jogador criarGoleiro(String nome, Time t) {
-		Random r = new Random();
-		Goleiro goleiro = new Goleiro();
-		goleiro.setName(nome.toString());
-		goleiro.setPerfil(new Perfil(r.nextInt(10) + 1, r.nextInt(10) + 1));
-		goleiro.setTime(t);
-		return goleiro;
-	}
 }
