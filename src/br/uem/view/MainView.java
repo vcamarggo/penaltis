@@ -34,7 +34,7 @@ public class MainView {
 				Toolkit.getDefaultToolkit().getImage(
 						SelecaoBatedoresView.class.getResource("/bola.jpg")));
 		getFrmPenaltis().setTitle("Pênaltis");
-		getFrmPenaltis().setBounds(100, 100, 244, 244);
+		getFrmPenaltis().setBounds(100, 100, 227, 132);
 		getFrmPenaltis().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getFrmPenaltis().getContentPane().setLayout(null);
 
@@ -49,12 +49,12 @@ public class MainView {
 			}
 		});
 
-		btnComecarJogo.setBounds(31, 52, 162, 23);
+		btnComecarJogo.setBounds(26, 33, 162, 23);
 		getFrmPenaltis().getContentPane().add(btnComecarJogo);
 
 		Label label = new Label("V 0.1");
 		label.setAlignment(Label.CENTER);
-		label.setBounds(83, 173, 62, 22);
+		label.setBounds(73, 62, 62, 22);
 		getFrmPenaltis().getContentPane().add(label);
 	}
 
