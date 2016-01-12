@@ -33,12 +33,12 @@ public class MainView {
 		getFrmPenaltis().setIconImage(
 				Toolkit.getDefaultToolkit().getImage(
 						SelecaoBatedoresView.class.getResource("/bola.jpg")));
-		getFrmPenaltis().setTitle("Pênaltis");
+		getFrmPenaltis().setTitle("P�naltis");
 		getFrmPenaltis().setBounds(100, 100, 244, 244);
 		getFrmPenaltis().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getFrmPenaltis().getContentPane().setLayout(null);
 
-		JButton btnComecarJogo = new JButton("Começar Jogo");
+		JButton btnComecarJogo = new JButton("Come�ar Jogo");
 		btnComecarJogo.addActionListener(new ActionListener() {
 
 			@Override
@@ -51,10 +51,6 @@ public class MainView {
 
 		btnComecarJogo.setBounds(31, 52, 162, 23);
 		getFrmPenaltis().getContentPane().add(btnComecarJogo);
-
-		JButton btnConfiguracao = new JButton("Configurações");
-		btnConfiguracao.setBounds(31, 100, 162, 23);
-		getFrmPenaltis().getContentPane().add(btnConfiguracao);
 
 		Label label = new Label("V 0.1");
 		label.setAlignment(Label.CENTER);

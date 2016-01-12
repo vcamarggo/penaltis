@@ -49,11 +49,12 @@ public class SelecaoTimeView extends JFrame {
 	private JRadioButton btnEspanha = new JRadioButton(Times.ESPANHA.toString());
 	private final JLabel bandeiraEspanha = new JLabel("");
 
-	private JRadioButton btnFranca = new JRadioButton(Times.FRAN√áA.toString());
-	private final JLabel bandeiraFranca = new JLabel("");
+	private JRadioButton btnChile = new JRadioButton(Times.CHILE.toString());
+	private final JLabel bandeiraChile = new JLabel("");
 
-	private JRadioButton btnItalia = new JRadioButton(Times.IT√ÅLIA.toString());
-	private final JLabel bandeiraItalia = new JLabel("");
+	private JRadioButton btnPortugal = new JRadioButton(
+			Times.PORTUGAL.toString());
+	private final JLabel bandeiraPortugal = new JLabel("");
 
 	private final JButton btnOK = new JButton("OK");
 
@@ -81,7 +82,7 @@ public class SelecaoTimeView extends JFrame {
 	public SelecaoTimeView() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(
 				SelecaoBatedoresView.class.getResource("/bola.jpg")));
-		setTitle("P√™naltis - Sele√ß√£o de time");
+		setTitle("PÍnaltis - SeleÁ„o de time");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 376, 282);
 		contentPane = new JPanel();
@@ -176,53 +177,53 @@ public class SelecaoTimeView extends JFrame {
 		gbc_btnEspanha.gridy = 3;
 		contentPane.add(btnEspanha, gbc_btnEspanha);
 
-		GridBagConstraints gbc_bandeiraFranca = new GridBagConstraints();
-		gbc_bandeiraFranca.insets = new Insets(0, 0, 5, 5);
-		gbc_bandeiraFranca.gridx = 0;
-		gbc_bandeiraFranca.gridy = 5;
-		bandeiraFranca.addMouseListener(new MouseAdapter() {
+		GridBagConstraints gbc_bandeiraChile = new GridBagConstraints();
+		gbc_bandeiraChile.insets = new Insets(0, 0, 5, 5);
+		gbc_bandeiraChile.gridx = 0;
+		gbc_bandeiraChile.gridy = 5;
+		bandeiraChile.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				btnFranca.setSelected(true);
+				btnChile.setSelected(true);
 			}
 		});
-		bandeiraFranca.setIcon(new ImageIcon(MainGameController.class
-				.getResource("/fr.png")));
-		contentPane.add(bandeiraFranca, gbc_bandeiraFranca);
-		GridBagConstraints gbc_btnFranca = new GridBagConstraints();
-		gbc_btnFranca.anchor = GridBagConstraints.NORTHWEST;
-		gbc_btnFranca.insets = new Insets(0, 0, 5, 5);
-		gbc_btnFranca.gridx = 1;
-		gbc_btnFranca.gridy = 5;
-		contentPane.add(btnFranca, gbc_btnFranca);
+		bandeiraChile.setIcon(new ImageIcon(MainGameController.class
+				.getResource("/cl.png")));
+		contentPane.add(bandeiraChile, gbc_bandeiraChile);
+		GridBagConstraints gbc_btnChile = new GridBagConstraints();
+		gbc_btnChile.anchor = GridBagConstraints.NORTHWEST;
+		gbc_btnChile.insets = new Insets(0, 0, 5, 5);
+		gbc_btnChile.gridx = 1;
+		gbc_btnChile.gridy = 5;
+		contentPane.add(btnChile, gbc_btnChile);
 
-		GridBagConstraints gbc_bandeiraItalia = new GridBagConstraints();
-		gbc_bandeiraItalia.insets = new Insets(0, 0, 5, 5);
-		gbc_bandeiraItalia.gridx = 4;
-		gbc_bandeiraItalia.gridy = 5;
-		bandeiraItalia.addMouseListener(new MouseAdapter() {
+		GridBagConstraints gbc_bandeiraPortugal = new GridBagConstraints();
+		gbc_bandeiraPortugal.insets = new Insets(0, 0, 5, 5);
+		gbc_bandeiraPortugal.gridx = 4;
+		gbc_bandeiraPortugal.gridy = 5;
+		bandeiraPortugal.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				btnItalia.setSelected(true);
+				btnPortugal.setSelected(true);
 			}
 		});
-		bandeiraItalia.setIcon(new ImageIcon(MainGameController.class
-				.getResource("/it.png")));
-		contentPane.add(bandeiraItalia, gbc_bandeiraItalia);
-		GridBagConstraints gbc_btnItalia = new GridBagConstraints();
-		gbc_btnItalia.anchor = GridBagConstraints.NORTHWEST;
-		gbc_btnItalia.insets = new Insets(0, 0, 5, 0);
-		gbc_btnItalia.gridx = 5;
-		gbc_btnItalia.gridy = 5;
-		contentPane.add(btnItalia, gbc_btnItalia);
+		bandeiraPortugal.setIcon(new ImageIcon(MainGameController.class
+				.getResource("/pt.png")));
+		contentPane.add(bandeiraPortugal, gbc_bandeiraPortugal);
+		GridBagConstraints gbc_btnPortugal = new GridBagConstraints();
+		gbc_btnPortugal.anchor = GridBagConstraints.NORTHWEST;
+		gbc_btnPortugal.insets = new Insets(0, 0, 5, 0);
+		gbc_btnPortugal.gridx = 5;
+		gbc_btnPortugal.gridy = 5;
+		contentPane.add(btnPortugal, gbc_btnPortugal);
 
 		ButtonGroup group = new ButtonGroup();
 		group.add(btnArgentina);
 		group.add(btnBrasil);
 		group.add(btnDeustchland);
 		group.add(btnEspanha);
-		group.add(btnFranca);
-		group.add(btnItalia);
+		group.add(btnChile);
+		group.add(btnPortugal);
 		GridBagConstraints gbc_btnOK = new GridBagConstraints();
 		gbc_btnOK.gridwidth = 6;
 		gbc_btnOK.gridx = 0;
@@ -238,8 +239,6 @@ public class SelecaoTimeView extends JFrame {
 					}
 				}
 
-				// InicializadorGameController
-				// .setMainGameController(new MainGameController());
 				InicializadorGameController.getMainGameController()
 						.createTimes(nomeTimeEscolhido);
 				dispose();

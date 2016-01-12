@@ -5,9 +5,9 @@ import java.awt.Choice;
 import br.uem.enumeration.NomesJogadoresAlemanha;
 import br.uem.enumeration.NomesJogadoresArgentina;
 import br.uem.enumeration.NomesJogadoresBrasil;
+import br.uem.enumeration.NomesJogadoresChile;
 import br.uem.enumeration.NomesJogadoresEspanha;
-import br.uem.enumeration.NomesJogadoresFranca;
-import br.uem.enumeration.NomesJogadoresItalia;
+import br.uem.enumeration.NomesJogadoresPortugal;
 import br.uem.enumeration.Times;
 
 /**
@@ -42,13 +42,13 @@ public class SelecaoBatedorController {
 				choice.add(nome.toString());
 			}
 			break;
-		case FRANÇA:
-			for (NomesJogadoresFranca nome : NomesJogadoresFranca.values()) {
+		case CHILE:
+			for (NomesJogadoresChile nome : NomesJogadoresChile.values()) {
 				choice.add(nome.toString());
 			}
 			break;
-		case ITÁLIA:
-			for (NomesJogadoresItalia nome : NomesJogadoresItalia.values()) {
+		case PORTUGAL:
+			for (NomesJogadoresPortugal nome : NomesJogadoresPortugal.values()) {
 				choice.add(nome.toString());
 			}
 			break;

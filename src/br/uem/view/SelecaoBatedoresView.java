@@ -45,7 +45,7 @@ public class SelecaoBatedoresView extends JFrame {
 	public SelecaoBatedoresView() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(
 				SelecaoBatedoresView.class.getResource("/bola.jpg")));
-		setTitle("PÃªnaltis - SeleÃ§Ã£o de batedores");
+		setTitle("Pênaltis - Seleção de batedores");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -107,7 +107,6 @@ public class SelecaoBatedoresView extends JFrame {
 		contentPane.add(batedor3);
 		contentPane.add(batedor4);
 		contentPane.add(batedor5);
-
 	}
 
 	public SelecaoBatedorController getSelecaoBatedorController() {

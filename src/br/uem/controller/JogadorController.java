@@ -7,9 +7,9 @@ import java.util.Random;
 import br.uem.enumeration.NomesJogadoresAlemanha;
 import br.uem.enumeration.NomesJogadoresArgentina;
 import br.uem.enumeration.NomesJogadoresBrasil;
+import br.uem.enumeration.NomesJogadoresChile;
 import br.uem.enumeration.NomesJogadoresEspanha;
-import br.uem.enumeration.NomesJogadoresFranca;
-import br.uem.enumeration.NomesJogadoresItalia;
+import br.uem.enumeration.NomesJogadoresPortugal;
 import br.uem.enumeration.Times;
 import br.uem.model.Batedor;
 import br.uem.model.Goleiro;
@@ -48,7 +48,7 @@ public class JogadorController {
 			for (NomesJogadoresBrasil nome : NomesJogadoresBrasil.values()) {
 				listaJogadores.add(criarJogador(nome.toString(), t, true));
 			}
-			listaJogadores.add(criarJogador("Júlio César", t, false));
+			listaJogadores.add(criarJogador("J�lio C�sar", t, false));
 			break;
 
 		case ESPANHA:
@@ -58,18 +58,18 @@ public class JogadorController {
 			listaJogadores.add(criarJogador("Casillas", t, false));
 			break;
 
-		case FRANÇA:
-			for (NomesJogadoresFranca nome : NomesJogadoresFranca.values()) {
+		case CHILE:
+			for (NomesJogadoresChile nome : NomesJogadoresChile.values()) {
 				listaJogadores.add(criarJogador(nome.toString(), t, true));
 			}
-			listaJogadores.add(criarJogador("Hugo Lloris", t, false));
+			listaJogadores.add(criarJogador("Claudio Bravo", t, false));
 			break;
 
-		case ITÁLIA:
-			for (NomesJogadoresItalia nome : NomesJogadoresItalia.values()) {
+		case PORTUGAL:
+			for (NomesJogadoresPortugal nome : NomesJogadoresPortugal.values()) {
 				listaJogadores.add(criarJogador(nome.toString(), t, true));
 			}
-			listaJogadores.add(criarJogador("Buffon", t, false));
+			listaJogadores.add(criarJogador("Manuel Bento", t, false));
 			break;
 
 		default:

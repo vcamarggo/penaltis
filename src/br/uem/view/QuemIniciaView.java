@@ -49,7 +49,7 @@ public class QuemIniciaView extends JFrame {
 	public QuemIniciaView() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(
 				SelecaoBatedoresView.class.getResource("/bola.jpg")));
-		setTitle("Pen√¢ltis - Quem come√ßa chutando?");
+		setTitle("PÍnaltis - Quem comeÁa chutando?");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 438, 235);
 		contentPane = new JPanel();
@@ -57,7 +57,7 @@ public class QuemIniciaView extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JRadioButton rdbtnComearChutando = new JRadioButton("Come√ßar Chutando");
+		JRadioButton rdbtnComearChutando = new JRadioButton("ComeÁar Chutando");
 		rdbtnComearChutando.setSelected(true);
 		buttonGroupQuemComeca.add(rdbtnComearChutando);
 		rdbtnComearChutando.setBounds(142, 48, 166, 23);
