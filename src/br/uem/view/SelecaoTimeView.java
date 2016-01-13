@@ -81,7 +81,7 @@ public class SelecaoTimeView extends JFrame {
 	 */
 	public SelecaoTimeView() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(
-				SelecaoBatedoresView.class.getResource("/bola.jpg")));
+				SelecaoTimeView.class.getResource("/bola.jpg")));
 		setTitle("Pênaltis - Seleção de time");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 376, 282);

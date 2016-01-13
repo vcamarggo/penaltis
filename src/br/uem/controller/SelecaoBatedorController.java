@@ -1,6 +1,6 @@
 package br.uem.controller;
 
-import java.awt.Choice;
+import java.awt.List;
 
 import br.uem.enumeration.NomesJogadoresAlemanha;
 import br.uem.enumeration.NomesJogadoresArgentina;
@@ -18,7 +18,7 @@ import br.uem.enumeration.Times;
 
 public class SelecaoBatedorController {
 
-	public Choice populaListaBatedor(Choice choice) {
+	public List populaListaBatedor(List choice) {
 		switch (Times.valueOf(InicializadorGameController
 				.getMainGameController().getTimeJogador().getNome())) {
 		case ALEMANHA:

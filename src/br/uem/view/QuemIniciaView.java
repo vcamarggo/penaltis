@@ -48,28 +48,29 @@ public class QuemIniciaView extends JFrame {
 	 */
 	public QuemIniciaView() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(
-				SelecaoBatedoresView.class.getResource("/bola.jpg")));
+				QuemIniciaView.class.getResource("/bola.jpg")));
 		setTitle("Pênaltis - Quem começa chutando?");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 438, 235);
+		setBounds(100, 100, 386, 188);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		JRadioButton rdbtnComearChutando = new JRadioButton("Começar Chutando");
+		rdbtnComearChutando.setBounds(139, 22, 166, 23);
 		rdbtnComearChutando.setSelected(true);
 		buttonGroupQuemComeca.add(rdbtnComearChutando);
-		rdbtnComearChutando.setBounds(142, 48, 166, 23);
 		contentPane.add(rdbtnComearChutando);
 
 		JRadioButton rdbtnComputadorDecide = new JRadioButton(
 				"Computador Decide");
+		rdbtnComputadorDecide.setBounds(139, 58, 123, 23);
 		buttonGroupQuemComeca.add(rdbtnComputadorDecide);
-		rdbtnComputadorDecide.setBounds(142, 98, 123, 23);
 		contentPane.add(rdbtnComputadorDecide);
 
 		JButton btnOk = new JButton("OK");
+		btnOk.setBounds(160, 100, 89, 23);
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (rdbtnComputadorDecide.isSelected()
@@ -81,11 +82,10 @@ public class QuemIniciaView extends JFrame {
 							.setJogadorComeca(true);
 				}
 				dispose();
-				SelecaoBatedoresView selecaoBatedoresView = new SelecaoBatedoresView();
+				MainGameView selecaoBatedoresView = new MainGameView();
 				selecaoBatedoresView.setVisible(true);
 			}
 		});
-		btnOk.setBounds(163, 152, 89, 23);
 		contentPane.add(btnOk);
 	}
 }

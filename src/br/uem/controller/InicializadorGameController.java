@@ -2,7 +2,7 @@ package br.uem.controller;
 
 import java.awt.EventQueue;
 
-import br.uem.view.MainView;
+import br.uem.view.StartView;
 
 /**
  * @author V.Camargo
@@ -21,7 +21,7 @@ public class InicializadorGameController {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainView window = new MainView();
+					StartView window = new StartView();
 					window.getFrmPenaltis().setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

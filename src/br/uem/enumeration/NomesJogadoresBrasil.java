@@ -8,7 +8,7 @@ package br.uem.enumeration;
 
 public enum NomesJogadoresBrasil {
 	CHULAPA("Chulapa"), CASAGRANDE("Casagrande"), BALTAZAR("Baltazar"), PELE(
-			"PelÃ©"), RIVELLINO("Rivellino"), SOCRATES("SÃ³crates"), ZICO("Zico"), NEYMAR(
+			"Pelé"), RIVELLINO("Rivellino"), SOCRATES("Sócrates"), ZICO("Zico"), NEYMAR(
 			"Neymar"), RONALDO("Ronaldo"), RIVALDO("Rivaldo");
 
 	private final String nome;
