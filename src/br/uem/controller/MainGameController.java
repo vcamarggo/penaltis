@@ -15,6 +15,7 @@ public class MainGameController {
 	private Time timeJogador;
 	private Time timeMaquina;
 	private Boolean jogadorComeca;
+	private Boolean isVezJogador;
 
 	public void createTimes(String nomeDoTime) {
 		timeJogador = new Time();
@@ -57,6 +58,14 @@ public class MainGameController {
 
 	public void setJogadorComeca(Boolean jogadorComeca) {
 		this.jogadorComeca = jogadorComeca;
+	}
+
+	public Boolean getIsVezJogador() {
+		return isVezJogador;
+	}
+
+	public void setIsVezJogador(Boolean isVezJogador) {
+		this.isVezJogador = isVezJogador;
 	}
 
 }

@@ -65,7 +65,7 @@ public class QuemIniciaView extends JFrame {
 
 		JRadioButton rdbtnComputadorDecide = new JRadioButton(
 				"Computador Decide");
-		rdbtnComputadorDecide.setBounds(139, 58, 123, 23);
+		rdbtnComputadorDecide.setBounds(139, 58, 180, 23);
 		buttonGroupQuemComeca.add(rdbtnComputadorDecide);
 		contentPane.add(rdbtnComputadorDecide);
 
@@ -81,6 +81,11 @@ public class QuemIniciaView extends JFrame {
 					InicializadorGameController.getMainGameController()
 							.setJogadorComeca(true);
 				}
+				InicializadorGameController.getMainGameController()
+						.setIsVezJogador(
+								InicializadorGameController
+										.getMainGameController()
+										.getJogadorComeca());
 				dispose();
 				MainGameView selecaoBatedoresView = new MainGameView();
 				selecaoBatedoresView.setVisible(true);

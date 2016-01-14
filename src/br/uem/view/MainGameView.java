@@ -1,21 +1,22 @@
 package br.uem.view;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
 
+import br.uem.controller.InicializadorGameController;
 import br.uem.controller.MainGameController;
 import br.uem.controller.SelecaoBatedorController;
-import java.awt.Color;
 
 /**
  * @author V.Camargo
@@ -56,83 +57,81 @@ public class MainGameView extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		List list = new List();
-		list.setBounds(10, 11, 169, 181);
+		List pickListJogadores = new List();
+		pickListJogadores.setBounds(10, 11, 169, 181);
 		selecaoBatedorController = new SelecaoBatedorController();
-		selecaoBatedorController.populaListaBatedor(list);
+		selecaoBatedorController.populaListaBatedor(pickListJogadores);
 
-		contentPane.add(list);
+		ImageIcon imagemBotaoDefault = null;
 
-		JButton btnChutar = new JButton("Chutar");
-		btnChutar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				list.remove(list.getSelectedIndex());
-				repaint();
-			}
-		});
-		btnChutar.setBounds(185, 11, 89, 23);
-		contentPane.add(btnChutar);
+		if (InicializadorGameController.getMainGameController()
+				.getJogadorComeca()) {
+			imagemBotaoDefault = new ImageIcon(
+					MainGameController.class.getResource("/chute.png"));
+		} else {
+			imagemBotaoDefault = new ImageIcon(
+					MainGameController.class.getResource("/luva.png"));
+			pickListJogadores.setEnabled(false);
+		}
 
-		JRadioButton rdbtnEsquerdaCima = new JRadioButton();
-		rdbtnEsquerdaCima.setOpaque(false);
-		rdbtnEsquerdaCima.setFocusPainted(false);
-		rdbtnEsquerdaCima.setContentAreaFilled(false);
-		rdbtnEsquerdaCima.setBorderPainted(false);
-		rdbtnEsquerdaCima.setBorder(null);
-		rdbtnEsquerdaCima.setBackground(Color.LIGHT_GRAY);
-		rdbtnEsquerdaCima.setBounds(195, 46, 21, 23);
+		JButton btnEsquerdaCima = new JButton();
+		btnEsquerdaCima.setIcon(imagemBotaoDefault);
+		btnEsquerdaCima.setBackground(Color.LIGHT_GRAY);
+		btnEsquerdaCima.setBounds(190, 46, 32, 32);
 
-		JRadioButton rdbtnMeioCima = new JRadioButton();
-		rdbtnMeioCima.setBackground(Color.LIGHT_GRAY);
-		rdbtnMeioCima.setBounds(360, 46, 21, 23);
-		rdbtnMeioCima.setBorder(null);
-		rdbtnMeioCima.setBorderPainted(false);
-		rdbtnMeioCima.setContentAreaFilled(false);
-		rdbtnMeioCima.setFocusPainted(false);
-		rdbtnMeioCima.setOpaque(false);
+		JButton btnMeioCima = new JButton();
+		btnMeioCima.setIcon(imagemBotaoDefault);
+		btnMeioCima.setBackground(Color.LIGHT_GRAY);
+		btnMeioCima.setBounds(360, 46, 32, 32);
 
-		JRadioButton rdbtnDireitoCima = new JRadioButton();
-		rdbtnDireitoCima.setOpaque(false);
-		rdbtnDireitoCima.setFocusPainted(false);
-		rdbtnDireitoCima.setContentAreaFilled(false);
-		rdbtnDireitoCima.setBorderPainted(false);
-		rdbtnDireitoCima.setBorder(null);
-		rdbtnDireitoCima.setBackground(Color.LIGHT_GRAY);
-		rdbtnDireitoCima.setBounds(483, 46, 21, 23);
+		JButton btnDireitoCima = new JButton();
+		btnDireitoCima.setIcon(imagemBotaoDefault);
+		btnDireitoCima.setBackground(Color.LIGHT_GRAY);
+		btnDireitoCima.setBounds(470, 46, 32, 32);
 
-		JRadioButton rdbtnEsquerdaBaixo = new JRadioButton();
-		rdbtnEsquerdaBaixo.setOpaque(false);
-		rdbtnEsquerdaBaixo.setFocusPainted(false);
-		rdbtnEsquerdaBaixo.setContentAreaFilled(false);
-		rdbtnEsquerdaBaixo.setBorderPainted(false);
-		rdbtnEsquerdaBaixo.setBorder(null);
-		rdbtnEsquerdaBaixo.setBackground(Color.LIGHT_GRAY);
-		rdbtnEsquerdaBaixo.setBounds(195, 160, 21, 23);
+		JButton btnEsquerdaBaixo = new JButton();
+		btnEsquerdaBaixo.setIcon(imagemBotaoDefault);
+		btnEsquerdaBaixo.setBackground(Color.LIGHT_GRAY);
+		btnEsquerdaBaixo.setBounds(190, 150, 32, 32);
 
-		JRadioButton rdbtnMeioBaixo = new JRadioButton();
-		rdbtnMeioBaixo.setOpaque(false);
-		rdbtnMeioBaixo.setFocusPainted(false);
-		rdbtnMeioBaixo.setContentAreaFilled(false);
-		rdbtnMeioBaixo.setBorderPainted(false);
-		rdbtnMeioBaixo.setBorder(null);
-		rdbtnMeioBaixo.setBackground(Color.LIGHT_GRAY);
-		rdbtnMeioBaixo.setBounds(360, 160, 21, 23);
+		JButton btnMeioBaixo = new JButton();
+		btnMeioBaixo.setIcon(imagemBotaoDefault);
+		btnMeioBaixo.setBackground(Color.LIGHT_GRAY);
+		btnMeioBaixo.setBounds(360, 150, 32, 32);
 
-		JRadioButton rdbtnDireitaBaixo = new JRadioButton();
-		rdbtnDireitaBaixo.setOpaque(false);
-		rdbtnDireitaBaixo.setFocusPainted(false);
-		rdbtnDireitaBaixo.setContentAreaFilled(false);
-		rdbtnDireitaBaixo.setBorderPainted(false);
-		rdbtnDireitaBaixo.setBorder(null);
-		rdbtnDireitaBaixo.setBackground(Color.LIGHT_GRAY);
-		rdbtnDireitaBaixo.setBounds(483, 160, 21, 23);
+		JButton btnDireitaBaixo = new JButton();
+		btnDireitaBaixo.setIcon(imagemBotaoDefault);
+		btnDireitaBaixo.setBackground(Color.LIGHT_GRAY);
+		btnDireitaBaixo.setBounds(470, 150, 32, 32);
 
-		contentPane.add(rdbtnEsquerdaCima);
-		contentPane.add(rdbtnMeioCima);
-		contentPane.add(rdbtnDireitoCima);
-		contentPane.add(rdbtnEsquerdaBaixo);
-		contentPane.add(rdbtnMeioBaixo);
-		contentPane.add(rdbtnDireitaBaixo);
+		java.util.List<JButton> botoesChutarDefender = new ArrayList<JButton>();
+		botoesChutarDefender.add(btnDireitaBaixo);
+		botoesChutarDefender.add(btnDireitoCima);
+		botoesChutarDefender.add(btnEsquerdaBaixo);
+		botoesChutarDefender.add(btnEsquerdaCima);
+		botoesChutarDefender.add(btnMeioBaixo);
+		botoesChutarDefender.add(btnMeioCima);
+
+		btnEsquerdaCima.addActionListener(controlaBotao(botoesChutarDefender,
+				pickListJogadores));
+		btnMeioCima.addActionListener(controlaBotao(botoesChutarDefender,
+				pickListJogadores));
+		btnDireitoCima.addActionListener(controlaBotao(botoesChutarDefender,
+				pickListJogadores));
+		btnEsquerdaBaixo.addActionListener(controlaBotao(botoesChutarDefender,
+				pickListJogadores));
+		btnMeioBaixo.addActionListener(controlaBotao(botoesChutarDefender,
+				pickListJogadores));
+		btnDireitaBaixo.addActionListener(controlaBotao(botoesChutarDefender,
+				pickListJogadores));
+
+		contentPane.add(btnEsquerdaCima);
+		contentPane.add(btnMeioCima);
+		contentPane.add(btnDireitoCima);
+		contentPane.add(btnEsquerdaBaixo);
+		contentPane.add(btnMeioBaixo);
+		contentPane.add(btnDireitaBaixo);
+		contentPane.add(pickListJogadores);
 
 		JLabel imagemGol = new JLabel("");
 		imagemGol.setIcon(new ImageIcon(MainGameController.class
@@ -148,5 +147,35 @@ public class MainGameView extends JFrame {
 	public void setSelecaoBatedorController(
 			SelecaoBatedorController selecaoBatedorController) {
 		this.selecaoBatedorController = selecaoBatedorController;
+	}
+
+	public ActionListener controlaBotao(java.util.List<JButton> btnList,
+			List listaJogador) {
+		ActionListener action = new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				boolean isVezJogador = InicializadorGameController
+						.getMainGameController().getIsVezJogador();
+				if (listaJogador.getSelectedIndex() != -1 || !isVezJogador) {
+					if (isVezJogador) {
+						for (JButton btn : btnList) {
+							btn.setIcon(new ImageIcon(MainGameController.class
+									.getResource("/luva.png")));
+						}
+						listaJogador.remove(listaJogador.getSelectedIndex());
+						listaJogador.setEnabled(false);
+					} else {
+						for (JButton btn : btnList) {
+							btn.setIcon(new ImageIcon(MainGameController.class
+									.getResource("/chute.png")));
+						}
+						listaJogador.setEnabled(true);
+					}
+					InicializadorGameController.getMainGameController()
+							.setIsVezJogador(!isVezJogador);
+					repaint();
+				}
+			}
+		};
+		return action;
 	}
 }
