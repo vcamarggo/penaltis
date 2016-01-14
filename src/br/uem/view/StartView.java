@@ -1,12 +1,12 @@
 package br.uem.view;
 
-import java.awt.Label;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 /**
  * @author V.Camargo
@@ -52,9 +52,8 @@ public class StartView {
 		btnComecarJogo.setBounds(28, 21, 162, 23);
 		getFrmPenaltis().getContentPane().add(btnComecarJogo);
 
-		Label label = new Label("V 1.0");
-		label.setAlignment(Label.CENTER);
-		label.setBounds(73, 61, 62, 22);
+		JLabel label = new JLabel("V 1.0");
+		label.setBounds(93, 60, 36, 22);
 		getFrmPenaltis().getContentPane().add(label);
 	}
 

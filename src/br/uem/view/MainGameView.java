@@ -1,17 +1,18 @@
 package br.uem.view;
 
-import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import br.uem.controller.InicializadorGameController;
@@ -29,6 +30,9 @@ public class MainGameView extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private SelecaoBatedorController selecaoBatedorController;
+	private static final String goleirao = "Defende aí goleirão!";
+	private static final String batedor = "Escolhe o lugar e chuta!";
+	private JLabel labelVezDeQuem;
 
 	/**
 	 * Launch the application.
@@ -57,6 +61,15 @@ public class MainGameView extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
+		JLabel imagemGol = new JLabel("");
+		imagemGol.setIcon(new ImageIcon(MainGameController.class
+				.getResource("/trave.jpg")));
+		imagemGol.setBounds(185, 14, 400, 200);
+
+		labelVezDeQuem = new JLabel();
+		labelVezDeQuem.setHorizontalAlignment(SwingConstants.CENTER);
+		labelVezDeQuem.setBounds(190, 11, 312, 22);
+
 		List pickListJogadores = new List();
 		pickListJogadores.setBounds(10, 11, 169, 181);
 		selecaoBatedorController = new SelecaoBatedorController();
@@ -68,40 +81,48 @@ public class MainGameView extends JFrame {
 				.getJogadorComeca()) {
 			imagemBotaoDefault = new ImageIcon(
 					MainGameController.class.getResource("/chute.png"));
+			labelVezDeQuem.setText(batedor);
 		} else {
 			imagemBotaoDefault = new ImageIcon(
 					MainGameController.class.getResource("/luva.png"));
+			labelVezDeQuem.setText(goleirao);
 			pickListJogadores.setEnabled(false);
 		}
 
 		JButton btnEsquerdaCima = new JButton();
 		btnEsquerdaCima.setIcon(imagemBotaoDefault);
-		btnEsquerdaCima.setBackground(Color.LIGHT_GRAY);
+		btnEsquerdaCima.setBorder(BorderFactory.createEmptyBorder());
+		btnEsquerdaCima.setContentAreaFilled(false);
 		btnEsquerdaCima.setBounds(190, 46, 32, 32);
 
 		JButton btnMeioCima = new JButton();
 		btnMeioCima.setIcon(imagemBotaoDefault);
-		btnMeioCima.setBackground(Color.LIGHT_GRAY);
-		btnMeioCima.setBounds(360, 46, 32, 32);
+		btnMeioCima.setBorder(BorderFactory.createEmptyBorder());
+		btnMeioCima.setContentAreaFilled(false);
+		btnMeioCima.setBounds(340, 46, 32, 32);
 
 		JButton btnDireitoCima = new JButton();
 		btnDireitoCima.setIcon(imagemBotaoDefault);
-		btnDireitoCima.setBackground(Color.LIGHT_GRAY);
+		btnDireitoCima.setBorder(BorderFactory.createEmptyBorder());
+		btnDireitoCima.setContentAreaFilled(false);
 		btnDireitoCima.setBounds(470, 46, 32, 32);
 
 		JButton btnEsquerdaBaixo = new JButton();
 		btnEsquerdaBaixo.setIcon(imagemBotaoDefault);
-		btnEsquerdaBaixo.setBackground(Color.LIGHT_GRAY);
+		btnEsquerdaBaixo.setBorder(BorderFactory.createEmptyBorder());
+		btnEsquerdaBaixo.setContentAreaFilled(false);
 		btnEsquerdaBaixo.setBounds(190, 150, 32, 32);
 
 		JButton btnMeioBaixo = new JButton();
 		btnMeioBaixo.setIcon(imagemBotaoDefault);
-		btnMeioBaixo.setBackground(Color.LIGHT_GRAY);
-		btnMeioBaixo.setBounds(360, 150, 32, 32);
+		btnMeioBaixo.setBorder(BorderFactory.createEmptyBorder());
+		btnMeioBaixo.setContentAreaFilled(false);
+		btnMeioBaixo.setBounds(340, 150, 32, 32);
 
 		JButton btnDireitaBaixo = new JButton();
 		btnDireitaBaixo.setIcon(imagemBotaoDefault);
-		btnDireitaBaixo.setBackground(Color.LIGHT_GRAY);
+		btnDireitaBaixo.setBorder(BorderFactory.createEmptyBorder());
+		btnDireitaBaixo.setContentAreaFilled(false);
 		btnDireitaBaixo.setBounds(470, 150, 32, 32);
 
 		java.util.List<JButton> botoesChutarDefender = new ArrayList<JButton>();
@@ -132,12 +153,9 @@ public class MainGameView extends JFrame {
 		contentPane.add(btnMeioBaixo);
 		contentPane.add(btnDireitaBaixo);
 		contentPane.add(pickListJogadores);
-
-		JLabel imagemGol = new JLabel("");
-		imagemGol.setIcon(new ImageIcon(MainGameController.class
-				.getResource("/trave.jpg")));
-		imagemGol.setBounds(185, 14, 400, 200);
+		contentPane.add(labelVezDeQuem);
 		contentPane.add(imagemGol);
+
 	}
 
 	public SelecaoBatedorController getSelecaoBatedorController() {
@@ -161,6 +179,7 @@ public class MainGameView extends JFrame {
 							btn.setIcon(new ImageIcon(MainGameController.class
 									.getResource("/luva.png")));
 						}
+						labelVezDeQuem.setText(goleirao);
 						listaJogador.remove(listaJogador.getSelectedIndex());
 						listaJogador.setEnabled(false);
 					} else {
@@ -168,6 +187,7 @@ public class MainGameView extends JFrame {
 							btn.setIcon(new ImageIcon(MainGameController.class
 									.getResource("/chute.png")));
 						}
+						labelVezDeQuem.setText(batedor);
 						listaJogador.setEnabled(true);
 					}
 					InicializadorGameController.getMainGameController()
@@ -177,5 +197,13 @@ public class MainGameView extends JFrame {
 			}
 		};
 		return action;
+	}
+
+	public JLabel getLabelVezDeQuem() {
+		return labelVezDeQuem;
+	}
+
+	public void setLabelVezDeQuem(JLabel labelVezDeQuem) {
+		this.labelVezDeQuem = labelVezDeQuem;
 	}
 }
