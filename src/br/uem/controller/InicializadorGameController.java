@@ -2,6 +2,7 @@ package br.uem.controller;
 
 import java.awt.EventQueue;
 
+import br.uem.util.Util;
 import br.uem.view.StartView;
 
 /**
@@ -13,6 +14,7 @@ import br.uem.view.StartView;
 public class InicializadorGameController {
 
 	private static MainGameController mainGameController;
+	private static Util util;
 
 	/**
 	 * Launch the application.
@@ -40,5 +42,16 @@ public class InicializadorGameController {
 	public static void setMainGameController(
 			MainGameController mainGameController) {
 		InicializadorGameController.mainGameController = mainGameController;
+	}
+
+	public static Util getUtil() {
+		if (util == null) {
+			util = new Util();
+		}
+		return util;
+	}
+
+	public static void setUtil(Util util) {
+		InicializadorGameController.util = util;
 	}
 }

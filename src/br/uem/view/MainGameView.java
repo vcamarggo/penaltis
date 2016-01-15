@@ -18,6 +18,7 @@ import javax.swing.border.EmptyBorder;
 import br.uem.controller.InicializadorGameController;
 import br.uem.controller.MainGameController;
 import br.uem.controller.SelecaoBatedorController;
+import br.uem.enumeration.Ponto;
 
 /**
  * @author V.Camargo
@@ -54,8 +55,9 @@ public class MainGameView extends JFrame {
 	 * Create the frame.
 	 */
 	public MainGameView() {
+		setTitle("Penâltis");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 545, 272);
+		setBounds(100, 100, 633, 274);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -64,14 +66,14 @@ public class MainGameView extends JFrame {
 		JLabel imagemGol = new JLabel("");
 		imagemGol.setIcon(new ImageIcon(MainGameController.class
 				.getResource("/trave.jpg")));
-		imagemGol.setBounds(185, 14, 400, 200);
+		imagemGol.setBounds(185, 22, 420, 200);
 
 		labelVezDeQuem = new JLabel();
 		labelVezDeQuem.setHorizontalAlignment(SwingConstants.CENTER);
-		labelVezDeQuem.setBounds(190, 11, 312, 22);
+		labelVezDeQuem.setBounds(200, 13, 420, 22);
 
 		List pickListJogadores = new List();
-		pickListJogadores.setBounds(10, 11, 169, 181);
+		pickListJogadores.setBounds(10, 11, 169, 203);
 		selecaoBatedorController = new SelecaoBatedorController();
 		selecaoBatedorController.populaListaBatedor(pickListJogadores);
 
@@ -90,40 +92,46 @@ public class MainGameView extends JFrame {
 		}
 
 		JButton btnEsquerdaCima = new JButton();
+		btnEsquerdaCima.setName("ESQUERDA_CIMA");
 		btnEsquerdaCima.setIcon(imagemBotaoDefault);
 		btnEsquerdaCima.setBorder(BorderFactory.createEmptyBorder());
 		btnEsquerdaCima.setContentAreaFilled(false);
-		btnEsquerdaCima.setBounds(190, 46, 32, 32);
+		btnEsquerdaCima.setBounds(210, 47, 32, 32);
 
 		JButton btnMeioCima = new JButton();
+		btnMeioCima.setName("MEIO_CIMA");
 		btnMeioCima.setIcon(imagemBotaoDefault);
 		btnMeioCima.setBorder(BorderFactory.createEmptyBorder());
 		btnMeioCima.setContentAreaFilled(false);
-		btnMeioCima.setBounds(340, 46, 32, 32);
+		btnMeioCima.setBounds(372, 47, 32, 32);
 
 		JButton btnDireitoCima = new JButton();
+		btnDireitoCima.setName("DIREITA_CIMA");
 		btnDireitoCima.setIcon(imagemBotaoDefault);
 		btnDireitoCima.setBorder(BorderFactory.createEmptyBorder());
 		btnDireitoCima.setContentAreaFilled(false);
-		btnDireitoCima.setBounds(470, 46, 32, 32);
+		btnDireitoCima.setBounds(532, 47, 32, 32);
 
 		JButton btnEsquerdaBaixo = new JButton();
+		btnEsquerdaBaixo.setName("ESQUERDA_BAIXO");
 		btnEsquerdaBaixo.setIcon(imagemBotaoDefault);
 		btnEsquerdaBaixo.setBorder(BorderFactory.createEmptyBorder());
 		btnEsquerdaBaixo.setContentAreaFilled(false);
-		btnEsquerdaBaixo.setBounds(190, 150, 32, 32);
+		btnEsquerdaBaixo.setBounds(210, 164, 32, 32);
 
 		JButton btnMeioBaixo = new JButton();
+		btnMeioBaixo.setName("MEIO_BAIXO");
 		btnMeioBaixo.setIcon(imagemBotaoDefault);
 		btnMeioBaixo.setBorder(BorderFactory.createEmptyBorder());
 		btnMeioBaixo.setContentAreaFilled(false);
-		btnMeioBaixo.setBounds(340, 150, 32, 32);
+		btnMeioBaixo.setBounds(372, 164, 32, 32);
 
 		JButton btnDireitaBaixo = new JButton();
+		btnDireitaBaixo.setName("DIREITA_CIMA");
 		btnDireitaBaixo.setIcon(imagemBotaoDefault);
 		btnDireitaBaixo.setBorder(BorderFactory.createEmptyBorder());
 		btnDireitaBaixo.setContentAreaFilled(false);
-		btnDireitaBaixo.setBounds(470, 150, 32, 32);
+		btnDireitaBaixo.setBounds(536, 164, 32, 32);
 
 		java.util.List<JButton> botoesChutarDefender = new ArrayList<JButton>();
 		botoesChutarDefender.add(btnDireitaBaixo);
@@ -174,12 +182,22 @@ public class MainGameView extends JFrame {
 				boolean isVezJogador = InicializadorGameController
 						.getMainGameController().getIsVezJogador();
 				if (listaJogador.getSelectedIndex() != -1 || !isVezJogador) {
+
 					if (isVezJogador) {
 						for (JButton btn : btnList) {
 							btn.setIcon(new ImageIcon(MainGameController.class
 									.getResource("/luva.png")));
 						}
+
 						labelVezDeQuem.setText(goleirao);
+
+						InicializadorGameController.getMainGameController()
+								.testarBatida(
+										listaJogador.getItem(listaJogador
+												.getSelectedIndex()),
+										Ponto.valueOf(((JButton) arg0
+												.getSource()).getName()));
+
 						listaJogador.remove(listaJogador.getSelectedIndex());
 						listaJogador.setEnabled(false);
 					} else {
@@ -187,6 +205,12 @@ public class MainGameView extends JFrame {
 							btn.setIcon(new ImageIcon(MainGameController.class
 									.getResource("/chute.png")));
 						}
+
+						InicializadorGameController.getMainGameController()
+								.testarDefesa(
+										Ponto.valueOf(((JButton) arg0
+												.getSource()).getName()));
+
 						labelVezDeQuem.setText(batedor);
 						listaJogador.setEnabled(true);
 					}

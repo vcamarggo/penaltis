@@ -4,7 +4,6 @@ import java.awt.EventQueue;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Random;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -14,6 +13,7 @@ import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
 
 import br.uem.controller.InicializadorGameController;
+import br.uem.util.Util;
 
 /**
  * @author V.Camargo
@@ -74,7 +74,7 @@ public class QuemIniciaView extends JFrame {
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (rdbtnComputadorDecide.isSelected()
-						&& new Random().nextInt(2) == 1) {
+						&& Util.gerarRandomAteN(1) == 1) {
 					InicializadorGameController.getMainGameController()
 							.setJogadorComeca(false);
 				} else {

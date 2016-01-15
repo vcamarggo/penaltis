@@ -1,6 +1,6 @@
 package br.uem.enumeration;
 
-import java.util.Random;
+import br.uem.util.Util;
 
 /**
  * @author V.Camargo
@@ -13,7 +13,6 @@ public enum Ponto {
 	ESQUERDA_CIMA, ESQUERDA_BAIXO, DIREITA_CIMA, DIREITA_BAIXO, MEIO_CIMA, MEIO_BAIXO;
 
 	public int errar() {
-		Random r = new Random();
-		return r.nextInt(2);
+		return Util.gerarRandomAteN(1);
 	}
 }

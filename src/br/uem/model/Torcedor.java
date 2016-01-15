@@ -1,6 +1,6 @@
 package br.uem.model;
 
-import java.util.Random;
+import br.uem.util.Util;
 
 /**
  * @author V.Camargo
@@ -11,12 +11,10 @@ import java.util.Random;
 public class Torcedor {
 
 	public int apoiar() {
-		Random r = new Random();
-		return r.nextInt(11);
+		return Util.gerarRandomAteN(10);
 	}
 
 	public int xingar() {
-		Random r = new Random();
-		return r.nextInt(11);
+		return Util.gerarRandomAteN(10);
 	}
 }

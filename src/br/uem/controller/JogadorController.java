@@ -2,7 +2,6 @@ package br.uem.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import br.uem.enumeration.NomesJogadoresAlemanha;
 import br.uem.enumeration.NomesJogadoresArgentina;
@@ -16,6 +15,7 @@ import br.uem.model.Goleiro;
 import br.uem.model.Jogador;
 import br.uem.model.Perfil;
 import br.uem.model.Time;
+import br.uem.util.Util;
 
 /**
  * @author V.Camargo
@@ -81,7 +81,6 @@ public class JogadorController {
 	}
 
 	public static Jogador criarJogador(String nome, Time t, boolean isBatedor) {
-		Random r = new Random();
 		Jogador jogador;
 		if (isBatedor) {
 			jogador = new Batedor();
@@ -89,7 +88,8 @@ public class JogadorController {
 			jogador = new Goleiro();
 		}
 		jogador.setName(nome.toString());
-		jogador.setPerfil(new Perfil(r.nextInt(10) + 1, r.nextInt(10) + 1));
+		jogador.setPerfil(new Perfil(Util.gerarRandomAteN(10), Util
+				.gerarRandomAteN(10)));
 		jogador.setTime(t);
 		return jogador;
 	}

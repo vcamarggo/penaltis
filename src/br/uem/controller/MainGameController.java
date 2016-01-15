@@ -1,9 +1,12 @@
 package br.uem.controller;
 
-import java.util.Random;
-
+import br.uem.enumeration.Ponto;
 import br.uem.enumeration.Times;
+import br.uem.model.Batedor;
+import br.uem.model.Goleiro;
+import br.uem.model.Jogador;
 import br.uem.model.Time;
+import br.uem.util.Util;
 
 /**
  * @author V.Camargo
@@ -26,7 +29,8 @@ public class MainGameController {
 		int auxEscolhaTimeMaquina = 0;
 		String nomeTimeMaquina;
 		do {
-			auxEscolhaTimeMaquina = new Random().nextInt(Times.values().length);
+			auxEscolhaTimeMaquina = Util
+					.gerarRandomAteN(Times.values().length - 1);
 			nomeTimeMaquina = Times.values()[auxEscolhaTimeMaquina].toString();
 		} while (nomeTimeMaquina.equalsIgnoreCase(timeJogador.getNome()));
 
@@ -34,6 +38,18 @@ public class MainGameController {
 		timeMaquina.setNome(nomeTimeMaquina.toUpperCase());
 		timeMaquina.setJogadores(JogadorController.criaListaJogadores(
 				timeMaquina.getNome(), timeMaquina));
+	}
+
+	public void testarBatida(String nomeJogador, Ponto ponto) {
+		Goleiro goleiro = (Goleiro) timeMaquina.getJogadores().get(10);
+		Batedor batedor = null;
+		for (Jogador jogador : timeJogador.getJogadores()) {
+			if (jogador.getName().equals(nomeJogador)) {
+				batedor = (Batedor) jogador;
+				break;
+			}
+		}
+		System.out.println(batedor.getName() + "  " + goleiro.getName());
 	}
 
 	public Time getTimeJogador() {
@@ -66,6 +82,11 @@ public class MainGameController {
 
 	public void setIsVezJogador(Boolean isVezJogador) {
 		this.isVezJogador = isVezJogador;
+	}
+
+	public void testarDefesa(Ponto valueOf) {
+		// TODO Auto-generated method stub
+
 	}
 
 }
