@@ -101,6 +101,9 @@ public class MainGameView extends JFrame {
 					MainGameController.class.getResource("/luva.png"));
 			labelVezDeQuem.setText(goleirao);
 			pickListJogadores.setEnabled(false);
+			pickListMaquina.select(Util.gerarRandomAteN(pickListMaquina
+					.getItemCount() - 1));
+
 		}
 
 		JButton btnEsquerdaCima = new JButton();
@@ -230,9 +233,6 @@ public class MainGameView extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				boolean isVezJogador = InicializadorGameController
 						.getMainGameController().getIsVezJogador();
-				int indiceBatedorMaquina = Util.gerarRandomAteN(listaMaquina
-						.getItemCount() - 1);
-
 				if (isVezJogador) {
 					for (JButton btn : btnList) {
 						btn.setIcon(new ImageIcon(MainGameController.class
@@ -240,6 +240,8 @@ public class MainGameView extends JFrame {
 					}
 
 					labelVezDeQuem.setText(goleirao);
+					int indiceBatedorMaquina = Util
+							.gerarRandomAteN(listaMaquina.getItemCount() - 1);
 					listaMaquina.select(indiceBatedorMaquina);
 
 					int indice = -2;
