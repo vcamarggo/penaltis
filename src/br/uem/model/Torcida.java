@@ -2,6 +2,10 @@ package br.uem.model;
 
 import java.util.List;
 
+import br.uem.enumeration.FrasesComemoracao;
+import br.uem.enumeration.FrasesLamento;
+import br.uem.util.Util;
+
 /**
  * @author V.Camargo
  * 
@@ -13,7 +17,7 @@ public class Torcida {
 	private Time time;
 
 	private List<Torcedor> torcedores;
-	
+
 	public Time getTime() {
 		return time;
 	}
@@ -30,11 +34,17 @@ public class Torcida {
 		return 0;
 	}
 
-	public void comemorar() {
+	public String comemorar() {
+		return FrasesComemoracao.values()[Util
+				.gerarRandomAteN(FrasesComemoracao.values().length - 1)]
+				.toString();
 	}
 
-	public void lamentar() {
-	}
+	public String lamentar() {
+		return FrasesLamento.values()[Util
+		                  				.gerarRandomAteN(FrasesLamento.values().length - 1)]
+		                  				.toString();
+		                  	}
 
 	public List<Torcedor> getTorcedores() {
 		return torcedores;

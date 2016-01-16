@@ -33,9 +33,6 @@ public class InicializadorGameController {
 	}
 
 	public static MainGameController getMainGameController() {
-		if (mainGameController == null) {
-			mainGameController = new MainGameController();
-		}
 		return mainGameController;
 	}
 

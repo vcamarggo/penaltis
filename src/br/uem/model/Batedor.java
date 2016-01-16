@@ -10,8 +10,12 @@ import br.uem.enumeration.Ponto;
 
 public class Batedor extends Jogador {
 
-	public int chutar(Ponto ponto) {
-		return ponto.errar();
+	public Boolean chutar(Ponto ponto) {
+		if (ponto.errar() == 1) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 }

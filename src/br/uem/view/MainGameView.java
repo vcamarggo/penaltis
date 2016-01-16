@@ -36,7 +36,6 @@ public class MainGameView extends JFrame {
 	private SelecaoBatedorController selecaoBatedorController;
 	private static final String goleirao = "Defende aí goleirão!";
 	private static final String batedor = "Escolhe o lugar e chuta!";
-	private JLabel labelVezDeQuem;
 
 	/**
 	 * Launch the application.
@@ -71,9 +70,58 @@ public class MainGameView extends JFrame {
 				.getResource("/trave.jpg")));
 		imagemGol.setBounds(185, 22, 420, 200);
 
-		labelVezDeQuem = new JLabel();
-		labelVezDeQuem.setHorizontalAlignment(SwingConstants.CENTER);
-		labelVezDeQuem.setBounds(200, 13, 420, 22);
+		JLabel lblFraseTorcidaJogador = new JLabel();
+		lblFraseTorcidaJogador.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFraseTorcidaJogador.setBounds(10, 221, 169, 14);
+		contentPane.add(lblFraseTorcidaJogador);
+
+		JLabel lblFraseTorcidaMaquina = new JLabel();
+		lblFraseTorcidaMaquina.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFraseTorcidaMaquina.setBounds(611, 221, 169, 14);
+		contentPane.add(lblFraseTorcidaMaquina);
+
+		JLabel lblHistoricoPenaltisJogador = new JLabel();
+		lblHistoricoPenaltisJogador
+				.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHistoricoPenaltisJogador.setBounds(10, 250, 169, 14);
+		contentPane.add(lblHistoricoPenaltisJogador);
+
+		JLabel lblHistoricoPenaltisMaquina = new JLabel();
+		lblHistoricoPenaltisMaquina
+				.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHistoricoPenaltisMaquina.setBounds(611, 250, 169, 14);
+		contentPane.add(lblHistoricoPenaltisMaquina);
+
+		JLabel lblTimeJogador = new JLabel(InicializadorGameController
+				.getMainGameController().getTimeJogador().getNome());
+		lblTimeJogador.setForeground(Color.BLACK);
+		lblTimeJogador.setFont(new Font("Arial Unicode MS", Font.BOLD, 18));
+		lblTimeJogador.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblTimeJogador.setBounds(185, 233, 146, 31);
+		contentPane.add(lblTimeJogador);
+
+		JLabel lblTimeMaquina = new JLabel(InicializadorGameController
+				.getMainGameController().getTimeMaquina().getNome());
+		lblTimeMaquina.setForeground(Color.BLACK);
+		lblTimeMaquina.setFont(new Font("Arial Unicode MS", Font.BOLD, 18));
+		lblTimeMaquina.setHorizontalAlignment(SwingConstants.LEFT);
+		lblTimeMaquina.setBounds(448, 233, 146, 31);
+		contentPane.add(lblTimeMaquina);
+
+		JLabel lblPlacar = new JLabel(InicializadorGameController
+				.getMainGameController().getGolsJogador().toString()
+				+ "  X  "
+				+ InicializadorGameController.getMainGameController()
+						.getGolsMaquina().toString());
+		lblPlacar.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPlacar.setForeground(Color.BLACK);
+		lblPlacar.setFont(new Font("Arial Unicode MS", Font.BOLD, 18));
+		lblPlacar.setBounds(350, 233, 86, 31);
+		contentPane.add(lblPlacar);
+
+		JLabel lblVezDeQuem = new JLabel();
+		lblVezDeQuem.setHorizontalAlignment(SwingConstants.CENTER);
+		lblVezDeQuem.setBounds(200, 13, 420, 22);
 
 		List pickListJogadores = new List();
 		pickListJogadores.setBounds(10, 30, 169, 185);
@@ -95,11 +143,11 @@ public class MainGameView extends JFrame {
 				.getJogadorComeca()) {
 			imagemBotaoDefault = new ImageIcon(
 					MainGameController.class.getResource("/chute.png"));
-			labelVezDeQuem.setText(batedor);
+			lblVezDeQuem.setText(batedor);
 		} else {
 			imagemBotaoDefault = new ImageIcon(
 					MainGameController.class.getResource("/luva.png"));
-			labelVezDeQuem.setText(goleirao);
+			lblVezDeQuem.setText(goleirao);
 			pickListJogadores.setEnabled(false);
 			pickListMaquina.select(Util.gerarRandomAteN(pickListMaquina
 					.getItemCount() - 1));
@@ -156,18 +204,13 @@ public class MainGameView extends JFrame {
 		botoesChutarDefender.add(btnMeioBaixo);
 		botoesChutarDefender.add(btnMeioCima);
 
-		btnEsquerdaCima.addActionListener(controlaBotao(botoesChutarDefender,
-				pickListJogadores, pickListMaquina));
-		btnMeioCima.addActionListener(controlaBotao(botoesChutarDefender,
-				pickListJogadores, pickListMaquina));
-		btnDireitoCima.addActionListener(controlaBotao(botoesChutarDefender,
-				pickListJogadores, pickListMaquina));
-		btnEsquerdaBaixo.addActionListener(controlaBotao(botoesChutarDefender,
-				pickListJogadores, pickListMaquina));
-		btnMeioBaixo.addActionListener(controlaBotao(botoesChutarDefender,
-				pickListJogadores, pickListMaquina));
-		btnDireitaBaixo.addActionListener(controlaBotao(botoesChutarDefender,
-				pickListJogadores, pickListMaquina));
+		for (JButton jButton : botoesChutarDefender) {
+			jButton.addActionListener(controlaBotao(botoesChutarDefender,
+					pickListJogadores, pickListMaquina, lblPlacar,
+					lblVezDeQuem, lblHistoricoPenaltisJogador,
+					lblHistoricoPenaltisMaquina, lblFraseTorcidaMaquina,
+					lblFraseTorcidaJogador));
+		}
 
 		contentPane.add(btnEsquerdaCima);
 		contentPane.add(btnMeioCima);
@@ -177,7 +220,7 @@ public class MainGameView extends JFrame {
 		contentPane.add(btnDireitaBaixo);
 		contentPane.add(pickListJogadores);
 		contentPane.add(pickListMaquina);
-		contentPane.add(labelVezDeQuem);
+		contentPane.add(lblVezDeQuem);
 		contentPane.add(imagemGol);
 
 		JLabel lblJogador = new JLabel("JOGADOR");
@@ -185,50 +228,18 @@ public class MainGameView extends JFrame {
 		lblJogador.setBounds(10, 10, 169, 14);
 		contentPane.add(lblJogador);
 
-		JLabel lblMquina = new JLabel("M\u00C1QUINA");
+		JLabel lblMquina = new JLabel("MÁQUINA");
 		lblMquina.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMquina.setBounds(611, 13, 169, 14);
 		contentPane.add(lblMquina);
 
-		JLabel lblTimeJogador = new JLabel(InicializadorGameController
-				.getMainGameController().getTimeJogador().getNome());
-		lblTimeJogador.setForeground(Color.BLACK);
-		lblTimeJogador.setFont(new Font("Arial Unicode MS", Font.BOLD, 18));
-		lblTimeJogador.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblTimeJogador.setBounds(185, 233, 146, 31);
-		contentPane.add(lblTimeJogador);
-
-		JLabel lblTimeMaquina = new JLabel(InicializadorGameController
-				.getMainGameController().getTimeMaquina().getNome());
-		lblTimeMaquina.setForeground(Color.BLACK);
-		lblTimeMaquina.setFont(new Font("Arial Unicode MS", Font.BOLD, 18));
-		lblTimeMaquina.setHorizontalAlignment(SwingConstants.LEFT);
-		lblTimeMaquina.setBounds(448, 233, 146, 31);
-		contentPane.add(lblTimeMaquina);
-
-		JLabel lblPlacar = new JLabel(InicializadorGameController
-				.getMainGameController().getGolsJogador().toString()
-				+ "  X  "
-				+ InicializadorGameController.getMainGameController()
-						.getGolsMaquina().toString());
-		lblPlacar.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPlacar.setForeground(Color.BLACK);
-		lblPlacar.setFont(new Font("Arial Unicode MS", Font.BOLD, 18));
-		lblPlacar.setBounds(350, 233, 86, 31);
-		contentPane.add(lblPlacar);
-	}
-
-	public SelecaoBatedorController getSelecaoBatedorController() {
-		return selecaoBatedorController;
-	}
-
-	public void setSelecaoBatedorController(
-			SelecaoBatedorController selecaoBatedorController) {
-		this.selecaoBatedorController = selecaoBatedorController;
 	}
 
 	public ActionListener controlaBotao(java.util.List<JButton> btnList,
-			List listaJogador, List listaMaquina) {
+			List listaJogador, List listaMaquina, JLabel lblPlacar,
+			JLabel lblVezDeQuem, JLabel lblHistoricoPenaltisJogador,
+			JLabel lblHistoricoPenaltisMaquina, JLabel lblFraseTorcidaMaquina,
+			JLabel lblFraseTorcidaJogador) {
 		ActionListener action = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				boolean isVezJogador = InicializadorGameController
@@ -239,7 +250,7 @@ public class MainGameView extends JFrame {
 								.getResource("/luva.png")));
 					}
 
-					labelVezDeQuem.setText(goleirao);
+					lblVezDeQuem.setText(goleirao);
 					int indiceBatedorMaquina = Util
 							.gerarRandomAteN(listaMaquina.getItemCount() - 1);
 					listaMaquina.select(indiceBatedorMaquina);
@@ -266,27 +277,54 @@ public class MainGameView extends JFrame {
 					}
 
 					InicializadorGameController.getMainGameController()
-							.testarDefesa(
+							.direcionar(
 									listaMaquina.getSelectedItem(),
 									Ponto.valueOf(((JButton) arg0.getSource())
 											.getName()));
 					listaMaquina.remove(listaMaquina.getSelectedIndex());
-					labelVezDeQuem.setText(batedor);
+					lblVezDeQuem.setText(batedor);
 					listaJogador.setEnabled(true);
 				}
 				InicializadorGameController.getMainGameController()
 						.setIsVezJogador(!isVezJogador);
+				if (listaJogador.getItemCount() == 0) {
+					selecaoBatedorController.populaListaBatedor(listaJogador,
+							InicializadorGameController.getMainGameController()
+									.getTimeJogador());
+				}
+				if (listaMaquina.getItemCount() == 0) {
+					selecaoBatedorController.populaListaBatedor(listaMaquina,
+							InicializadorGameController.getMainGameController()
+									.getTimeMaquina());
+				}
+				lblPlacar.setText(InicializadorGameController
+						.getMainGameController().getGolsJogador().toString()
+						+ "  X  "
+						+ InicializadorGameController.getMainGameController()
+								.getGolsMaquina().toString());
+
+				lblHistoricoPenaltisJogador.setText(InicializadorGameController
+						.getMainGameController().getHistoricoPenaltisJogador());
+				lblFraseTorcidaJogador.setText(InicializadorGameController
+						.getMainGameController().getFraseTorcidaJogador());
+
+				lblHistoricoPenaltisMaquina.setText(InicializadorGameController
+						.getMainGameController().getHistoricoPenaltisMaquina());
+				lblFraseTorcidaMaquina.setText(InicializadorGameController
+						.getMainGameController().getFraseTorcidaMaquina());
+
 				repaint();
 			}
 		};
 		return action;
 	}
 
-	public JLabel getLabelVezDeQuem() {
-		return labelVezDeQuem;
+	public SelecaoBatedorController getSelecaoBatedorController() {
+		return selecaoBatedorController;
 	}
 
-	public void setLabelVezDeQuem(JLabel labelVezDeQuem) {
-		this.labelVezDeQuem = labelVezDeQuem;
+	public void setSelecaoBatedorController(
+			SelecaoBatedorController selecaoBatedorController) {
+		this.selecaoBatedorController = selecaoBatedorController;
 	}
 }

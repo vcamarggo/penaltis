@@ -87,8 +87,8 @@ public class QuemIniciaView extends JFrame {
 										.getMainGameController()
 										.getJogadorComeca());
 				dispose();
-				MainGameView selecaoBatedoresView = new MainGameView();
-				selecaoBatedoresView.setVisible(true);
+				MainGameView mainGameView = new MainGameView();
+				mainGameView.setVisible(true);
 			}
 		});
 		contentPane.add(btnOk);
