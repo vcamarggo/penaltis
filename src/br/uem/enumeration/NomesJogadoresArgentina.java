@@ -8,7 +8,7 @@ package br.uem.enumeration;
 
 public enum NomesJogadoresArgentina {
 	MARADONA("Maradona"), MESSI("Messi"), MASCHERANO("Mascherano"), LAVEZZI(
-			"Lavezzi"), ROJO("Rojo"), BATISTUTA("Batistuta"), SABELLA("Sabella"), GAGO(
+			"Lavezzi"), TEVEZ("Tevez"), BATISTUTA("Batistuta"), SABELLA("Sabella"), GAGO(
 			"Gago"), CANIGGIA("Caniggia"), RIQUELME("Riquelme");
 
 	private final String nome;

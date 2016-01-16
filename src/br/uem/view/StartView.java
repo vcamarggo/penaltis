@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import br.uem.controller.InicializadorGameController;
+
 /**
  * @author V.Camargo
  * 
@@ -44,6 +46,10 @@ public class StartView {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frmPenaltis.dispose();
+				InicializadorGameController.getMainGameController()
+						.setGolsJogador(0);
+				InicializadorGameController.getMainGameController()
+						.setGolsMaquina(0);
 				SelecaoTimeView timeview = new SelecaoTimeView();
 				timeview.setVisible(true);
 			}

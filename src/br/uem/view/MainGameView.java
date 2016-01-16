@@ -1,6 +1,8 @@
 package br.uem.view;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,6 +21,7 @@ import br.uem.controller.InicializadorGameController;
 import br.uem.controller.MainGameController;
 import br.uem.controller.SelecaoBatedorController;
 import br.uem.enumeration.Ponto;
+import br.uem.util.Util;
 
 /**
  * @author V.Camargo
@@ -57,7 +60,7 @@ public class MainGameView extends JFrame {
 	public MainGameView() {
 		setTitle("Penâltis");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 633, 274);
+		setBounds(100, 100, 804, 314);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -73,9 +76,18 @@ public class MainGameView extends JFrame {
 		labelVezDeQuem.setBounds(200, 13, 420, 22);
 
 		List pickListJogadores = new List();
-		pickListJogadores.setBounds(10, 11, 169, 203);
+		pickListJogadores.setBounds(10, 30, 169, 185);
 		selecaoBatedorController = new SelecaoBatedorController();
-		selecaoBatedorController.populaListaBatedor(pickListJogadores);
+		selecaoBatedorController.populaListaBatedor(pickListJogadores,
+				InicializadorGameController.getMainGameController()
+						.getTimeJogador());
+
+		List pickListMaquina = new List();
+		pickListMaquina.setBounds(611, 30, 169, 185);
+		selecaoBatedorController.populaListaBatedor(pickListMaquina,
+				InicializadorGameController.getMainGameController()
+						.getTimeMaquina());
+		pickListMaquina.setEnabled(false);
 
 		ImageIcon imagemBotaoDefault = null;
 
@@ -142,17 +154,17 @@ public class MainGameView extends JFrame {
 		botoesChutarDefender.add(btnMeioCima);
 
 		btnEsquerdaCima.addActionListener(controlaBotao(botoesChutarDefender,
-				pickListJogadores));
+				pickListJogadores, pickListMaquina));
 		btnMeioCima.addActionListener(controlaBotao(botoesChutarDefender,
-				pickListJogadores));
+				pickListJogadores, pickListMaquina));
 		btnDireitoCima.addActionListener(controlaBotao(botoesChutarDefender,
-				pickListJogadores));
+				pickListJogadores, pickListMaquina));
 		btnEsquerdaBaixo.addActionListener(controlaBotao(botoesChutarDefender,
-				pickListJogadores));
+				pickListJogadores, pickListMaquina));
 		btnMeioBaixo.addActionListener(controlaBotao(botoesChutarDefender,
-				pickListJogadores));
+				pickListJogadores, pickListMaquina));
 		btnDireitaBaixo.addActionListener(controlaBotao(botoesChutarDefender,
-				pickListJogadores));
+				pickListJogadores, pickListMaquina));
 
 		contentPane.add(btnEsquerdaCima);
 		contentPane.add(btnMeioCima);
@@ -161,9 +173,46 @@ public class MainGameView extends JFrame {
 		contentPane.add(btnMeioBaixo);
 		contentPane.add(btnDireitaBaixo);
 		contentPane.add(pickListJogadores);
+		contentPane.add(pickListMaquina);
 		contentPane.add(labelVezDeQuem);
 		contentPane.add(imagemGol);
 
+		JLabel lblJogador = new JLabel("JOGADOR");
+		lblJogador.setHorizontalAlignment(SwingConstants.CENTER);
+		lblJogador.setBounds(10, 10, 169, 14);
+		contentPane.add(lblJogador);
+
+		JLabel lblMquina = new JLabel("M\u00C1QUINA");
+		lblMquina.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMquina.setBounds(611, 13, 169, 14);
+		contentPane.add(lblMquina);
+
+		JLabel lblTimeJogador = new JLabel(InicializadorGameController
+				.getMainGameController().getTimeJogador().getNome());
+		lblTimeJogador.setForeground(Color.BLACK);
+		lblTimeJogador.setFont(new Font("Arial Unicode MS", Font.BOLD, 18));
+		lblTimeJogador.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblTimeJogador.setBounds(185, 233, 146, 31);
+		contentPane.add(lblTimeJogador);
+
+		JLabel lblTimeMaquina = new JLabel(InicializadorGameController
+				.getMainGameController().getTimeMaquina().getNome());
+		lblTimeMaquina.setForeground(Color.BLACK);
+		lblTimeMaquina.setFont(new Font("Arial Unicode MS", Font.BOLD, 18));
+		lblTimeMaquina.setHorizontalAlignment(SwingConstants.LEFT);
+		lblTimeMaquina.setBounds(448, 233, 146, 31);
+		contentPane.add(lblTimeMaquina);
+
+		JLabel lblPlacar = new JLabel(InicializadorGameController
+				.getMainGameController().getGolsJogador().toString()
+				+ "  X  "
+				+ InicializadorGameController.getMainGameController()
+						.getGolsMaquina().toString());
+		lblPlacar.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPlacar.setForeground(Color.BLACK);
+		lblPlacar.setFont(new Font("Arial Unicode MS", Font.BOLD, 18));
+		lblPlacar.setBounds(350, 233, 86, 31);
+		contentPane.add(lblPlacar);
 	}
 
 	public SelecaoBatedorController getSelecaoBatedorController() {
@@ -176,48 +225,56 @@ public class MainGameView extends JFrame {
 	}
 
 	public ActionListener controlaBotao(java.util.List<JButton> btnList,
-			List listaJogador) {
+			List listaJogador, List listaMaquina) {
 		ActionListener action = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				boolean isVezJogador = InicializadorGameController
 						.getMainGameController().getIsVezJogador();
-				if (listaJogador.getSelectedIndex() != -1 || !isVezJogador) {
+				int indiceBatedorMaquina = Util.gerarRandomAteN(listaMaquina
+						.getItemCount() - 1);
 
-					if (isVezJogador) {
-						for (JButton btn : btnList) {
-							btn.setIcon(new ImageIcon(MainGameController.class
-									.getResource("/luva.png")));
-						}
+				if (isVezJogador) {
+					for (JButton btn : btnList) {
+						btn.setIcon(new ImageIcon(MainGameController.class
+								.getResource("/luva.png")));
+					}
 
-						labelVezDeQuem.setText(goleirao);
+					labelVezDeQuem.setText(goleirao);
+					listaMaquina.select(indiceBatedorMaquina);
 
-						InicializadorGameController.getMainGameController()
-								.testarBatida(
-										listaJogador.getItem(listaJogador
-												.getSelectedIndex()),
-										Ponto.valueOf(((JButton) arg0
-												.getSource()).getName()));
-
-						listaJogador.remove(listaJogador.getSelectedIndex());
-						listaJogador.setEnabled(false);
+					int indice = -2;
+					if (listaJogador.getSelectedIndex() == -1) {
+						indice = Util.gerarRandomAteN(listaJogador
+								.getItemCount() - 1);
 					} else {
-						for (JButton btn : btnList) {
-							btn.setIcon(new ImageIcon(MainGameController.class
-									.getResource("/chute.png")));
-						}
-
-						InicializadorGameController.getMainGameController()
-								.testarDefesa(
-										Ponto.valueOf(((JButton) arg0
-												.getSource()).getName()));
-
-						labelVezDeQuem.setText(batedor);
-						listaJogador.setEnabled(true);
+						indice = listaJogador.getSelectedIndex();
 					}
 					InicializadorGameController.getMainGameController()
-							.setIsVezJogador(!isVezJogador);
-					repaint();
+							.direcionar(
+									listaJogador.getItem(indice),
+									Ponto.valueOf(((JButton) arg0.getSource())
+											.getName()));
+
+					listaJogador.remove(indice);
+					listaJogador.setEnabled(false);
+				} else {
+					for (JButton btn : btnList) {
+						btn.setIcon(new ImageIcon(MainGameController.class
+								.getResource("/chute.png")));
+					}
+
+					InicializadorGameController.getMainGameController()
+							.testarDefesa(
+									listaMaquina.getSelectedItem(),
+									Ponto.valueOf(((JButton) arg0.getSource())
+											.getName()));
+					listaMaquina.remove(listaMaquina.getSelectedIndex());
+					labelVezDeQuem.setText(batedor);
+					listaJogador.setEnabled(true);
 				}
+				InicializadorGameController.getMainGameController()
+						.setIsVezJogador(!isVezJogador);
+				repaint();
 			}
 		};
 		return action;

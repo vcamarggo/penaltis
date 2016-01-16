@@ -6,6 +6,7 @@ import br.uem.model.Batedor;
 import br.uem.model.Goleiro;
 import br.uem.model.Jogador;
 import br.uem.model.Time;
+import br.uem.model.Torcida;
 import br.uem.util.Util;
 
 /**
@@ -17,8 +18,12 @@ import br.uem.util.Util;
 public class MainGameController {
 	private Time timeJogador;
 	private Time timeMaquina;
+	private Torcida torcidaJogador;
+	private Torcida torcidaMaquina;
 	private Boolean jogadorComeca;
 	private Boolean isVezJogador;
+	private Integer golsJogador;
+	private Integer golsMaquina;
 
 	public void createTimes(String nomeDoTime) {
 		timeJogador = new Time();
@@ -38,18 +43,32 @@ public class MainGameController {
 		timeMaquina.setNome(nomeTimeMaquina.toUpperCase());
 		timeMaquina.setJogadores(JogadorController.criaListaJogadores(
 				timeMaquina.getNome(), timeMaquina));
+
+		createTorcidas();
 	}
 
-	public void testarBatida(String nomeJogador, Ponto ponto) {
+	private void createTorcidas() {
+		for (int i = 1; i > 50; i++) {
+			System.out.println(i);
+		}
+	}
+
+	public void direcionar(String nomeJogador, Ponto ponto) {
 		Goleiro goleiro = (Goleiro) timeMaquina.getJogadores().get(10);
+		Batedor batedor = procurarJogador(nomeJogador);
+		if (batedor.chutar(ponto) != 1) {
+			goleiro.defender(Ponto.values()[Util.gerarRandomAteN(Ponto.values().length - 1)]);
+		}
+	}
+
+	private Batedor procurarJogador(String nomeJogador) {
 		Batedor batedor = null;
 		for (Jogador jogador : timeJogador.getJogadores()) {
 			if (jogador.getName().equals(nomeJogador)) {
-				batedor = (Batedor) jogador;
-				break;
+				return batedor = (Batedor) jogador;
 			}
 		}
-		System.out.println(batedor.getName() + "  " + goleiro.getName());
+		return batedor;
 	}
 
 	public Time getTimeJogador() {
@@ -84,9 +103,39 @@ public class MainGameController {
 		this.isVezJogador = isVezJogador;
 	}
 
-	public void testarDefesa(Ponto valueOf) {
-		// TODO Auto-generated method stub
+	public void testarDefesa(String string, Ponto valueOf) {
+	}
 
+	public Integer getGolsJogador() {
+		return golsJogador;
+	}
+
+	public void setGolsJogador(Integer golsJogador) {
+		this.golsJogador = golsJogador;
+	}
+
+	public Integer getGolsMaquina() {
+		return golsMaquina;
+	}
+
+	public void setGolsMaquina(Integer golsMaquina) {
+		this.golsMaquina = golsMaquina;
+	}
+
+	public Torcida getTorcidaJogador() {
+		return torcidaJogador;
+	}
+
+	public void setTorcidaJogador(Torcida torcidaJogador) {
+		this.torcidaJogador = torcidaJogador;
+	}
+
+	public Torcida getTorcidaMaquina() {
+		return torcidaMaquina;
+	}
+
+	public void setTorcidaMaquina(Torcida torcidaMaquina) {
+		this.torcidaMaquina = torcidaMaquina;
 	}
 
 }

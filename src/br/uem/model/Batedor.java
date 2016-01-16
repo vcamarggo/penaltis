@@ -10,7 +10,8 @@ import br.uem.enumeration.Ponto;
 
 public class Batedor extends Jogador {
 
-	public void chutar(Ponto ponto) {
+	public int chutar(Ponto ponto) {
+		return ponto.errar();
 	}
 
 }
