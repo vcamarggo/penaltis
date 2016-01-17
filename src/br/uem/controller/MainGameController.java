@@ -32,9 +32,11 @@ public class MainGameController {
 		torcidaJogador = null;
 		historicoPenaltisJogador = "";
 		historicoPenaltisMaquina = "";
+		numeroCobranca = 0;
 
 	}
 
+	private static final int numeroTorcedores = 15;
 	private Time timeJogador;
 	private Time timeMaquina;
 	private Boolean jogadorComeca;
@@ -47,6 +49,7 @@ public class MainGameController {
 	private Torcida torcidaJogador;
 	private String historicoPenaltisJogador;
 	private String historicoPenaltisMaquina;
+	private Integer numeroCobranca;
 
 	public void createTimes(String nomeDoTime) {
 		timeJogador = new Time();
@@ -81,7 +84,7 @@ public class MainGameController {
 
 	private List<Torcedor> createTorcedores() {
 		List<Torcedor> torcedores = new ArrayList<Torcedor>();
-		for (int i = 0; i < 30; i++) {
+		for (int i = 0; i < numeroTorcedores; i++) {
 			Torcedor torcedor = new Torcedor();
 			torcedores.add(torcedor);
 		}
@@ -126,7 +129,27 @@ public class MainGameController {
 				fraseTorcidaMaquina = torcidaMaquina.lamentar();
 			}
 		}
+		if (calcularVencedor(golsJogador, golsMaquina, numeroCobranca) == timeJogador) {
 
+		} else if (calcularVencedor(golsJogador, golsMaquina, numeroCobranca) == timeJogador) {
+
+		} else {
+			atualizarNumeroCobrancas();
+		}
+	}
+
+	private void atualizarNumeroCobrancas() {
+		if (jogadorComeca && !isVezJogador) {
+			numeroCobranca++;
+		}
+		if (!jogadorComeca && isVezJogador) {
+			numeroCobranca++;
+		}
+	}
+
+	private Time calcularVencedor(Integer golsJogador, Integer golsMaquina,
+			Integer numeroCobranca) {
+		return null;
 	}
 
 	private Boolean testaBatedorFezGol(Goleiro goleiro, Ponto pontoDefesa,

@@ -113,11 +113,7 @@ public class MainGameView extends JFrame {
 		lblTimeMaquina.setBounds(448, 233, 146, 31);
 		contentPane.add(lblTimeMaquina);
 
-		JLabel lblPlacar = new JLabel(InicializadorGameController
-				.getMainGameController().getGolsJogador().toString()
-				+ "  X  "
-				+ InicializadorGameController.getMainGameController()
-						.getGolsMaquina().toString());
+		JLabel lblPlacar = new JLabel(getStringPlacar());
 		lblPlacar.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPlacar.setForeground(Color.BLACK);
 		lblPlacar.setFont(new Font("Arial Unicode MS", Font.BOLD, 18));
@@ -238,6 +234,15 @@ public class MainGameView extends JFrame {
 
 	}
 
+	private String getStringPlacar() {
+		return InicializadorGameController.getMainGameController()
+				.getGolsJogador().toString()
+				+ "  X  "
+				+ InicializadorGameController.getMainGameController()
+						.getGolsMaquina().toString();
+
+	}
+
 	public ActionListener controlaBotao(java.util.List<JButton> btnList,
 			List listaJogador, List listaMaquina, JLabel lblPlacar,
 			JLabel lblVezDeQuem, JLabel lblHistoricoPenaltisJogador,
@@ -298,11 +303,7 @@ public class MainGameView extends JFrame {
 							InicializadorGameController.getMainGameController()
 									.getTimeMaquina());
 				}
-				lblPlacar.setText(InicializadorGameController
-						.getMainGameController().getGolsJogador().toString()
-						+ "  X  "
-						+ InicializadorGameController.getMainGameController()
-								.getGolsMaquina().toString());
+				lblPlacar.setText(getStringPlacar());
 
 				lblHistoricoPenaltisJogador.setText(InicializadorGameController
 						.getMainGameController().getHistoricoPenaltisJogador());
