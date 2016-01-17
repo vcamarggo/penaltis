@@ -4,7 +4,6 @@ import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -80,8 +79,7 @@ public class SelecaoTimeView extends JFrame {
 	 * Create the frame.
 	 */
 	public SelecaoTimeView() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(
-				SelecaoTimeView.class.getResource("/bola.jpg")));
+		setIconImage(StartView.getImagembola());
 		setTitle("Pênaltis - Seleção de time");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 376, 282);

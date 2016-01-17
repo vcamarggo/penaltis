@@ -1,7 +1,6 @@
 package br.uem.view;
 
 import java.awt.EventQueue;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -47,8 +46,7 @@ public class QuemIniciaView extends JFrame {
 	 * Create the frame.
 	 */
 	public QuemIniciaView() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(
-				QuemIniciaView.class.getResource("/bola.jpg")));
+		setIconImage(StartView.getImagembola());
 		setTitle("Pênaltis - Quem começa chutando?");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 386, 188);

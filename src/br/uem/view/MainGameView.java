@@ -36,6 +36,10 @@ public class MainGameView extends JFrame {
 	private SelecaoBatedorController selecaoBatedorController;
 	private static final String goleirao = "Defende aí goleirão!";
 	private static final String batedor = "Escolhe o lugar e chuta!";
+	private static final ImageIcon imagemChute = new ImageIcon(
+			MainGameController.class.getResource("/chute.png"));
+	private static final ImageIcon imagemLuva = new ImageIcon(
+			MainGameController.class.getResource("/luva.png"));
 
 	/**
 	 * Launch the application.
@@ -57,6 +61,7 @@ public class MainGameView extends JFrame {
 	 * Create the frame.
 	 */
 	public MainGameView() {
+		setIconImage(StartView.getImagembola());
 		setTitle("Penâltis");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 804, 314);
@@ -141,12 +146,10 @@ public class MainGameView extends JFrame {
 
 		if (InicializadorGameController.getMainGameController()
 				.getJogadorComeca()) {
-			imagemBotaoDefault = new ImageIcon(
-					MainGameController.class.getResource("/chute.png"));
+			imagemBotaoDefault = imagemChute;
 			lblVezDeQuem.setText(batedor);
 		} else {
-			imagemBotaoDefault = new ImageIcon(
-					MainGameController.class.getResource("/luva.png"));
+			imagemBotaoDefault = imagemLuva;
 			lblVezDeQuem.setText(goleirao);
 			pickListJogadores.setEnabled(false);
 			pickListMaquina.select(Util.gerarRandomAteN(pickListMaquina
@@ -246,8 +249,7 @@ public class MainGameView extends JFrame {
 						.getMainGameController().getIsVezJogador();
 				if (isVezJogador) {
 					for (JButton btn : btnList) {
-						btn.setIcon(new ImageIcon(MainGameController.class
-								.getResource("/luva.png")));
+						btn.setIcon(imagemLuva);
 					}
 
 					lblVezDeQuem.setText(goleirao);
@@ -272,8 +274,7 @@ public class MainGameView extends JFrame {
 					listaJogador.setEnabled(false);
 				} else {
 					for (JButton btn : btnList) {
-						btn.setIcon(new ImageIcon(MainGameController.class
-								.getResource("/chute.png")));
+						btn.setIcon(imagemChute);
 					}
 
 					InicializadorGameController.getMainGameController()

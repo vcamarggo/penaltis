@@ -1,5 +1,6 @@
 package br.uem.view;
 
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,6 +21,8 @@ import br.uem.controller.MainGameController;
 public class StartView {
 
 	private JFrame frmPenaltis;
+	private static final Image imagemBola = Toolkit.getDefaultToolkit()
+			.getImage(StartView.class.getResource("/bola.jpg"));
 
 	/**
 	 * Create the application.
@@ -33,9 +36,7 @@ public class StartView {
 	 */
 	private void initialize() {
 		setFrmPenaltis(new JFrame());
-		getFrmPenaltis().setIconImage(
-				Toolkit.getDefaultToolkit().getImage(
-						StartView.class.getResource("/bola.jpg")));
+		getFrmPenaltis().setIconImage(imagemBola);
 		getFrmPenaltis().setTitle("Pênaltis");
 		getFrmPenaltis().setBounds(100, 100, 227, 132);
 		getFrmPenaltis().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -68,5 +69,9 @@ public class StartView {
 
 	public void setFrmPenaltis(JFrame frmPenaltis) {
 		this.frmPenaltis = frmPenaltis;
+	}
+
+	public static Image getImagembola() {
+		return imagemBola;
 	}
 }
