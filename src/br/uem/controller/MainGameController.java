@@ -33,7 +33,7 @@ public class MainGameController {
 		historicoPenaltisJogador = "";
 		historicoPenaltisMaquina = "";
 		numeroCobranca = 0;
-
+		nomeTimeGanhador = null;
 	}
 
 	private static final int numeroTorcedores = 15;
@@ -50,6 +50,7 @@ public class MainGameController {
 	private String historicoPenaltisJogador;
 	private String historicoPenaltisMaquina;
 	private Integer numeroCobranca;
+	private String nomeTimeGanhador;
 
 	public void createTimes(String nomeDoTime) {
 		timeJogador = new Time();
@@ -129,26 +130,45 @@ public class MainGameController {
 				fraseTorcidaMaquina = torcidaMaquina.lamentar();
 			}
 		}
-		if (calcularVencedor(golsJogador, golsMaquina, numeroCobranca) == timeJogador) {
+		atualizarVencedor();
+	}
 
-		} else if (calcularVencedor(golsJogador, golsMaquina, numeroCobranca) == timeJogador) {
+	private void atualizarVencedor() {
+		atualizarNumeroCobrancas();
 
-		} else {
-			atualizarNumeroCobrancas();
-		}
+		nomeTimeGanhador = calcularNomeVencedor(golsJogador, golsMaquina,
+				numeroCobranca);
 	}
 
 	private void atualizarNumeroCobrancas() {
-		if (jogadorComeca && !isVezJogador) {
+		if (jogadorComeca && isVezJogador) {
 			numeroCobranca++;
 		}
-		if (!jogadorComeca && isVezJogador) {
+		if (!jogadorComeca && !isVezJogador) {
 			numeroCobranca++;
 		}
 	}
 
-	private Time calcularVencedor(Integer golsJogador, Integer golsMaquina,
-			Integer numeroCobranca) {
+	private String calcularNomeVencedor(Integer golsJogador,
+			Integer golsMaquina, Integer numeroCobranca) {
+		int diferencaDeGols = Math.abs(golsJogador - golsMaquina);
+		if (numeroCobranca <= 5) {
+			if (diferencaDeGols > (5 - numeroCobranca)) {
+				if (golsJogador > golsMaquina) {
+					return timeJogador.getNome();
+				} else {
+					return timeMaquina.getNome();
+				}
+			}
+		} else {
+			if (diferencaDeGols == 1) {
+				if (golsJogador > golsMaquina) {
+					return timeJogador.getNome();
+				} else {
+					return timeMaquina.getNome();
+				}
+			}
+		}
 		return null;
 	}
 
@@ -286,6 +306,22 @@ public class MainGameController {
 
 	public void setHistoricoPenaltisMaquina(String historicoPenaltisMaquina) {
 		this.historicoPenaltisMaquina = historicoPenaltisMaquina;
+	}
+
+	public Integer getNumeroCobranca() {
+		return numeroCobranca;
+	}
+
+	public void setNumeroCobranca(Integer numeroCobranca) {
+		this.numeroCobranca = numeroCobranca;
+	}
+
+	public String getNomeTimeGanhador() {
+		return nomeTimeGanhador;
+	}
+
+	public void setNomeTimeGanhador(String nomeTimeGanhador) {
+		this.nomeTimeGanhador = nomeTimeGanhador;
 	}
 
 }

@@ -316,6 +316,13 @@ public class MainGameView extends JFrame {
 						.getMainGameController().getFraseTorcidaMaquina());
 
 				repaint();
+
+				if (InicializadorGameController.getMainGameController()
+						.getNomeTimeGanhador() != null) {
+					dispose();
+					VencedorView vencedorView = new VencedorView();
+					vencedorView.setVisible(true);
+				}
 			}
 		};
 		return action;
