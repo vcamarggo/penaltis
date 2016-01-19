@@ -317,10 +317,11 @@ public class MainGameView extends JFrame {
 
 				repaint();
 
-				if (InicializadorGameController.getMainGameController()
-						.getNomeTimeGanhador() != null) {
+				String nomeTimeVencedor = InicializadorGameController
+						.getMainGameController().getNomeTimeGanhador();
+				if (nomeTimeVencedor != null) {
 					dispose();
-					VencedorView vencedorView = new VencedorView();
+					VencedorView vencedorView = new VencedorView(nomeTimeVencedor);
 					vencedorView.setVisible(true);
 				}
 			}
