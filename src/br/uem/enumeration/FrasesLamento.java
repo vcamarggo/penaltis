@@ -8,8 +8,8 @@ package br.uem.enumeration;
 
 public enum FrasesLamento {
 	FRASE1("Aff, seu ruim!"), FRASE2("Capricha aí!"), FRASE3(
-			"Na próxima a gente consegue!"), FRASE4("Sai daí! Vai treinar!"), FRASE5(
-			"O jeito é tentar de novo na próxima!");
+			"Um dia a gente consegue!"), FRASE4("Sai daí! Vai treinar!"), FRASE5(
+			"Seu vendido!");
 	;
 
 	private final String frase;

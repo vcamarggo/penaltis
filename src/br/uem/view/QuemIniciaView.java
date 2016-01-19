@@ -80,7 +80,7 @@ public class QuemIniciaView extends JFrame {
 							.setJogadorComeca(true);
 				}
 				InicializadorGameController.getMainGameController()
-						.setIsVezJogador(
+						.setIsVezJogadorBater(
 								InicializadorGameController
 										.getMainGameController()
 										.getJogadorComeca());

@@ -27,11 +27,19 @@ public class Torcida {
 	}
 
 	public int aplaudir() {
-		return 0;
+		int nivelAplauso = 0;
+		for (Torcedor torcedor : torcedores) {
+			nivelAplauso += torcedor.apoiar();
+		}
+		return nivelAplauso / torcedores.size();
 	}
 
 	public int vaiar() {
-		return 0;
+		int nivelVaia = 0;
+		for (Torcedor torcedor : torcedores) {
+			nivelVaia += torcedor.xingar();
+		}
+		return nivelVaia / torcedores.size();
 	}
 
 	public String comemorar() {
@@ -41,10 +49,9 @@ public class Torcida {
 	}
 
 	public String lamentar() {
-		return FrasesLamento.values()[Util
-		                  				.gerarRandomAteN(FrasesLamento.values().length - 1)]
-		                  				.toString();
-		                  	}
+		return FrasesLamento.values()[Util.gerarRandomAteN(FrasesLamento
+				.values().length - 1)].toString();
+	}
 
 	public List<Torcedor> getTorcedores() {
 		return torcedores;

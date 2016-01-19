@@ -251,7 +251,7 @@ public class MainGameView extends JFrame {
 		ActionListener action = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				boolean isVezJogador = InicializadorGameController
-						.getMainGameController().getIsVezJogador();
+						.getMainGameController().getIsVezJogadorBater();
 				if (isVezJogador) {
 					for (JButton btn : btnList) {
 						btn.setIcon(imagemLuva);
@@ -292,7 +292,7 @@ public class MainGameView extends JFrame {
 					listaJogador.setEnabled(true);
 				}
 				InicializadorGameController.getMainGameController()
-						.setIsVezJogador(!isVezJogador);
+						.setIsVezJogadorBater(!isVezJogador);
 				if (listaJogador.getItemCount() == 0) {
 					selecaoBatedorController.populaListaBatedor(listaJogador,
 							InicializadorGameController.getMainGameController()

@@ -32,7 +32,7 @@ public class MainGameController {
 		torcidaJogador = null;
 		historicoPenaltisJogador = "";
 		historicoPenaltisMaquina = "";
-		numeroCobranca = 0;
+		numeroCobranca = 1;
 		nomeTimeGanhador = null;
 	}
 
@@ -40,7 +40,7 @@ public class MainGameController {
 	private Time timeJogador;
 	private Time timeMaquina;
 	private Boolean jogadorComeca;
-	private Boolean isVezJogador;
+	private Boolean isVezJogadorBater;
 	private Integer golsJogador;
 	private Integer golsMaquina;
 	private String fraseTorcidaMaquina;
@@ -99,104 +99,163 @@ public class MainGameController {
 
 		Goleiro goleiro = null;
 		Batedor batedor = null;
-		if (isVezJogador) {
+		if (isVezJogadorBater) {
 			goleiro = (Goleiro) timeMaquina.getJogadores().get(10);
 			batedor = procurarJogador(nomeJogador, timeJogador);
-			Boolean fezGol = testaBatedorFezGol(goleiro, pontoMaquina, batedor,
-					pontoJogador);
-			if (fezGol) {
-				golsJogador += 1;
-				historicoPenaltisJogador += " O ";
-				fraseTorcidaJogador = torcidaJogador.comemorar();
-				fraseTorcidaMaquina = torcidaMaquina.lamentar();
-			} else {
-				historicoPenaltisJogador += " X ";
-				fraseTorcidaJogador = torcidaJogador.lamentar();
-				fraseTorcidaMaquina = torcidaMaquina.comemorar();
-			}
+			batedor = (Batedor) atualizarStatusJogador(batedor, torcidaJogador,
+					torcidaMaquina);
+			goleiro = (Goleiro) atualizarStatusJogador(goleiro, torcidaMaquina,
+					torcidaJogador);
+			testaBatedorFezGol(goleiro, pontoMaquina, batedor, pontoJogador,
+					isVezJogadorBater);
+
 		} else {
 			goleiro = (Goleiro) timeJogador.getJogadores().get(10);
 			batedor = procurarJogador(nomeJogador, timeMaquina);
-			Boolean defendeu = testaBatedorFezGol(goleiro, pontoJogador,
-					batedor, pontoMaquina);
-			if (!defendeu) {
-				golsMaquina += 1;
-				historicoPenaltisMaquina += " O ";
-				fraseTorcidaMaquina = torcidaMaquina.comemorar();
-				fraseTorcidaJogador = torcidaJogador.lamentar();
-			} else {
-				historicoPenaltisMaquina += " X ";
-				fraseTorcidaJogador = torcidaJogador.comemorar();
-				fraseTorcidaMaquina = torcidaMaquina.lamentar();
-			}
+			batedor = (Batedor) atualizarStatusJogador(batedor, torcidaMaquina,
+					torcidaJogador);
+			goleiro = (Goleiro) atualizarStatusJogador(goleiro, torcidaJogador,
+					torcidaMaquina);
+			testaBatedorFezGol(goleiro, pontoJogador, batedor, pontoMaquina,
+					isVezJogadorBater);
+
 		}
 		atualizarVencedor();
 	}
 
-	private void atualizarVencedor() {
-		atualizarNumeroCobrancas();
+	private Jogador atualizarStatusJogador(Jogador jogador,
+			Torcida torcidaQueApoiaBatedor, Torcida torcidaContraBatedor) {
+		jogador.getPerfil().setConfianca(
+				jogador.getPerfil().getConfianca()
+						+ torcidaQueApoiaBatedor.aplaudir()
+						- torcidaContraBatedor.vaiar());
+		jogador.getPerfil().setQualidade(
+				jogador.getPerfil().getQualidade()
+						* (jogador.getPerfil().getConfianca() / 100));
+		return jogador;
+	}
 
+	private void atualizarVencedor() {
 		nomeTimeGanhador = calcularNomeVencedor(golsJogador, golsMaquina,
-				numeroCobranca);
+				numeroCobranca, jogadorComeca, isVezJogadorBater);
+		atualizarNumeroCobrancas();
 	}
 
 	private void atualizarNumeroCobrancas() {
-		if (jogadorComeca && isVezJogador) {
+		if (jogadorComeca && !isVezJogadorBater) {
 			numeroCobranca++;
 		}
-		if (!jogadorComeca && !isVezJogador) {
+		if (!jogadorComeca && isVezJogadorBater) {
 			numeroCobranca++;
 		}
 	}
 
+	// tem que corrigir
 	private String calcularNomeVencedor(Integer golsJogador,
-			Integer golsMaquina, Integer numeroCobranca) {
-		int diferencaDeGols = Math.abs(golsJogador - golsMaquina);
-		if (numeroCobranca <= 5) {
-			if (diferencaDeGols > (5 - numeroCobranca)) {
-				if (golsJogador > golsMaquina) {
-					return timeJogador.getNome();
-				} else {
-					return timeMaquina.getNome();
+			Integer golsMaquina, Integer numeroCobranca, Boolean jogadorComeca,
+			Boolean isVezJogadorBater) {
+		if ((jogadorComeca && !isVezJogadorBater)
+				|| (!jogadorComeca && isVezJogadorBater)) {
+			int diferencaDeGols = Math.abs(golsJogador - golsMaquina);
+			if (numeroCobranca <= 5) {
+				if (diferencaDeGols > (5 - numeroCobranca)) {
+					if (golsJogador > golsMaquina) {
+						return timeJogador.getNome();
+					} else {
+						return timeMaquina.getNome();
+					}
 				}
-			}
-		} else {
-			if (diferencaDeGols == 1) {
-				if (golsJogador > golsMaquina) {
-					return timeJogador.getNome();
-				} else {
-					return timeMaquina.getNome();
+			} else {
+				if (diferencaDeGols == 1) {
+					if (golsJogador > golsMaquina) {
+						return timeJogador.getNome();
+					} else {
+						return timeMaquina.getNome();
+					}
 				}
 			}
 		}
 		return null;
 	}
 
-	private Boolean testaBatedorFezGol(Goleiro goleiro, Ponto pontoDefesa,
-			Batedor batedor, Ponto pontoChute) {
+	private void testaBatedorFezGol(Goleiro goleiro, Ponto pontoDefesa,
+			Batedor batedor, Ponto pontoChute, boolean jogadorBatendo) {
+		Boolean fezGol = false;
 		if (pontoChute.equals(pontoDefesa)) {
 			if (goleiro.defender(pontoDefesa) && batedor.chutar(pontoChute)) {
 				if (batedor.getPerfil().getQualidade() > goleiro.getPerfil()
 						.getQualidade()) {
-					return true;
+					fezGol = true;
 				} else {
-					return false;
+					fezGol = false;
 				}
 			} else if (goleiro.defender(pontoDefesa)
 					&& !batedor.chutar(pontoChute)) {
-				return false;
+				fezGol = false;
 			} else if (!goleiro.defender(pontoDefesa)
 					&& batedor.chutar(pontoChute)) {
-				return true;
+				fezGol = true;
 			} else {
 				// caso ambos errem
-				return false;
+				fezGol = false;
 			}
 		} else {
 			if (batedor.chutar(pontoChute)) {
-				return true;
+				fezGol = true;
 			} else {
-				return false;
+				fezGol = false;
+			}
+		}
+		atualizarGols(jogadorBatendo, fezGol);
+		atualizarFrase(jogadorBatendo, fezGol);
+		atualizarHistoricoPenaltis(jogadorBatendo, fezGol);
+
+	}
+
+	private void atualizarHistoricoPenaltis(boolean jogadorBatendo,
+			Boolean fezGol) {
+		if (jogadorBatendo) {
+			if (fezGol) {
+				historicoPenaltisJogador += " O ";
+			} else {
+				historicoPenaltisJogador += " X ";
+				fraseTorcidaJogador = torcidaJogador.lamentar();
+				fraseTorcidaMaquina = torcidaMaquina.comemorar();
+			}
+		} else {
+			if (fezGol) {
+				historicoPenaltisMaquina += " O ";
+			} else {
+				historicoPenaltisMaquina += " X ";
+			}
+		}
+
+	}
+
+	private void atualizarGols(Boolean jogadorBatendo, Boolean fezGol) {
+		if (jogadorBatendo && fezGol) {
+			golsJogador += 1;
+		} else if (fezGol) {
+			golsMaquina += 1;
+		}
+	}
+
+	private void atualizarFrase(Boolean jogadorBatendo, Boolean fezGol) {
+		if (jogadorBatendo) {
+			if (fezGol) {
+				fraseTorcidaJogador = torcidaJogador.comemorar();
+				fraseTorcidaMaquina = torcidaMaquina.lamentar();
+			} else {
+				fraseTorcidaJogador = torcidaJogador.lamentar();
+				fraseTorcidaMaquina = torcidaMaquina.comemorar();
+			}
+		} else {
+			if (fezGol) {
+				fraseTorcidaMaquina = torcidaMaquina.comemorar();
+				fraseTorcidaJogador = torcidaJogador.lamentar();
+			} else {
+				fraseTorcidaJogador = torcidaJogador.comemorar();
+				fraseTorcidaMaquina = torcidaMaquina.lamentar();
 			}
 		}
 
@@ -234,14 +293,6 @@ public class MainGameController {
 
 	public void setJogadorComeca(Boolean jogadorComeca) {
 		this.jogadorComeca = jogadorComeca;
-	}
-
-	public Boolean getIsVezJogador() {
-		return isVezJogador;
-	}
-
-	public void setIsVezJogador(Boolean isVezJogador) {
-		this.isVezJogador = isVezJogador;
 	}
 
 	public Integer getGolsJogador() {
@@ -322,6 +373,14 @@ public class MainGameController {
 
 	public void setNomeTimeGanhador(String nomeTimeGanhador) {
 		this.nomeTimeGanhador = nomeTimeGanhador;
+	}
+
+	public Boolean getIsVezJogadorBater() {
+		return isVezJogadorBater;
+	}
+
+	public void setIsVezJogadorBater(Boolean isVezJogadorBater) {
+		this.isVezJogadorBater = isVezJogadorBater;
 	}
 
 }
