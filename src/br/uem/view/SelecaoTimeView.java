@@ -1,6 +1,5 @@
 package br.uem.view;
 
-import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -25,6 +24,8 @@ import br.uem.controller.TimesController;
 import br.uem.enumeration.Times;
 
 /**
+ * Cria a tela de seleção de time.
+ * 
  * @author V.Camargo
  * 
  * @Date 29/12/2015
@@ -60,23 +61,7 @@ public class SelecaoTimeView extends JFrame {
 	private String nomeTimeEscolhido;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SelecaoTimeView frame = new SelecaoTimeView();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
+	 * Cria janela
 	 */
 	public SelecaoTimeView() {
 		setIconImage(StartView.getImagembola());

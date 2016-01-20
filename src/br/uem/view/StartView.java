@@ -8,11 +8,14 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 import br.uem.controller.InicializadorGameController;
 import br.uem.controller.MainGameController;
 
 /**
+ * Cria a janela inicial da aplicação.
+ * 
  * @author V.Camargo
  * 
  * @Date 18/12/2015
@@ -25,14 +28,14 @@ public class StartView {
 			.getImage(StartView.class.getResource("/bola.jpg"));
 
 	/**
-	 * Create the application.
+	 * Cria a aplicação
 	 */
 	public StartView() {
 		initialize();
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Inicializa os componentes da janela
 	 */
 	private void initialize() {
 		setFrmPenaltis(new JFrame());
@@ -58,8 +61,9 @@ public class StartView {
 		btnComecarJogo.setBounds(28, 21, 162, 23);
 		getFrmPenaltis().getContentPane().add(btnComecarJogo);
 
-		JLabel label = new JLabel("V 1.0");
-		label.setBounds(93, 60, 36, 22);
+		JLabel label = new JLabel("Bom jogo!");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setBounds(62, 55, 100, 22);
 		getFrmPenaltis().getContentPane().add(label);
 	}
 

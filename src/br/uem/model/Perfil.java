@@ -1,6 +1,8 @@
 package br.uem.model;
 
 /**
+ * Classe que define os atributos do jogador em relação ao seu perfil
+ * 
  * @author V.Camargo
  * 
  * @Date 29/12/2015

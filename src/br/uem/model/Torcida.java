@@ -7,6 +7,8 @@ import br.uem.enumeration.FrasesLamento;
 import br.uem.util.Util;
 
 /**
+ * Modelo das ações das torcidas
+ * 
  * @author V.Camargo
  * 
  * @Date 18/12/2015

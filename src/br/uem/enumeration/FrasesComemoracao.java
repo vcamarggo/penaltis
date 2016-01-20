@@ -1,6 +1,8 @@
 package br.uem.enumeration;
 
 /**
+ * Define as frases de comemoração das torcidas
+ * 
  * @author V.Camargo
  * 
  * @Date 16/01/2016

@@ -6,6 +6,9 @@ import br.uem.util.Util;
 import br.uem.view.StartView;
 
 /**
+ * Esta classe inicializa a aplicação com sua primeira view, 
+ * controle principal e util.
+ * 
  * @author V.Camargo
  * 
  * @Date 29/12/2015
@@ -23,6 +26,7 @@ public class InicializadorGameController {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					//Instancia uma nova StartView e torna ela visível
 					StartView window = new StartView();
 					window.getFrmPenaltis().setVisible(true);
 				} catch (Exception e) {

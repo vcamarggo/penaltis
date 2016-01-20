@@ -3,6 +3,8 @@ package br.uem.enumeration;
 import br.uem.util.Util;
 
 /**
+ * Define os pontos de chute e defesa
+ * 
  * @author V.Camargo
  * 
  * @Date 18/12/2015

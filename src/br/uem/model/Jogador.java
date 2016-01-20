@@ -3,6 +3,8 @@ package br.uem.model;
 import br.uem.enumeration.Ponto;
 
 /**
+ * Modelo base para batedor e goleiro
+ * 
  * @author V.Camargo
  * 
  * @Date 18/12/2015

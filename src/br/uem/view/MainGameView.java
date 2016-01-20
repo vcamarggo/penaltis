@@ -1,7 +1,6 @@
 package br.uem.view;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.List;
 import java.awt.event.ActionEvent;
@@ -18,7 +17,6 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import br.uem.controller.InicializadorGameController;
-import br.uem.controller.MainGameController;
 import br.uem.controller.SelecaoBatedorController;
 import br.uem.enumeration.Ponto;
 import br.uem.util.Util;
@@ -37,32 +35,16 @@ public class MainGameView extends JFrame {
 	private static final String goleirao = "Defende aí goleirão!";
 	private static final String batedor = "Escolhe o lugar e chuta!";
 	private static final ImageIcon imagemChute = new ImageIcon(
-			MainGameController.class.getResource("/chute.png"));
+			MainGameView.class.getResource("/chute.png"));
 	private static final ImageIcon imagemLuva = new ImageIcon(
-			MainGameController.class.getResource("/luva.png"));
+			MainGameView.class.getResource("/luva.png"));
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainGameView frame = new MainGameView();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
+	 * Cria janela
 	 */
 	public MainGameView() {
 		setIconImage(StartView.getImagembola());
-		setTitle("Penâltis");
+		setTitle("Pênaltis");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 804, 314);
 		contentPane = new JPanel();
@@ -71,7 +53,7 @@ public class MainGameView extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel imagemGol = new JLabel("");
-		imagemGol.setIcon(new ImageIcon(MainGameController.class
+		imagemGol.setIcon(new ImageIcon(MainGameView.class
 				.getResource("/trave.jpg")));
 		imagemGol.setBounds(185, 22, 420, 200);
 
@@ -253,9 +235,7 @@ public class MainGameView extends JFrame {
 				boolean isVezJogador = InicializadorGameController
 						.getMainGameController().getIsVezJogadorBater();
 				if (isVezJogador) {
-					for (JButton btn : btnList) {
-						btn.setIcon(imagemLuva);
-					}
+					atualizarImagemBotao(btnList, isVezJogador);
 
 					lblVezDeQuem.setText(goleirao);
 					int indiceBatedorMaquina = Util
@@ -278,9 +258,7 @@ public class MainGameView extends JFrame {
 					listaJogador.remove(indice);
 					listaJogador.setEnabled(false);
 				} else {
-					for (JButton btn : btnList) {
-						btn.setIcon(imagemChute);
-					}
+					atualizarImagemBotao(btnList, isVezJogador);
 
 					InicializadorGameController.getMainGameController()
 							.direcionar(
@@ -317,16 +295,34 @@ public class MainGameView extends JFrame {
 
 				repaint();
 
-				String nomeTimeVencedor = InicializadorGameController
-						.getMainGameController().getNomeTimeGanhador();
-				if (nomeTimeVencedor != null) {
-					dispose();
-					VencedorView vencedorView = new VencedorView(nomeTimeVencedor);
-					vencedorView.setVisible(true);
-				}
+				verificaERedirecionaCasoHajaVencedor();
 			}
 		};
 		return action;
+	}
+
+	private void atualizarImagemBotao(java.util.List<JButton> btnList,
+			Boolean isVezJogador) {
+		if (isVezJogador) {
+			for (JButton btn : btnList) {
+				btn.setIcon(imagemLuva);
+			}
+		} else {
+			for (JButton btn : btnList) {
+				btn.setIcon(imagemChute);
+			}
+		}
+	}
+
+	private void verificaERedirecionaCasoHajaVencedor() {
+		String nomeTimeVencedor = InicializadorGameController
+				.getMainGameController().getNomeTimeGanhador();
+		if (nomeTimeVencedor != null) {
+			dispose();
+			VencedorView vencedorView = new VencedorView(nomeTimeVencedor);
+			vencedorView.setVisible(true);
+		}
+
 	}
 
 	public SelecaoBatedorController getSelecaoBatedorController() {

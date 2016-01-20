@@ -1,6 +1,8 @@
 package br.uem.enumeration;
 
 /**
+ * Define as frases de lamentação das torcidas
+ * 
  * @author V.Camargo
  * 
  * @Date 16/01/2016

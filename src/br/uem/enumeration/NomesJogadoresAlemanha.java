@@ -1,6 +1,8 @@
 package br.uem.enumeration;
 
 /**
+ * Define os nomes dos jogadores da Alemanha
+ * 
  * @author V.Camargo
  * 
  * @Date 04/01/2016

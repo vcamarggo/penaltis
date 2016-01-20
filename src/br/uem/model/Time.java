@@ -3,6 +3,8 @@ package br.uem.model;
 import java.util.List;
 
 /**
+ *  Modelo que define o time
+ * 
  * @author V.Camargo
  * 
  * @Date 29/12/2015
