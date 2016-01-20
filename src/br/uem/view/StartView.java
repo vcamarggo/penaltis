@@ -1,5 +1,6 @@
 package br.uem.view;
 
+import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -10,8 +11,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-import br.uem.controller.InicializadorGameController;
 import br.uem.controller.MainGameController;
+import br.uem.util.Util;
 
 /**
  * Cria a janela inicial da aplicação.
@@ -23,9 +24,26 @@ import br.uem.controller.MainGameController;
 
 public class StartView {
 
+	private static MainGameController mainGameController;
+	private static Util util;
+
 	private JFrame frmPenaltis;
 	private static final Image imagemBola = Toolkit.getDefaultToolkit()
 			.getImage(StartView.class.getResource("/bola.jpg"));
+
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					// Instancia uma nova StartView e torna ela visível
+					StartView window = new StartView();
+					window.getFrmPenaltis().setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
 	/**
 	 * Cria a aplicação
@@ -51,8 +69,7 @@ public class StartView {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frmPenaltis.dispose();
-				InicializadorGameController
-						.setMainGameController(new MainGameController());
+				setMainGameController(new MainGameController());
 				SelecaoTimeView timeview = new SelecaoTimeView();
 				timeview.setVisible(true);
 			}
@@ -78,4 +95,25 @@ public class StartView {
 	public static Image getImagembola() {
 		return imagemBola;
 	}
+
+	public static MainGameController getMainGameController() {
+		return mainGameController;
+	}
+
+	public static Util getUtil() {
+		if (util == null) {
+			util = new Util();
+		}
+		return util;
+	}
+
+	public static void setMainGameController(
+			MainGameController mainGameController) {
+		StartView.mainGameController = mainGameController;
+	}
+
+	public static void setUtil(Util util) {
+		StartView.util = util;
+	}
+
 }

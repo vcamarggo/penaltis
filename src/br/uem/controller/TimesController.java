@@ -3,6 +3,7 @@ package br.uem.controller;
 import br.uem.enumeration.Times;
 import br.uem.model.Time;
 import br.uem.util.Util;
+import br.uem.view.StartView;
 
 /**
  * @author V.Camargo
@@ -33,13 +34,11 @@ public class TimesController {
 		timeMaquina.setJogadores(JogadorController.criaListaJogadores(
 				timeMaquina.getNome(), timeMaquina));
 
-		InicializadorGameController.getMainGameController().setTimeJogador(
-				timeJogador);
-		InicializadorGameController.getMainGameController().setTimeMaquina(
-				timeMaquina);
-		InicializadorGameController.getMainGameController().setTorcidaJogador(
+		StartView.getMainGameController().setTimeJogador(timeJogador);
+		StartView.getMainGameController().setTimeMaquina(timeMaquina);
+		StartView.getMainGameController().setTorcidaJogador(
 				TorcidaController.createTorcida(timeJogador));
-		InicializadorGameController.getMainGameController().setTorcidaMaquina(
+		StartView.getMainGameController().setTorcidaMaquina(
 				TorcidaController.createTorcida(timeMaquina));
 	}
 }

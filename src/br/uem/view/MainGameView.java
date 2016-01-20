@@ -16,7 +16,6 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import br.uem.controller.InicializadorGameController;
 import br.uem.controller.SelecaoBatedorController;
 import br.uem.enumeration.Ponto;
 import br.uem.util.Util;
@@ -79,7 +78,7 @@ public class MainGameView extends JFrame {
 		lblHistoricoPenaltisMaquina.setBounds(611, 250, 169, 14);
 		contentPane.add(lblHistoricoPenaltisMaquina);
 
-		JLabel lblTimeJogador = new JLabel(InicializadorGameController
+		JLabel lblTimeJogador = new JLabel(StartView
 				.getMainGameController().getTimeJogador().getNome());
 		lblTimeJogador.setForeground(Color.BLACK);
 		lblTimeJogador.setFont(new Font("Arial Unicode MS", Font.BOLD, 18));
@@ -87,7 +86,7 @@ public class MainGameView extends JFrame {
 		lblTimeJogador.setBounds(185, 233, 146, 31);
 		contentPane.add(lblTimeJogador);
 
-		JLabel lblTimeMaquina = new JLabel(InicializadorGameController
+		JLabel lblTimeMaquina = new JLabel(StartView
 				.getMainGameController().getTimeMaquina().getNome());
 		lblTimeMaquina.setForeground(Color.BLACK);
 		lblTimeMaquina.setFont(new Font("Arial Unicode MS", Font.BOLD, 18));
@@ -110,19 +109,19 @@ public class MainGameView extends JFrame {
 		pickListJogadores.setBounds(10, 30, 169, 185);
 		selecaoBatedorController = new SelecaoBatedorController();
 		selecaoBatedorController.populaListaBatedor(pickListJogadores,
-				InicializadorGameController.getMainGameController()
+				StartView.getMainGameController()
 						.getTimeJogador());
 
 		List pickListMaquina = new List();
 		pickListMaquina.setBounds(611, 30, 169, 185);
 		selecaoBatedorController.populaListaBatedor(pickListMaquina,
-				InicializadorGameController.getMainGameController()
+				StartView.getMainGameController()
 						.getTimeMaquina());
 		pickListMaquina.setEnabled(false);
 
 		ImageIcon imagemBotaoDefault = null;
 
-		if (InicializadorGameController.getMainGameController()
+		if (StartView.getMainGameController()
 				.getJogadorComeca()) {
 			imagemBotaoDefault = imagemChute;
 			lblVezDeQuem.setText(batedor);
@@ -217,10 +216,10 @@ public class MainGameView extends JFrame {
 	}
 
 	private String getStringPlacar() {
-		return InicializadorGameController.getMainGameController()
+		return StartView.getMainGameController()
 				.getGolsJogador().toString()
 				+ "  X  "
-				+ InicializadorGameController.getMainGameController()
+				+ StartView.getMainGameController()
 						.getGolsMaquina().toString();
 
 	}
@@ -232,7 +231,7 @@ public class MainGameView extends JFrame {
 			JLabel lblFraseTorcidaJogador) {
 		ActionListener action = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				boolean isVezJogador = InicializadorGameController
+				boolean isVezJogador = StartView
 						.getMainGameController().getIsVezJogadorBater();
 				if (isVezJogador) {
 					atualizarImagemBotao(btnList, isVezJogador);
@@ -249,7 +248,7 @@ public class MainGameView extends JFrame {
 					} else {
 						indice = listaJogador.getSelectedIndex();
 					}
-					InicializadorGameController.getMainGameController()
+					StartView.getMainGameController()
 							.direcionar(
 									listaJogador.getItem(indice),
 									Ponto.valueOf(((JButton) arg0.getSource())
@@ -260,7 +259,7 @@ public class MainGameView extends JFrame {
 				} else {
 					atualizarImagemBotao(btnList, isVezJogador);
 
-					InicializadorGameController.getMainGameController()
+					StartView.getMainGameController()
 							.direcionar(
 									listaMaquina.getSelectedItem(),
 									Ponto.valueOf(((JButton) arg0.getSource())
@@ -269,28 +268,28 @@ public class MainGameView extends JFrame {
 					lblVezDeQuem.setText(batedor);
 					listaJogador.setEnabled(true);
 				}
-				InicializadorGameController.getMainGameController()
+				StartView.getMainGameController()
 						.setIsVezJogadorBater(!isVezJogador);
 				if (listaJogador.getItemCount() == 0) {
 					selecaoBatedorController.populaListaBatedor(listaJogador,
-							InicializadorGameController.getMainGameController()
+							StartView.getMainGameController()
 									.getTimeJogador());
 				}
 				if (listaMaquina.getItemCount() == 0) {
 					selecaoBatedorController.populaListaBatedor(listaMaquina,
-							InicializadorGameController.getMainGameController()
+							StartView.getMainGameController()
 									.getTimeMaquina());
 				}
 				lblPlacar.setText(getStringPlacar());
 
-				lblHistoricoPenaltisJogador.setText(InicializadorGameController
+				lblHistoricoPenaltisJogador.setText(StartView
 						.getMainGameController().getHistoricoPenaltisJogador());
-				lblFraseTorcidaJogador.setText(InicializadorGameController
+				lblFraseTorcidaJogador.setText(StartView
 						.getMainGameController().getFraseTorcidaJogador());
 
-				lblHistoricoPenaltisMaquina.setText(InicializadorGameController
+				lblHistoricoPenaltisMaquina.setText(StartView
 						.getMainGameController().getHistoricoPenaltisMaquina());
-				lblFraseTorcidaMaquina.setText(InicializadorGameController
+				lblFraseTorcidaMaquina.setText(StartView
 						.getMainGameController().getFraseTorcidaMaquina());
 
 				repaint();
@@ -315,7 +314,7 @@ public class MainGameView extends JFrame {
 	}
 
 	private void verificaERedirecionaCasoHajaVencedor() {
-		String nomeTimeVencedor = InicializadorGameController
+		String nomeTimeVencedor = StartView
 				.getMainGameController().getNomeTimeGanhador();
 		if (nomeTimeVencedor != null) {
 			dispose();

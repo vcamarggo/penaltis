@@ -10,7 +10,6 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
 
-import br.uem.controller.InicializadorGameController;
 import br.uem.util.Util;
 
 /**
@@ -56,17 +55,12 @@ public class QuemIniciaView extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				if (rdbtnComputadorDecide.isSelected()
 						&& Util.gerarRandomAteN(1) == 1) {
-					InicializadorGameController.getMainGameController()
-							.setJogadorComeca(false);
+					StartView.getMainGameController().setJogadorComeca(false);
 				} else {
-					InicializadorGameController.getMainGameController()
-							.setJogadorComeca(true);
+					StartView.getMainGameController().setJogadorComeca(true);
 				}
-				InicializadorGameController.getMainGameController()
-						.setIsVezJogadorBater(
-								InicializadorGameController
-										.getMainGameController()
-										.getJogadorComeca());
+				StartView.getMainGameController().setIsVezJogadorBater(
+						StartView.getMainGameController().getJogadorComeca());
 				dispose();
 				MainGameView mainGameView = new MainGameView();
 				mainGameView.setVisible(true);
