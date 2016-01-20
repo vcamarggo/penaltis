@@ -15,6 +15,7 @@ import br.uem.model.Goleiro;
 import br.uem.model.Jogador;
 import br.uem.model.Perfil;
 import br.uem.model.Time;
+import br.uem.model.Torcida;
 import br.uem.util.Util;
 
 /**
@@ -94,4 +95,25 @@ public class JogadorController {
 		return jogador;
 	}
 
+	public static Jogador atualizarStatusJogador(Jogador jogador,
+			Torcida torcidaQueApoiaBatedor, Torcida torcidaContraBatedor) {
+		jogador.getPerfil().setConfianca(
+				jogador.getPerfil().getConfianca()
+						+ torcidaQueApoiaBatedor.aplaudir()
+						- torcidaContraBatedor.vaiar());
+		jogador.getPerfil().setQualidade(
+				jogador.getPerfil().getQualidade()
+						* (jogador.getPerfil().getConfianca() / 100));
+		return jogador;
+	}
+
+	public static Batedor procurarJogador(String nomeJogador, Time time) {
+		Batedor batedor = null;
+		for (Jogador jogador : time.getJogadores()) {
+			if (jogador.getName().equals(nomeJogador)) {
+				return batedor = (Batedor) jogador;
+			}
+		}
+		return batedor;
+	}
 }

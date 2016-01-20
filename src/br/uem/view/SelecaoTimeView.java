@@ -20,8 +20,8 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
 
-import br.uem.controller.InicializadorGameController;
 import br.uem.controller.MainGameController;
+import br.uem.controller.TimesController;
 import br.uem.enumeration.Times;
 
 /**
@@ -237,8 +237,7 @@ public class SelecaoTimeView extends JFrame {
 					}
 				}
 
-				InicializadorGameController.getMainGameController()
-						.createTimes(nomeTimeEscolhido);
+				TimesController.createTimes(nomeTimeEscolhido);
 				dispose();
 				QuemIniciaView iniciaView = new QuemIniciaView();
 				iniciaView.setVisible(true);

@@ -1,15 +1,9 @@
 package br.uem.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import br.uem.enumeration.Ponto;
-import br.uem.enumeration.Times;
 import br.uem.model.Batedor;
 import br.uem.model.Goleiro;
-import br.uem.model.Jogador;
 import br.uem.model.Time;
-import br.uem.model.Torcedor;
 import br.uem.model.Torcida;
 import br.uem.util.Util;
 
@@ -36,7 +30,6 @@ public class MainGameController {
 		nomeTimeGanhador = null;
 	}
 
-	private static final int numeroTorcedores = 15;
 	private Time timeJogador;
 	private Time timeMaquina;
 	private Boolean jogadorComeca;
@@ -52,46 +45,6 @@ public class MainGameController {
 	private Integer numeroCobranca;
 	private String nomeTimeGanhador;
 
-	public void createTimes(String nomeDoTime) {
-		timeJogador = new Time();
-		timeJogador.setNome(nomeDoTime.toUpperCase());
-		timeJogador.setJogadores(JogadorController.criaListaJogadores(
-				timeJogador.getNome(), timeJogador));
-
-		int auxEscolhaTimeMaquina = 0;
-		String nomeTimeMaquina;
-		do {
-			auxEscolhaTimeMaquina = Util
-					.gerarRandomAteN(Times.values().length - 1);
-			nomeTimeMaquina = Times.values()[auxEscolhaTimeMaquina].toString();
-		} while (nomeTimeMaquina.equalsIgnoreCase(timeJogador.getNome()));
-
-		timeMaquina = new Time();
-		timeMaquina.setNome(nomeTimeMaquina.toUpperCase());
-		timeMaquina.setJogadores(JogadorController.criaListaJogadores(
-				timeMaquina.getNome(), timeMaquina));
-
-		torcidaMaquina = createTorcida(timeJogador);
-		torcidaJogador = createTorcida(timeMaquina);
-	}
-
-	private Torcida createTorcida(Time time) {
-		Torcida torcida = new Torcida();
-		torcida.setTime(time);
-		torcida.setTorcedores(createTorcedores());
-
-		return torcida;
-	}
-
-	private List<Torcedor> createTorcedores() {
-		List<Torcedor> torcedores = new ArrayList<Torcedor>();
-		for (int i = 0; i < numeroTorcedores; i++) {
-			Torcedor torcedor = new Torcedor();
-			torcedores.add(torcedor);
-		}
-		return torcedores;
-	}
-
 	public void direcionar(String nomeJogador, Ponto pontoJogador) {
 
 		Ponto pontoMaquina = Ponto.values()[Util
@@ -101,38 +54,28 @@ public class MainGameController {
 		Batedor batedor = null;
 		if (isVezJogadorBater) {
 			goleiro = (Goleiro) timeMaquina.getJogadores().get(10);
-			batedor = procurarJogador(nomeJogador, timeJogador);
-			batedor = (Batedor) atualizarStatusJogador(batedor, torcidaJogador,
-					torcidaMaquina);
-			goleiro = (Goleiro) atualizarStatusJogador(goleiro, torcidaMaquina,
-					torcidaJogador);
+			batedor = JogadorController.procurarJogador(nomeJogador,
+					timeJogador);
+			batedor = (Batedor) JogadorController.atualizarStatusJogador(
+					batedor, torcidaJogador, torcidaMaquina);
+			goleiro = (Goleiro) JogadorController.atualizarStatusJogador(
+					goleiro, torcidaMaquina, torcidaJogador);
 			testaBatedorFezGol(goleiro, pontoMaquina, batedor, pontoJogador,
 					isVezJogadorBater);
 
 		} else {
 			goleiro = (Goleiro) timeJogador.getJogadores().get(10);
-			batedor = procurarJogador(nomeJogador, timeMaquina);
-			batedor = (Batedor) atualizarStatusJogador(batedor, torcidaMaquina,
-					torcidaJogador);
-			goleiro = (Goleiro) atualizarStatusJogador(goleiro, torcidaJogador,
-					torcidaMaquina);
+			batedor = JogadorController.procurarJogador(nomeJogador,
+					timeMaquina);
+			batedor = (Batedor) JogadorController.atualizarStatusJogador(
+					batedor, torcidaMaquina, torcidaJogador);
+			goleiro = (Goleiro) JogadorController.atualizarStatusJogador(
+					goleiro, torcidaJogador, torcidaMaquina);
 			testaBatedorFezGol(goleiro, pontoJogador, batedor, pontoMaquina,
 					isVezJogadorBater);
 
 		}
 		atualizarVencedor();
-	}
-
-	private Jogador atualizarStatusJogador(Jogador jogador,
-			Torcida torcidaQueApoiaBatedor, Torcida torcidaContraBatedor) {
-		jogador.getPerfil().setConfianca(
-				jogador.getPerfil().getConfianca()
-						+ torcidaQueApoiaBatedor.aplaudir()
-						- torcidaContraBatedor.vaiar());
-		jogador.getPerfil().setQualidade(
-				jogador.getPerfil().getQualidade()
-						* (jogador.getPerfil().getConfianca() / 100));
-		return jogador;
 	}
 
 	private void atualizarVencedor() {
@@ -150,7 +93,6 @@ public class MainGameController {
 		}
 	}
 
-	// tem que corrigir
 	private String calcularNomeVencedor(Integer golsJogador,
 			Integer golsMaquina, Integer numeroCobranca, Boolean jogadorComeca,
 			Boolean isVezJogadorBater) {
@@ -259,16 +201,6 @@ public class MainGameController {
 			}
 		}
 
-	}
-
-	private Batedor procurarJogador(String nomeJogador, Time time) {
-		Batedor batedor = null;
-		for (Jogador jogador : time.getJogadores()) {
-			if (jogador.getName().equals(nomeJogador)) {
-				return batedor = (Batedor) jogador;
-			}
-		}
-		return batedor;
 	}
 
 	public Time getTimeJogador() {
