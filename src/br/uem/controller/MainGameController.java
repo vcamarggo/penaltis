@@ -255,20 +255,8 @@ public class MainGameController {
 		return fraseTorcidaJogador;
 	}
 
-	public void setFraseTorcidaJogador(String fraseTorcidaJogador) {
-		this.fraseTorcidaJogador = fraseTorcidaJogador;
-	}
-
-	public Torcida getTorcidaMaquina() {
-		return torcidaMaquina;
-	}
-
 	public void setTorcidaMaquina(Torcida torcidaMaquina) {
 		this.torcidaMaquina = torcidaMaquina;
-	}
-
-	public Torcida getTorcidaJogador() {
-		return torcidaJogador;
 	}
 
 	public void setTorcidaJogador(Torcida torcidaJogador) {
@@ -279,32 +267,12 @@ public class MainGameController {
 		return historicoPenaltisJogador;
 	}
 
-	public void setHistoricoPenaltisJogador(String historicoPenaltisJogador) {
-		this.historicoPenaltisJogador = historicoPenaltisJogador;
-	}
-
 	public String getHistoricoPenaltisMaquina() {
 		return historicoPenaltisMaquina;
 	}
 
-	public void setHistoricoPenaltisMaquina(String historicoPenaltisMaquina) {
-		this.historicoPenaltisMaquina = historicoPenaltisMaquina;
-	}
-
-	public Integer getNumeroCobranca() {
-		return numeroCobranca;
-	}
-
-	public void setNumeroCobranca(Integer numeroCobranca) {
-		this.numeroCobranca = numeroCobranca;
-	}
-
 	public String getNomeTimeGanhador() {
 		return nomeTimeGanhador;
-	}
-
-	public void setNomeTimeGanhador(String nomeTimeGanhador) {
-		this.nomeTimeGanhador = nomeTimeGanhador;
 	}
 
 	public Boolean getIsVezJogadorBater() {

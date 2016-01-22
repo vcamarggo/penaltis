@@ -30,6 +30,7 @@ public class StartView {
 	private JFrame frmPenaltis;
 	private static final Image imagemBola = Toolkit.getDefaultToolkit()
 			.getImage(StartView.class.getResource("/bola.jpg"));
+	private static final String fraseSuperiorJanela = "Pênaltis";
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -58,7 +59,7 @@ public class StartView {
 	private void initialize() {
 		setFrmPenaltis(new JFrame());
 		getFrmPenaltis().setIconImage(imagemBola);
-		getFrmPenaltis().setTitle("Pênaltis");
+		getFrmPenaltis().setTitle(fraseSuperiorJanela);
 		getFrmPenaltis().setBounds(100, 100, 227, 132);
 		getFrmPenaltis().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getFrmPenaltis().getContentPane().setLayout(null);
@@ -112,8 +113,8 @@ public class StartView {
 		StartView.mainGameController = mainGameController;
 	}
 
-	public static void setUtil(Util util) {
-		StartView.util = util;
+	public static String getFrasesuperiorjanela() {
+		return fraseSuperiorJanela;
 	}
 
 }

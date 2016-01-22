@@ -11,6 +11,7 @@ import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
 
 import br.uem.util.Util;
+import javax.swing.JLabel;
 
 /**
  * @author V.Camargo
@@ -29,28 +30,28 @@ public class QuemIniciaView extends JFrame {
 	 */
 	public QuemIniciaView() {
 		setIconImage(StartView.getImagembola());
-		setTitle("Pênaltis - Quem começa chutando?");
+		setTitle(StartView.getFrasesuperiorjanela());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 386, 188);
+		setBounds(100, 100, 279, 188);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		JRadioButton rdbtnComearChutando = new JRadioButton("Começar Chutando");
-		rdbtnComearChutando.setBounds(139, 22, 166, 23);
+		rdbtnComearChutando.setBounds(51, 47, 166, 23);
 		rdbtnComearChutando.setSelected(true);
 		buttonGroupQuemComeca.add(rdbtnComearChutando);
 		contentPane.add(rdbtnComearChutando);
 
 		JRadioButton rdbtnComputadorDecide = new JRadioButton(
 				"Computador Decide");
-		rdbtnComputadorDecide.setBounds(139, 58, 180, 23);
+		rdbtnComputadorDecide.setBounds(51, 73, 180, 23);
 		buttonGroupQuemComeca.add(rdbtnComputadorDecide);
 		contentPane.add(rdbtnComputadorDecide);
 
 		JButton btnOk = new JButton("OK");
-		btnOk.setBounds(160, 100, 89, 23);
+		btnOk.setBounds(77, 115, 89, 23);
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (rdbtnComputadorDecide.isSelected()
@@ -67,5 +68,10 @@ public class QuemIniciaView extends JFrame {
 			}
 		});
 		contentPane.add(btnOk);
+
+		JLabel lblEscolhaQuemComea = new JLabel(
+				"Escolha quem come\u00E7a chutando");
+		lblEscolhaQuemComea.setBounds(41, 16, 190, 14);
+		contentPane.add(lblEscolhaQuemComea);
 	}
 }
