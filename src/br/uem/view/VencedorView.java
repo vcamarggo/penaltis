@@ -52,7 +52,7 @@ public class VencedorView extends JFrame {
 
 		JLabel lblBandeiravencedor = new JLabel();
 		lblBandeiravencedor.setIcon(new ImageIcon(VencedorView.class
-				.getResource("/a-" + nomeTimeVencedor.toLowerCase() + ".gif")));
+				.getResource("/" + nomeTimeVencedor.toLowerCase() + ".gif")));
 		lblBandeiravencedor.setBounds(25, 11, 115, 78);
 		contentPane.add(lblBandeiravencedor);
 		String nomeVencedor;
