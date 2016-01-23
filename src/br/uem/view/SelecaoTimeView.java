@@ -58,7 +58,7 @@ public class SelecaoTimeView extends JFrame {
 	private String nomeTimeEscolhido;
 	private final JLabel lblEscolhaSeuTime = new JLabel("Escolha seu time");
 
-	/**
+	/**	
 	 * Cria janela
 	 */
 	public SelecaoTimeView() {
@@ -91,7 +91,6 @@ public class SelecaoTimeView extends JFrame {
 				btnBrasil.setSelected(true);
 			}
 		});
-
 		bandeiraBrasil.setIcon(new ImageIcon(SelecaoTimeView.class
 				.getResource("/br.png")));
 		contentPane.add(bandeiraBrasil);
@@ -160,13 +159,16 @@ public class SelecaoTimeView extends JFrame {
 		group.add(btnChile);
 
 		btnOK.setBounds(144, 149, 56, 23);
+	
+		
 		btnOK.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				for (Enumeration<AbstractButton> buttons = group.getElements(); buttons
 						.hasMoreElements();) {
 					AbstractButton button = buttons.nextElement();
-
 					if (button.isSelected()) {
+						//Se algum botão estiver escolhido ele usa
+						// o nome do botão como time escolhido
 						nomeTimeEscolhido = button.getText();
 					}
 				}

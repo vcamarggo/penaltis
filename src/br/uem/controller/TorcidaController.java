@@ -8,6 +8,8 @@ import br.uem.model.Torcedor;
 import br.uem.model.Torcida;
 
 /**
+ * Controla criação da torcida e torcedores.
+ * 
  * @author V.Camargo
  * 
  * @Date 20/01/2016

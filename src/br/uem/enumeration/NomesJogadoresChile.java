@@ -9,18 +9,25 @@ package br.uem.enumeration;
  */
 
 public enum NomesJogadoresChile {
-	VIDAL("Vidal"), VARGAS("Vargas"), MEDEL("Medel"), VALDIVIA("Valdivia"), JARA(
-			"Jara"), ISLA("Isla"), MENA("Mena"), PIZARRO("Pizarro"), RABELLO(
-			"Rabello"), RUBIO("Rubio");
+	VIDAL("Vidal", true), VARGAS("Vargas", true), MEDEL("Medel", true), VALDIVIA(
+			"Valdivia", true), JARA("Jara", true), ISLA("Isla", true), MENA(
+			"Mena", true), PIZARRO("Pizarro", true), RABELLO("Rabello", true), RUBIO(
+			"Rubio", true), CB("Claudio Bravo", false);
 
 	private final String nome;
+	private final Boolean isBatedor;
 
 	@Override
 	public String toString() {
 		return nome;
 	}
 
-	private NomesJogadoresChile(String nome) {
+	private NomesJogadoresChile(String nome, Boolean isBatedor) {
 		this.nome = nome;
+		this.isBatedor = isBatedor;
+	}
+
+	public Boolean getIsBatedor() {
+		return isBatedor;
 	}
 }

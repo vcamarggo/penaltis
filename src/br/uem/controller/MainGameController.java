@@ -8,6 +8,8 @@ import br.uem.model.Torcida;
 import br.uem.util.Util;
 
 /**
+ * Controla todo fluxo principal do jogo
+ * 
  * @author V.Camargo
  * 
  * @Date 09/01/2016
@@ -45,16 +47,24 @@ public class MainGameController {
 	private Integer numeroCobranca;
 	private String nomeTimeGanhador;
 
-	public void direcionar(String nomeJogador, Ponto pontoJogador) {
+	/**
+	 * @param nomeBatedor
+	 * @param pontoJogador
+	 * 
+	 *            Define o goleiro e batedor e chama os métodos que atualizam
+	 *            seus perfis e verificam se foi gol e também se há vencedor
+	 */
+	public void direcionar(String nomeBatedor, Ponto pontoJogador) {
 
 		Ponto pontoMaquina = Ponto.values()[Util
 				.gerarRandomAteN(Ponto.values().length - 1)];
 
 		Goleiro goleiro = null;
 		Batedor batedor = null;
+
 		if (isVezJogadorBater) {
 			goleiro = (Goleiro) timeMaquina.getJogadores().get(10);
-			batedor = JogadorController.procurarJogador(nomeJogador,
+			batedor = JogadorController.procurarJogador(nomeBatedor,
 					timeJogador);
 			batedor = (Batedor) JogadorController.atualizarStatusJogador(
 					batedor, torcidaJogador, torcidaMaquina);
@@ -64,8 +74,9 @@ public class MainGameController {
 					isVezJogadorBater);
 
 		} else {
+
 			goleiro = (Goleiro) timeJogador.getJogadores().get(10);
-			batedor = JogadorController.procurarJogador(nomeJogador,
+			batedor = JogadorController.procurarJogador(nomeBatedor,
 					timeMaquina);
 			batedor = (Batedor) JogadorController.atualizarStatusJogador(
 					batedor, torcidaMaquina, torcidaJogador);
@@ -75,15 +86,22 @@ public class MainGameController {
 					isVezJogadorBater);
 
 		}
+
 		atualizarVencedor();
 	}
 
+	/**
+	 * Verifica se há vencedor e chama método que atualiza numero cobranças
+	 */
 	private void atualizarVencedor() {
 		nomeTimeGanhador = calcularNomeVencedor(golsJogador, golsMaquina,
 				numeroCobranca, jogadorComeca, isVezJogadorBater);
 		atualizarNumeroCobrancas();
 	}
 
+	/**
+	 * Atualiza o número de cobranças
+	 */
 	private void atualizarNumeroCobrancas() {
 		if (jogadorComeca && !isVezJogadorBater) {
 			numeroCobranca++;
@@ -93,6 +111,16 @@ public class MainGameController {
 		}
 	}
 
+	/**
+	 * Verifica se há vencedor e retorna seu nome
+	 * 
+	 * @param golsJogador
+	 * @param golsMaquina
+	 * @param numeroCobranca
+	 * @param jogadorComeca
+	 * @param isVezJogadorBater
+	 * @return nome do vencedor
+	 */
 	private String calcularNomeVencedor(Integer golsJogador,
 			Integer golsMaquina, Integer numeroCobranca, Boolean jogadorComeca,
 			Boolean isVezJogadorBater) {
@@ -120,6 +148,15 @@ public class MainGameController {
 		return null;
 	}
 
+	/**
+	 * Testa se um batedor fez gol e atualiza gols, frases e histórico
+	 * 
+	 * @param goleiro
+	 * @param pontoDefesa
+	 * @param batedor
+	 * @param pontoChute
+	 * @param jogadorBatendo
+	 */
 	private void testaBatedorFezGol(Goleiro goleiro, Ponto pontoDefesa,
 			Batedor batedor, Ponto pontoChute, boolean jogadorBatendo) {
 		Boolean fezGol = false;
@@ -154,6 +191,12 @@ public class MainGameController {
 
 	}
 
+	/**
+	 * Atualiza histórico dos penaltis conforme erro ou acerto
+	 * 
+	 * @param jogadorBatendo
+	 * @param fezGol
+	 */
 	private void atualizarHistoricoPenaltis(boolean jogadorBatendo,
 			Boolean fezGol) {
 		if (jogadorBatendo) {
@@ -174,6 +217,12 @@ public class MainGameController {
 
 	}
 
+	/**
+	 * Atualiza gols se houve gol feito
+	 * 
+	 * @param jogadorBatendo
+	 * @param fezGol
+	 */
 	private void atualizarGols(Boolean jogadorBatendo, Boolean fezGol) {
 		if (jogadorBatendo && fezGol) {
 			golsJogador += 1;
@@ -182,6 +231,12 @@ public class MainGameController {
 		}
 	}
 
+	/**
+	 * Atualiza frases conforme erro ou acerto
+	 * 
+	 * @param jogadorBatendo
+	 * @param fezGol
+	 */
 	private void atualizarFrase(Boolean jogadorBatendo, Boolean fezGol) {
 		if (jogadorBatendo) {
 			if (fezGol) {
