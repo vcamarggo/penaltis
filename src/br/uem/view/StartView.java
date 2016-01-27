@@ -6,6 +6,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -60,9 +61,10 @@ public class StartView {
 		setFrmPenaltis(new JFrame());
 		getFrmPenaltis().setIconImage(imagemBola);
 		getFrmPenaltis().setTitle(fraseSuperiorJanela);
-		getFrmPenaltis().setBounds(100, 100, 227, 132);
+		getFrmPenaltis().setBounds(500, 250, 360, 238);
 		getFrmPenaltis().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getFrmPenaltis().getContentPane().setLayout(null);
+		getFrmPenaltis().setResizable(false);
 
 		JButton btnComecarJogo = new JButton("Começar Jogo");
 		btnComecarJogo.addActionListener(new ActionListener() {
@@ -71,20 +73,32 @@ public class StartView {
 			public void actionPerformed(ActionEvent e) {
 				frmPenaltis.dispose();
 				setMainGameController(new MainGameController());
+				// TODO usar aqui para modelo das instruções
 				SelecaoTimeView timeview = new SelecaoTimeView();
 				timeview.setVisible(true);
 			}
 		});
 
-		btnComecarJogo.setBounds(28, 21, 162, 23);
+		btnComecarJogo.setBounds(10, 29, 132, 22);
 		getFrmPenaltis().getContentPane().add(btnComecarJogo);
+		
+		JButton btnOpcoes = new JButton("Opções");
+		btnOpcoes.setBounds(10, 74, 132, 23);
+		frmPenaltis.getContentPane().add(btnOpcoes);
 
 		JLabel label = new JLabel("Bom jogo!");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setBounds(62, 55, 100, 22);
+		label.setBounds(30, 108, 100, 22);
 		getFrmPenaltis().getContentPane().add(label);
+		
+		JLabel imagemInicial = new JLabel("");
+		frmPenaltis.getContentPane().add(imagemInicial);
+		imagemInicial.setHorizontalAlignment(SwingConstants.CENTER);
+		imagemInicial.setIcon(new ImageIcon(MainGameView.class
+				.getResource("/telaInicial.png")));
+		imagemInicial.setBounds(0, 0, 356, 211);
 	}
-
+	
 	public JFrame getFrmPenaltis() {
 		return frmPenaltis;
 	}
@@ -116,5 +130,5 @@ public class StartView {
 	public static String getFrasesuperiorjanela() {
 		return fraseSuperiorJanela;
 	}
-
+	
 }

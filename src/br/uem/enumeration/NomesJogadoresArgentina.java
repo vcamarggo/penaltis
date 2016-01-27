@@ -9,25 +9,18 @@ package br.uem.enumeration;
  */
 
 public enum NomesJogadoresArgentina {
-	MARADONA("Maradona", true), MESSI("Messi", true), MASCHERANO("Mascherano",
-			true), LAVEZZI("Lavezzi", true), TEVEZ("Tevez", true), BATISTUTA(
-			"Batistuta", true), SABELLA("Sabella", true), GAGO("Gago", true), CANIGGIA(
-			"Caniggia", true), RIQUELME("Riquelme", true), ROJO("Rojo", false);
+	MARADONA("Maradona"), MESSI("Messi"), MASCHERANO("Mascherano"), LAVEZZI(
+			"Lavezzi"), TEVEZ("Tevez"), BATISTUTA("Batistuta"), SABELLA("Sabella"), GAGO(
+			"Gago"), CANIGGIA("Caniggia"), RIQUELME("Riquelme");
 
 	private final String nome;
-	private final Boolean isBatedor;
 
 	@Override
 	public String toString() {
 		return nome;
 	}
 
-	private NomesJogadoresArgentina(String nome, Boolean isBatedor) {
+	private NomesJogadoresArgentina(String nome) {
 		this.nome = nome;
-		this.isBatedor = isBatedor;
-	}
-
-	public Boolean getIsBatedor() {
-		return isBatedor;
 	}
 }

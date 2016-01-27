@@ -21,7 +21,8 @@ import br.uem.enumeration.Ponto;
 import br.uem.util.Util;
 
 /**
- * Classe que cria a janela de visualização principal do jogo.
+ * Classe que cria a janela de
+ * visualização principal do jogo.
  * 
  * @author V.Camargo
  * 
@@ -47,22 +48,26 @@ public class MainGameView extends JFrame {
 		setIconImage(StartView.getImagembola());
 		setTitle(StartView.getFrasesuperiorjanela());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 804, 314);
+		setBounds(260, 170, 796, 314);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		setResizable(false);
 
 		JLabel imagemGol = new JLabel("");
+		imagemGol.setHorizontalAlignment(SwingConstants.CENTER);
 		imagemGol.setIcon(new ImageIcon(MainGameView.class
 				.getResource("/trave.jpg")));
-		imagemGol.setBounds(185, 22, 420, 200);
+		imagemGol.setBounds(167, 23, 453, 199);
 
+		// TODO abaixar a frase para não cobrir picklist
 		JLabel lblFraseTorcidaJogador = new JLabel();
 		lblFraseTorcidaJogador.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFraseTorcidaJogador.setBounds(10, 221, 169, 14);
 		contentPane.add(lblFraseTorcidaJogador);
-
+	
+		// TODO abaixar a frase para não cobrir picklist
 		JLabel lblFraseTorcidaMaquina = new JLabel();
 		lblFraseTorcidaMaquina.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFraseTorcidaMaquina.setBounds(611, 221, 169, 14);
@@ -104,26 +109,23 @@ public class MainGameView extends JFrame {
 		contentPane.add(lblPlacar);
 
 		JLabel lblVezDeQuem = new JLabel();
-		lblPlacar.setForeground(Color.BLACK);
-		lblVezDeQuem.setFont(new Font("Arial", Font.BOLD, 15));
 		lblVezDeQuem.setHorizontalAlignment(SwingConstants.CENTER);
-		lblVezDeQuem.setBounds(174, 5, 420, 22);
+		lblVezDeQuem.setBounds(167, 2, 453, 22);
 
 		List pickListJogadores = new List();
-		pickListJogadores.setBounds(10, 30, 169, 185);
+		pickListJogadores.setBounds(0, 23, 171, 200);
 		selecaoBatedorController = new SelecaoBatedorController();
 		selecaoBatedorController.populaListaBatedor(pickListJogadores,
 				StartView.getMainGameController().getTimeJogador());
 
 		List pickListMaquina = new List();
-		pickListMaquina.setBounds(611, 30, 169, 185);
+		pickListMaquina.setBounds(617, 23, 171, 200);
 		selecaoBatedorController.populaListaBatedor(pickListMaquina, StartView
 				.getMainGameController().getTimeMaquina());
 		pickListMaquina.setEnabled(false);
 
 		ImageIcon imagemBotaoDefault = null;
 
-		// se jogador começa batendo exibe imagem da bola, senão, da luva
 		if (StartView.getMainGameController().getJogadorComeca()) {
 			imagemBotaoDefault = imagemChute;
 			lblVezDeQuem.setText(batedor);
@@ -141,42 +143,41 @@ public class MainGameView extends JFrame {
 		btnEsquerdaCima.setIcon(imagemBotaoDefault);
 		btnEsquerdaCima.setBorder(BorderFactory.createEmptyBorder());
 		btnEsquerdaCima.setContentAreaFilled(false);
-		btnEsquerdaCima.setBounds(210, 47, 32, 32);
+		btnEsquerdaCima.setBounds(198, 40, 40, 40);
 
 		JButton btnMeioCima = new JButton();
 		btnMeioCima.setName("MEIO_CIMA");
 		btnMeioCima.setIcon(imagemBotaoDefault);
 		btnMeioCima.setBorder(BorderFactory.createEmptyBorder());
 		btnMeioCima.setContentAreaFilled(false);
-		btnMeioCima.setBounds(372, 47, 32, 32);
+		btnMeioCima.setBounds(377, 40, 40, 40);
 
 		JButton btnDireitoCima = new JButton();
 		btnDireitoCima.setName("DIREITA_CIMA");
 		btnDireitoCima.setIcon(imagemBotaoDefault);
 		btnDireitoCima.setBorder(BorderFactory.createEmptyBorder());
 		btnDireitoCima.setContentAreaFilled(false);
-		btnDireitoCima.setBounds(532, 47, 32, 32);
+		btnDireitoCima.setBounds(552, 40, 40, 40);
 
 		JButton btnEsquerdaBaixo = new JButton();
 		btnEsquerdaBaixo.setName("ESQUERDA_BAIXO");
 		btnEsquerdaBaixo.setIcon(imagemBotaoDefault);
 		btnEsquerdaBaixo.setBorder(BorderFactory.createEmptyBorder());
 		btnEsquerdaBaixo.setContentAreaFilled(false);
-		btnEsquerdaBaixo.setBounds(210, 164, 32, 32);
-
+		btnEsquerdaBaixo.setBounds(198, 169, 40, 40);
 		JButton btnMeioBaixo = new JButton();
 		btnMeioBaixo.setName("MEIO_BAIXO");
 		btnMeioBaixo.setIcon(imagemBotaoDefault);
 		btnMeioBaixo.setBorder(BorderFactory.createEmptyBorder());
 		btnMeioBaixo.setContentAreaFilled(false);
-		btnMeioBaixo.setBounds(372, 164, 32, 32);
+		btnMeioBaixo.setBounds(377, 169, 40, 40);
 
 		JButton btnDireitaBaixo = new JButton();
 		btnDireitaBaixo.setName("DIREITA_CIMA");
 		btnDireitaBaixo.setIcon(imagemBotaoDefault);
 		btnDireitaBaixo.setBorder(BorderFactory.createEmptyBorder());
 		btnDireitaBaixo.setContentAreaFilled(false);
-		btnDireitaBaixo.setBounds(536, 164, 32, 32);
+		btnDireitaBaixo.setBounds(552, 169, 40, 40);
 
 		java.util.List<JButton> botoesChutarDefender = new ArrayList<JButton>();
 		botoesChutarDefender.add(btnDireitaBaixo);
@@ -205,21 +206,20 @@ public class MainGameView extends JFrame {
 		contentPane.add(lblVezDeQuem);
 		contentPane.add(imagemGol);
 
+		// TODO subir para não cobrir picklist
 		JLabel lblJogador = new JLabel("JOGADOR");
 		lblJogador.setHorizontalAlignment(SwingConstants.CENTER);
 		lblJogador.setBounds(10, 10, 169, 14);
 		contentPane.add(lblJogador);
 
+		// TODO subir para não cobrir picklist
 		JLabel lblMquina = new JLabel("MÁQUINA");
 		lblMquina.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMquina.setBounds(611, 13, 169, 14);
+		lblMquina.setBounds(611, 10, 169, 14);
 		contentPane.add(lblMquina);
 
 	}
 
-	/**
-	 * @return string com o placar já formatado
-	 */
 	private String getStringPlacar() {
 		return StartView.getMainGameController().getGolsJogador().toString()
 				+ "  X  "
@@ -227,20 +227,6 @@ public class MainGameView extends JFrame {
 
 	}
 
-	/**
-	 * @param btnList
-	 * @param listaJogador
-	 * @param listaMaquina
-	 * @param lblPlacar
-	 * @param lblVezDeQuem
-	 * @param lblHistoricoPenaltisJogador
-	 * @param lblHistoricoPenaltisMaquina
-	 * @param lblFraseTorcidaMaquina
-	 * @param lblFraseTorcidaJogador
-	 *            Retorna o action listener com as ações que controlam o fluxo
-	 *            de modificação da interface e que fazem o interfaceamento com
-	 *            o controller para controle das regras do jogo
-	 */
 	public ActionListener controlaBotao(java.util.List<JButton> btnList,
 			List listaJogador, List listaMaquina, JLabel lblPlacar,
 			JLabel lblVezDeQuem, JLabel lblHistoricoPenaltisJogador,
@@ -250,11 +236,15 @@ public class MainGameView extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				boolean isVezJogador = StartView.getMainGameController()
 						.getIsVezJogadorBater();
-
 				if (isVezJogador) {
+					atualizarImagemBotao(btnList, isVezJogador);
+
+					lblVezDeQuem.setText(goleirao);
+					int indiceBatedorMaquina = Util
+							.gerarRandomAteN(listaMaquina.getItemCount() - 1);
+					listaMaquina.select(indiceBatedorMaquina);
+
 					int indice = -2;
-					// se o jogador não escolher um batedor, sistema escolhe
-					// automaticamente
 					if (listaJogador.getSelectedIndex() == -1) {
 						indice = Util.gerarRandomAteN(listaJogador
 								.getItemCount() - 1);
@@ -265,31 +255,22 @@ public class MainGameView extends JFrame {
 							listaJogador.getItem(indice),
 							Ponto.valueOf(((JButton) arg0.getSource())
 									.getName()));
-					listaJogador.remove(indice);
 
-					// faz o controle do estado dos componentes da interface
-					atualizarImagemBotao(btnList, isVezJogador);
+					listaJogador.remove(indice);
 					listaJogador.setEnabled(false);
-					lblVezDeQuem.setText(goleirao);
-					int indiceBatedorMaquina = Util
-							.gerarRandomAteN(listaMaquina.getItemCount() - 1);
-					listaMaquina.select(indiceBatedorMaquina);
 				} else {
+					atualizarImagemBotao(btnList, isVezJogador);
+
 					StartView.getMainGameController().direcionar(
 							listaMaquina.getSelectedItem(),
 							Ponto.valueOf(((JButton) arg0.getSource())
 									.getName()));
 					listaMaquina.remove(listaMaquina.getSelectedIndex());
-
-					// faz o controle do estado dos componentes da interface
-					atualizarImagemBotao(btnList, isVezJogador);
-					listaJogador.setEnabled(true);
 					lblVezDeQuem.setText(batedor);
+					listaJogador.setEnabled(true);
 				}
-
 				StartView.getMainGameController().setIsVezJogadorBater(
 						!isVezJogador);
-
 				if (listaJogador.getItemCount() == 0) {
 					selecaoBatedorController.populaListaBatedor(listaJogador,
 							StartView.getMainGameController().getTimeJogador());
@@ -298,7 +279,6 @@ public class MainGameView extends JFrame {
 					selecaoBatedorController.populaListaBatedor(listaMaquina,
 							StartView.getMainGameController().getTimeMaquina());
 				}
-
 				lblPlacar.setText(getStringPlacar());
 
 				lblHistoricoPenaltisJogador.setText(StartView
@@ -319,13 +299,6 @@ public class MainGameView extends JFrame {
 		return action;
 	}
 
-	/**
-	 * Atualiza os botões conforme quem chuta
-	 * 
-	 * @param btnList
-	 * @param isVezJogador
-	 * 
-	 */
 	private void atualizarImagemBotao(java.util.List<JButton> btnList,
 			Boolean isVezJogador) {
 		if (isVezJogador) {
@@ -339,10 +312,7 @@ public class MainGameView extends JFrame {
 		}
 	}
 
-	/**
-	 * Verifica se o controller tem um vencedor e retorna para que a tela de
-	 * vencedor possa ser exibida
-	 */
+	@Deprecated
 	private void verificaERedirecionaCasoHajaVencedor() {
 		String nomeTimeVencedor = StartView.getMainGameController()
 				.getNomeTimeGanhador();
@@ -351,6 +321,7 @@ public class MainGameView extends JFrame {
 			VencedorView vencedorView = new VencedorView(nomeTimeVencedor);
 			vencedorView.setVisible(true);
 		}
+
 	}
 
 	public SelecaoBatedorController getSelecaoBatedorController() {

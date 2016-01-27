@@ -16,4 +16,7 @@ public class Util {
 		return new Random().nextInt(n + 1);
 	}
 
+	public static String toName(String nome) {
+		return nome.charAt(0) + nome.substring(1).toLowerCase();
+	}
 }

@@ -14,8 +14,6 @@ import br.uem.util.Util;
 import javax.swing.JLabel;
 
 /**
- * Cria janela para seleção de quem inicia as cobranças de pênaltis
- * 
  * @author V.Camargo
  * 
  * @Date 04/01/2016
@@ -34,11 +32,12 @@ public class QuemIniciaView extends JFrame {
 		setIconImage(StartView.getImagembola());
 		setTitle(StartView.getFrasesuperiorjanela());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 279, 188);
+		setBounds(500, 200, 251, 188);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		setResizable(false);
 
 		JRadioButton rdbtnComearChutando = new JRadioButton("Começar Chutando");
 		rdbtnComearChutando.setBounds(51, 47, 166, 23);
@@ -58,11 +57,8 @@ public class QuemIniciaView extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				if (rdbtnComputadorDecide.isSelected()
 						&& Util.gerarRandomAteN(1) == 1) {
-					// se computador decide, então qualquer um pode começar
-					// chutando
 					StartView.getMainGameController().setJogadorComeca(false);
 				} else {
-					// senão, jogador começa chutando
 					StartView.getMainGameController().setJogadorComeca(true);
 				}
 				StartView.getMainGameController().setIsVezJogadorBater(
@@ -75,7 +71,7 @@ public class QuemIniciaView extends JFrame {
 		contentPane.add(btnOk);
 
 		JLabel lblEscolhaQuemComea = new JLabel(
-				"Escolha quem começa chutando");
+				"Escolha quem come\u00E7a chutando");
 		lblEscolhaQuemComea.setBounds(41, 16, 190, 14);
 		contentPane.add(lblEscolhaQuemComea);
 	}

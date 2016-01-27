@@ -58,17 +58,18 @@ public class SelecaoTimeView extends JFrame {
 	private String nomeTimeEscolhido;
 	private final JLabel lblEscolhaSeuTime = new JLabel("Escolha seu time");
 
-	/**	
+	/**
 	 * Cria janela
 	 */
 	public SelecaoTimeView() {
 		setIconImage(StartView.getImagembola());
 		setTitle(StartView.getFrasesuperiorjanela());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 376, 239);
+		setBounds(450, 200, 351, 230);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
+		setResizable(false);
 
 		bandeiraArgentina.setBounds(42, 47, 31, 20);
 		bandeiraArgentina.addMouseListener(new MouseAdapter() {
@@ -91,6 +92,7 @@ public class SelecaoTimeView extends JFrame {
 				btnBrasil.setSelected(true);
 			}
 		});
+
 		bandeiraBrasil.setIcon(new ImageIcon(SelecaoTimeView.class
 				.getResource("/br.png")));
 		contentPane.add(bandeiraBrasil);
@@ -159,16 +161,13 @@ public class SelecaoTimeView extends JFrame {
 		group.add(btnChile);
 
 		btnOK.setBounds(144, 149, 56, 23);
-	
-		
 		btnOK.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				for (Enumeration<AbstractButton> buttons = group.getElements(); buttons
 						.hasMoreElements();) {
 					AbstractButton button = buttons.nextElement();
+
 					if (button.isSelected()) {
-						//Se algum botão estiver escolhido ele usa
-						// o nome do botão como time escolhido
 						nomeTimeEscolhido = button.getText();
 					}
 				}

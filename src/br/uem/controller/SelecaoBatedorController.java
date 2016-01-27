@@ -5,8 +5,6 @@ import java.awt.List;
 import br.uem.model.Time;
 
 /**
- * Classe que popula lista de batedores
- * 
  * @author V.Camargo
  * 
  * @Date 09/01/2016
