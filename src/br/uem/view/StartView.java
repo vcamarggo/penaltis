@@ -20,7 +20,7 @@ import br.uem.util.Util;
  * 
  * @author V.Camargo
  * 
- * @Date 18/12/2015
+ * @Date 19/12/2015
  */
 
 public class StartView {
