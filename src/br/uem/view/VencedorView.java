@@ -12,6 +12,7 @@ import javax.swing.border.EmptyBorder;
 
 import br.uem.util.Util;
 import javax.swing.SwingConstants;
+import java.awt.Color;
 
 /**
  * @author V.Camargo
@@ -127,5 +128,10 @@ public class VencedorView extends JFrame {
 		lblHistoricoPerdedor.setHorizontalAlignment(SwingConstants.LEFT);
 		lblHistoricoPerdedor.setBounds(271, 111, 113, 33);
 		contentPane.add(lblHistoricoPerdedor);
+		
+//		JLabel lblComemoracaoGif = new JLabel();
+//		lblComemoracaoGif.setIcon(new ImageIcon(VencedorView.class.getResource("/comemoracao" + nomeTimeVencedor.toUpperCase() + ".gif" )));
+//		lblComemoracaoGif.setBounds(0, 0, 384, 211);
+//		contentPane.add(lblComemoracaoGif);
 	}
 }

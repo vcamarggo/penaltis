@@ -71,7 +71,7 @@ public class StartView {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frmPenaltis.dispose();
+				//frmPenaltis.dispose();
 				setMainGameController(new MainGameController());
 				// TODO usar aqui para modelo das instruções
 				SelecaoTimeView timeview = new SelecaoTimeView();

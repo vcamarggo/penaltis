@@ -48,7 +48,7 @@ public class MainGameView extends JFrame {
 		setIconImage(StartView.getImagembola());
 		setTitle(StartView.getFrasesuperiorjanela());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(260, 170, 796, 314);
+		setBounds(260, 170, 788, 326);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -59,30 +59,30 @@ public class MainGameView extends JFrame {
 		imagemGol.setHorizontalAlignment(SwingConstants.CENTER);
 		imagemGol.setIcon(new ImageIcon(MainGameView.class
 				.getResource("/trave.jpg")));
-		imagemGol.setBounds(167, 23, 453, 199);
+		imagemGol.setBounds(171, 50, 442, 200);
 
-		// TODO abaixar a frase para não cobrir picklist
+		// TODO abaixar a frase para não cobrir picklist OK
 		JLabel lblFraseTorcidaJogador = new JLabel();
 		lblFraseTorcidaJogador.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFraseTorcidaJogador.setBounds(10, 221, 169, 14);
+		lblFraseTorcidaJogador.setBounds(-2, 250, 169, 14);
 		contentPane.add(lblFraseTorcidaJogador);
 	
-		// TODO abaixar a frase para não cobrir picklist
+		// TODO abaixar a frase para não cobrir picklist OK
 		JLabel lblFraseTorcidaMaquina = new JLabel();
 		lblFraseTorcidaMaquina.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFraseTorcidaMaquina.setBounds(611, 221, 169, 14);
+		lblFraseTorcidaMaquina.setBounds(611, 250, 169, 14);
 		contentPane.add(lblFraseTorcidaMaquina);
 
 		JLabel lblHistoricoPenaltisJogador = new JLabel();
 		lblHistoricoPenaltisJogador
 				.setHorizontalAlignment(SwingConstants.CENTER);
-		lblHistoricoPenaltisJogador.setBounds(10, 250, 169, 14);
+		lblHistoricoPenaltisJogador.setBounds(-2, 272, 169, 14);
 		contentPane.add(lblHistoricoPenaltisJogador);
 
 		JLabel lblHistoricoPenaltisMaquina = new JLabel();
 		lblHistoricoPenaltisMaquina
 				.setHorizontalAlignment(SwingConstants.CENTER);
-		lblHistoricoPenaltisMaquina.setBounds(611, 250, 169, 14);
+		lblHistoricoPenaltisMaquina.setBounds(611, 272, 169, 14);
 		contentPane.add(lblHistoricoPenaltisMaquina);
 
 		JLabel lblTimeJogador = new JLabel(StartView.getMainGameController()
@@ -90,7 +90,7 @@ public class MainGameView extends JFrame {
 		lblTimeJogador.setForeground(Color.BLACK);
 		lblTimeJogador.setFont(new Font("Arial Unicode MS", Font.BOLD, 18));
 		lblTimeJogador.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblTimeJogador.setBounds(185, 233, 146, 31);
+		lblTimeJogador.setBounds(183, 255, 146, 31);
 		contentPane.add(lblTimeJogador);
 
 		JLabel lblTimeMaquina = new JLabel(StartView.getMainGameController()
@@ -98,28 +98,28 @@ public class MainGameView extends JFrame {
 		lblTimeMaquina.setForeground(Color.BLACK);
 		lblTimeMaquina.setFont(new Font("Arial Unicode MS", Font.BOLD, 18));
 		lblTimeMaquina.setHorizontalAlignment(SwingConstants.LEFT);
-		lblTimeMaquina.setBounds(448, 233, 146, 31);
+		lblTimeMaquina.setBounds(446, 255, 146, 31);
 		contentPane.add(lblTimeMaquina);
 
 		JLabel lblPlacar = new JLabel(getStringPlacar());
 		lblPlacar.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPlacar.setForeground(Color.BLACK);
 		lblPlacar.setFont(new Font("Arial Unicode MS", Font.BOLD, 18));
-		lblPlacar.setBounds(350, 233, 86, 31);
+		lblPlacar.setBounds(348, 255, 86, 31);
 		contentPane.add(lblPlacar);
 
 		JLabel lblVezDeQuem = new JLabel();
 		lblVezDeQuem.setHorizontalAlignment(SwingConstants.CENTER);
-		lblVezDeQuem.setBounds(167, 2, 453, 22);
+		lblVezDeQuem.setBounds(171, 17, 442, 22);
 
 		List pickListJogadores = new List();
-		pickListJogadores.setBounds(0, 23, 171, 200);
+		pickListJogadores.setBounds(-2, 50, 171, 200);
 		selecaoBatedorController = new SelecaoBatedorController();
 		selecaoBatedorController.populaListaBatedor(pickListJogadores,
 				StartView.getMainGameController().getTimeJogador());
 
 		List pickListMaquina = new List();
-		pickListMaquina.setBounds(617, 23, 171, 200);
+		pickListMaquina.setBounds(609, 50, 171, 200);
 		selecaoBatedorController.populaListaBatedor(pickListMaquina, StartView
 				.getMainGameController().getTimeMaquina());
 		pickListMaquina.setEnabled(false);
@@ -143,41 +143,41 @@ public class MainGameView extends JFrame {
 		btnEsquerdaCima.setIcon(imagemBotaoDefault);
 		btnEsquerdaCima.setBorder(BorderFactory.createEmptyBorder());
 		btnEsquerdaCima.setContentAreaFilled(false);
-		btnEsquerdaCima.setBounds(198, 40, 40, 40);
+		btnEsquerdaCima.setBounds(196, 67, 40, 40);
 
 		JButton btnMeioCima = new JButton();
 		btnMeioCima.setName("MEIO_CIMA");
 		btnMeioCima.setIcon(imagemBotaoDefault);
 		btnMeioCima.setBorder(BorderFactory.createEmptyBorder());
 		btnMeioCima.setContentAreaFilled(false);
-		btnMeioCima.setBounds(377, 40, 40, 40);
+		btnMeioCima.setBounds(375, 67, 40, 40);
 
 		JButton btnDireitoCima = new JButton();
 		btnDireitoCima.setName("DIREITA_CIMA");
 		btnDireitoCima.setIcon(imagemBotaoDefault);
 		btnDireitoCima.setBorder(BorderFactory.createEmptyBorder());
 		btnDireitoCima.setContentAreaFilled(false);
-		btnDireitoCima.setBounds(552, 40, 40, 40);
+		btnDireitoCima.setBounds(550, 67, 40, 40);
 
 		JButton btnEsquerdaBaixo = new JButton();
 		btnEsquerdaBaixo.setName("ESQUERDA_BAIXO");
 		btnEsquerdaBaixo.setIcon(imagemBotaoDefault);
 		btnEsquerdaBaixo.setBorder(BorderFactory.createEmptyBorder());
 		btnEsquerdaBaixo.setContentAreaFilled(false);
-		btnEsquerdaBaixo.setBounds(198, 169, 40, 40);
+		btnEsquerdaBaixo.setBounds(196, 196, 40, 40);
 		JButton btnMeioBaixo = new JButton();
 		btnMeioBaixo.setName("MEIO_BAIXO");
 		btnMeioBaixo.setIcon(imagemBotaoDefault);
 		btnMeioBaixo.setBorder(BorderFactory.createEmptyBorder());
 		btnMeioBaixo.setContentAreaFilled(false);
-		btnMeioBaixo.setBounds(377, 169, 40, 40);
+		btnMeioBaixo.setBounds(375, 196, 40, 40);
 
 		JButton btnDireitaBaixo = new JButton();
 		btnDireitaBaixo.setName("DIREITA_CIMA");
 		btnDireitaBaixo.setIcon(imagemBotaoDefault);
 		btnDireitaBaixo.setBorder(BorderFactory.createEmptyBorder());
 		btnDireitaBaixo.setContentAreaFilled(false);
-		btnDireitaBaixo.setBounds(552, 169, 40, 40);
+		btnDireitaBaixo.setBounds(550, 196, 40, 40);
 
 		java.util.List<JButton> botoesChutarDefender = new ArrayList<JButton>();
 		botoesChutarDefender.add(btnDireitaBaixo);
@@ -206,16 +206,16 @@ public class MainGameView extends JFrame {
 		contentPane.add(lblVezDeQuem);
 		contentPane.add(imagemGol);
 
-		// TODO subir para não cobrir picklist
+		// TODO subir para não cobrir picklist OK
 		JLabel lblJogador = new JLabel("JOGADOR");
 		lblJogador.setHorizontalAlignment(SwingConstants.CENTER);
-		lblJogador.setBounds(10, 10, 169, 14);
+		lblJogador.setBounds(-2, 30, 169, 14);
 		contentPane.add(lblJogador);
 
-		// TODO subir para não cobrir picklist
+		// TODO subir para não cobrir picklist OK
 		JLabel lblMquina = new JLabel("MÁQUINA");
 		lblMquina.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMquina.setBounds(611, 10, 169, 14);
+		lblMquina.setBounds(611, 30, 169, 14);
 		contentPane.add(lblMquina);
 
 	}
