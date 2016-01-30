@@ -105,7 +105,7 @@ public class JogadorController {
 						- torcidaContraBatedor.vaiar());
 		jogador.getPerfil().setQualidade(
 				jogador.getPerfil().getQualidade()
-						* (jogador.getPerfil().getConfianca() / 100));
+						* (jogador.getPerfil().getConfianca()));
 		return jogador;
 	}
 
