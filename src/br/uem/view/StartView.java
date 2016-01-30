@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import br.uem.controller.MainGameController;
+import br.uem.controller.OpcoesController;
 import br.uem.util.Util;
 
 /**
@@ -26,6 +27,7 @@ import br.uem.util.Util;
 public class StartView {
 
 	private static MainGameController mainGameController;
+	private static OpcoesController opcoesController;
 	private static Util util;
 
 	private JFrame frmPenaltis;
@@ -71,7 +73,7 @@ public class StartView {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//frmPenaltis.dispose();
+				frmPenaltis.dispose();
 				setMainGameController(new MainGameController());
 				// TODO usar aqui para modelo das instruções
 				SelecaoTimeView timeview = new SelecaoTimeView();
@@ -83,8 +85,19 @@ public class StartView {
 		getFrmPenaltis().getContentPane().add(btnComecarJogo);
 		
 		JButton btnOpcoes = new JButton("Opções");
+		btnOpcoes.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//frmPenaltis.dispose();
+				setOpcoesController(new OpcoesController());
+				OpcoesView opcoes = new OpcoesView();
+				opcoes.setVisible(true);
+			}
+		});
+		
 		btnOpcoes.setBounds(10, 74, 132, 23);
-		frmPenaltis.getContentPane().add(btnOpcoes);
+		getFrmPenaltis().getContentPane().add(btnOpcoes);
 
 		JLabel label = new JLabel("Bom jogo!");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -125,6 +138,11 @@ public class StartView {
 	public static void setMainGameController(
 			MainGameController mainGameController) {
 		StartView.mainGameController = mainGameController;
+	}
+	
+	public static void setOpcoesController(
+			OpcoesController opcoesController) {
+		StartView.opcoesController = opcoesController;
 	}
 
 	public static String getFrasesuperiorjanela() {
