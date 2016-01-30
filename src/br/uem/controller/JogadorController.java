@@ -19,6 +19,8 @@ import br.uem.model.Torcida;
 import br.uem.util.Util;
 
 /**
+ * Controla o crud dos jogares
+ * 
  * @author V.Camargo
  * 
  * @Date 04/01/2016
@@ -32,45 +34,45 @@ public class JogadorController {
 		switch (Times.valueOf(nomeTime)) {
 		case ALEMANHA:
 			for (NomesJogadoresAlemanha nome : NomesJogadoresAlemanha.values()) {
-				listaJogadores.add(criarJogador(nome.toString(), t, true));
+				listaJogadores.add(criarJogador(nome.toString(), t,
+						nome.getIsBatedor()));
 			}
-			listaJogadores.add(criarJogador("Neuer", t, false));
 			break;
 
 		case ARGENTINA:
 			for (NomesJogadoresArgentina nome : NomesJogadoresArgentina
 					.values()) {
-				listaJogadores.add(criarJogador(nome.toString(), t, true));
+				listaJogadores.add(criarJogador(nome.toString(), t,
+						nome.getIsBatedor()));
 			}
-			listaJogadores.add(criarJogador("Rojo", t, false));
 			break;
 
 		case BRASIL:
 			for (NomesJogadoresBrasil nome : NomesJogadoresBrasil.values()) {
-				listaJogadores.add(criarJogador(nome.toString(), t, true));
+				listaJogadores.add(criarJogador(nome.toString(), t,
+						nome.getIsBatedor()));
 			}
-			listaJogadores.add(criarJogador("Júlio César", t, false));
 			break;
 
 		case ESPANHA:
 			for (NomesJogadoresEspanha nome : NomesJogadoresEspanha.values()) {
-				listaJogadores.add(criarJogador(nome.toString(), t, true));
+				listaJogadores.add(criarJogador(nome.toString(), t,
+						nome.getIsBatedor()));
 			}
-			listaJogadores.add(criarJogador("Casillas", t, false));
 			break;
 
 		case CHILE:
 			for (NomesJogadoresChile nome : NomesJogadoresChile.values()) {
-				listaJogadores.add(criarJogador(nome.toString(), t, true));
+				listaJogadores.add(criarJogador(nome.toString(), t,
+						nome.getIsBatedor()));
 			}
-			listaJogadores.add(criarJogador("Claudio Bravo", t, false));
 			break;
 
 		case PORTUGAL:
 			for (NomesJogadoresPortugal nome : NomesJogadoresPortugal.values()) {
-				listaJogadores.add(criarJogador(nome.toString(), t, true));
+				listaJogadores.add(criarJogador(nome.toString(), t,
+						nome.getIsBatedor()));
 			}
-			listaJogadores.add(criarJogador("Manuel Bento", t, false));
 			break;
 
 		default:

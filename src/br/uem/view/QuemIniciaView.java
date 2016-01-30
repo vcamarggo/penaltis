@@ -14,6 +14,8 @@ import br.uem.util.Util;
 import javax.swing.JLabel;
 
 /**
+ * Cria janela para seleção de quem inicia as cobranças de pênaltis
+ * 
  * @author V.Camargo
  * 
  * @Date 04/01/2016
@@ -57,8 +59,11 @@ public class QuemIniciaView extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				if (rdbtnComputadorDecide.isSelected()
 						&& Util.gerarRandomAteN(1) == 1) {
+					// se computador decide, então qualquer um pode começar
+					// chutando
 					StartView.getMainGameController().setJogadorComeca(false);
 				} else {
+					// senão, jogador começa chutando
 					StartView.getMainGameController().setJogadorComeca(true);
 				}
 				StartView.getMainGameController().setIsVezJogadorBater(

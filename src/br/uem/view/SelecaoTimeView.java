@@ -58,7 +58,7 @@ public class SelecaoTimeView extends JFrame {
 	private String nomeTimeEscolhido;
 	private final JLabel lblEscolhaSeuTime = new JLabel("Escolha seu time");
 
-	/**
+	/**	
 	 * Cria janela
 	 */
 	public SelecaoTimeView() {
@@ -166,8 +166,9 @@ public class SelecaoTimeView extends JFrame {
 				for (Enumeration<AbstractButton> buttons = group.getElements(); buttons
 						.hasMoreElements();) {
 					AbstractButton button = buttons.nextElement();
-
 					if (button.isSelected()) {
+						//Se algum botão estiver escolhido ele usa
+						// o nome do botão como time escolhido
 						nomeTimeEscolhido = button.getText();
 					}
 				}

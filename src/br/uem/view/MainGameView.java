@@ -21,7 +21,7 @@ import br.uem.enumeration.Ponto;
 import br.uem.util.Util;
 
 /**
- * Classe que cria a janela de
+ * Classe que cria a janela de 
  * visualização principal do jogo.
  * 
  * @author V.Camargo
@@ -126,6 +126,7 @@ public class MainGameView extends JFrame {
 
 		ImageIcon imagemBotaoDefault = null;
 
+		// se jogador começa batendo exibe imagem da bola, senão, da luva
 		if (StartView.getMainGameController().getJogadorComeca()) {
 			imagemBotaoDefault = imagemChute;
 			lblVezDeQuem.setText(batedor);
@@ -220,6 +221,9 @@ public class MainGameView extends JFrame {
 
 	}
 
+	/**
+	 * @return string com o placar já formatado
+	 */
 	private String getStringPlacar() {
 		return StartView.getMainGameController().getGolsJogador().toString()
 				+ "  X  "
@@ -227,6 +231,20 @@ public class MainGameView extends JFrame {
 
 	}
 
+	/**
+	 * @param btnList
+	 * @param listaJogador
+	 * @param listaMaquina
+	 * @param lblPlacar
+	 * @param lblVezDeQuem
+	 * @param lblHistoricoPenaltisJogador
+	 * @param lblHistoricoPenaltisMaquina
+	 * @param lblFraseTorcidaMaquina
+	 * @param lblFraseTorcidaJogador
+	 *            Retorna o action listener com as ações que controlam o fluxo
+	 *            de modificação da interface e que fazem o interfaceamento com
+	 *            o controller para controle das regras do jogo
+	 */
 	public ActionListener controlaBotao(java.util.List<JButton> btnList,
 			List listaJogador, List listaMaquina, JLabel lblPlacar,
 			JLabel lblVezDeQuem, JLabel lblHistoricoPenaltisJogador,
@@ -236,15 +254,11 @@ public class MainGameView extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				boolean isVezJogador = StartView.getMainGameController()
 						.getIsVezJogadorBater();
+
 				if (isVezJogador) {
-					atualizarImagemBotao(btnList, isVezJogador);
-
-					lblVezDeQuem.setText(goleirao);
-					int indiceBatedorMaquina = Util
-							.gerarRandomAteN(listaMaquina.getItemCount() - 1);
-					listaMaquina.select(indiceBatedorMaquina);
-
 					int indice = -2;
+					// se o jogador não escolher um batedor, sistema escolhe
+					// automaticamente
 					if (listaJogador.getSelectedIndex() == -1) {
 						indice = Util.gerarRandomAteN(listaJogador
 								.getItemCount() - 1);
@@ -255,22 +269,31 @@ public class MainGameView extends JFrame {
 							listaJogador.getItem(indice),
 							Ponto.valueOf(((JButton) arg0.getSource())
 									.getName()));
-
 					listaJogador.remove(indice);
-					listaJogador.setEnabled(false);
-				} else {
-					atualizarImagemBotao(btnList, isVezJogador);
 
+					// faz o controle do estado dos componentes da interface
+					atualizarImagemBotao(btnList, isVezJogador);
+					listaJogador.setEnabled(false);
+					lblVezDeQuem.setText(goleirao);
+					int indiceBatedorMaquina = Util
+							.gerarRandomAteN(listaMaquina.getItemCount() - 1);
+					listaMaquina.select(indiceBatedorMaquina);
+				} else {
 					StartView.getMainGameController().direcionar(
 							listaMaquina.getSelectedItem(),
 							Ponto.valueOf(((JButton) arg0.getSource())
 									.getName()));
 					listaMaquina.remove(listaMaquina.getSelectedIndex());
-					lblVezDeQuem.setText(batedor);
+
+					// faz o controle do estado dos componentes da interface
+					atualizarImagemBotao(btnList, isVezJogador);
 					listaJogador.setEnabled(true);
+					lblVezDeQuem.setText(batedor);
 				}
+
 				StartView.getMainGameController().setIsVezJogadorBater(
 						!isVezJogador);
+
 				if (listaJogador.getItemCount() == 0) {
 					selecaoBatedorController.populaListaBatedor(listaJogador,
 							StartView.getMainGameController().getTimeJogador());
@@ -279,6 +302,7 @@ public class MainGameView extends JFrame {
 					selecaoBatedorController.populaListaBatedor(listaMaquina,
 							StartView.getMainGameController().getTimeMaquina());
 				}
+
 				lblPlacar.setText(getStringPlacar());
 
 				lblHistoricoPenaltisJogador.setText(StartView
@@ -299,6 +323,13 @@ public class MainGameView extends JFrame {
 		return action;
 	}
 
+	/**
+	 * Atualiza os botões conforme quem chuta
+	 * 
+	 * @param btnList
+	 * @param isVezJogador
+	 * 
+	 */
 	private void atualizarImagemBotao(java.util.List<JButton> btnList,
 			Boolean isVezJogador) {
 		if (isVezJogador) {
@@ -312,7 +343,10 @@ public class MainGameView extends JFrame {
 		}
 	}
 
-	@Deprecated
+	/**
+	 * Verifica se o controller tem um vencedor e retorna para que a tela de
+	 * vencedor possa ser exibida
+	 */
 	private void verificaERedirecionaCasoHajaVencedor() {
 		String nomeTimeVencedor = StartView.getMainGameController()
 				.getNomeTimeGanhador();
@@ -321,7 +355,6 @@ public class MainGameView extends JFrame {
 			VencedorView vencedorView = new VencedorView(nomeTimeVencedor);
 			vencedorView.setVisible(true);
 		}
-
 	}
 
 	public SelecaoBatedorController getSelecaoBatedorController() {
