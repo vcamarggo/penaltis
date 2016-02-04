@@ -38,12 +38,10 @@ public class SelecaoTimeView extends JFrame {
 	public JRadioButton btnBrasil = new JRadioButton(Times.BRASIL.toString());
 	private final JLabel bandeiraBrasil = new JLabel("");
 
-	private JRadioButton btnArgentina = new JRadioButton(
-			Times.ARGENTINA.toString());
+	private JRadioButton btnArgentina = new JRadioButton(Times.ARGENTINA.toString());
 	private final JLabel bandeiraArgentina = new JLabel("");
 
-	private JRadioButton btnDeustchland = new JRadioButton(
-			Times.ALEMANHA.toString());
+	private JRadioButton btnDeustchland = new JRadioButton(Times.ALEMANHA.toString());
 	private final JLabel bandeiraDeustchland = new JLabel("");
 
 	private JRadioButton btnEspanha = new JRadioButton(Times.ESPANHA.toString());
@@ -52,8 +50,7 @@ public class SelecaoTimeView extends JFrame {
 	private JRadioButton btnChile = new JRadioButton(Times.CHILE.toString());
 	private final JLabel bandeiraChile = new JLabel("");
 
-	private JRadioButton btnPortugal = new JRadioButton(
-			Times.PORTUGAL.toString());
+	private JRadioButton btnPortugal = new JRadioButton(Times.PORTUGAL.toString());
 	private final JLabel bandeiraPortugal = new JLabel("");
 
 	private final JButton btnOK = new JButton("OK");
@@ -61,7 +58,7 @@ public class SelecaoTimeView extends JFrame {
 	private String nomeTimeEscolhido;
 	private final JLabel lblEscolhaSeuTime = new JLabel("Escolha seu time");
 
-	/**	
+	/**
 	 * Cria janela
 	 */
 	public SelecaoTimeView() {
@@ -82,8 +79,7 @@ public class SelecaoTimeView extends JFrame {
 			}
 		});
 		contentPane.setLayout(null);
-		bandeiraArgentina.setIcon(new ImageIcon(SelecaoTimeView.class
-				.getResource("/ar.png")));
+		bandeiraArgentina.setIcon(new ImageIcon(SelecaoTimeView.class.getResource("/ar.png")));
 		contentPane.add(bandeiraArgentina);
 		btnArgentina.setBackground(new Color(245, 222, 179));
 		btnArgentina.setBounds(79, 46, 95, 23);
@@ -97,8 +93,7 @@ public class SelecaoTimeView extends JFrame {
 			}
 		});
 
-		bandeiraBrasil.setIcon(new ImageIcon(SelecaoTimeView.class
-				.getResource("/br.png")));
+		bandeiraBrasil.setIcon(new ImageIcon(SelecaoTimeView.class.getResource("/br.png")));
 		contentPane.add(bandeiraBrasil);
 		btnBrasil.setBackground(new Color(245, 222, 179));
 		btnBrasil.setBounds(226, 47, 89, 23);
@@ -112,8 +107,7 @@ public class SelecaoTimeView extends JFrame {
 				btnDeustchland.setSelected(true);
 			}
 		});
-		bandeiraDeustchland.setIcon(new ImageIcon(SelecaoTimeView.class
-				.getResource("/de.png")));
+		bandeiraDeustchland.setIcon(new ImageIcon(SelecaoTimeView.class.getResource("/de.png")));
 		contentPane.add(bandeiraDeustchland);
 		btnDeustchland.setBackground(new Color(245, 222, 179));
 		btnDeustchland.setBounds(79, 74, 95, 23);
@@ -126,8 +120,7 @@ public class SelecaoTimeView extends JFrame {
 				btnEspanha.setSelected(true);
 			}
 		});
-		bandeiraEspanha.setIcon(new ImageIcon(SelecaoTimeView.class
-				.getResource("/es.png")));
+		bandeiraEspanha.setIcon(new ImageIcon(SelecaoTimeView.class.getResource("/es.png")));
 		contentPane.add(bandeiraEspanha);
 		btnEspanha.setBackground(new Color(245, 222, 179));
 		btnEspanha.setBounds(226, 75, 89, 23);
@@ -140,8 +133,7 @@ public class SelecaoTimeView extends JFrame {
 				btnPortugal.setSelected(true);
 			}
 		});
-		bandeiraPortugal.setIcon(new ImageIcon(SelecaoTimeView.class
-				.getResource("/pt.png")));
+		bandeiraPortugal.setIcon(new ImageIcon(SelecaoTimeView.class.getResource("/pt.png")));
 		contentPane.add(bandeiraPortugal);
 		btnPortugal.setBackground(new Color(245, 222, 179));
 		btnPortugal.setBounds(226, 103, 89, 23);
@@ -154,8 +146,7 @@ public class SelecaoTimeView extends JFrame {
 				btnChile.setSelected(true);
 			}
 		});
-		bandeiraChile.setIcon(new ImageIcon(SelecaoTimeView.class
-				.getResource("/cl.png")));
+		bandeiraChile.setIcon(new ImageIcon(SelecaoTimeView.class.getResource("/cl.png")));
 		contentPane.add(bandeiraChile);
 		btnChile.setBackground(new Color(245, 222, 179));
 		btnChile.setBounds(79, 102, 95, 23);
@@ -172,11 +163,10 @@ public class SelecaoTimeView extends JFrame {
 		btnOK.setBounds(144, 149, 56, 23);
 		btnOK.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				for (Enumeration<AbstractButton> buttons = group.getElements(); buttons
-						.hasMoreElements();) {
+				for (Enumeration<AbstractButton> buttons = group.getElements(); buttons.hasMoreElements();) {
 					AbstractButton button = buttons.nextElement();
 					if (button.isSelected()) {
-						//Se algum botão estiver escolhido ele usa
+						// Se algum botão estiver escolhido ele usa
 						// o nome do botão como time escolhido
 						nomeTimeEscolhido = button.getText();
 					}
@@ -189,13 +179,13 @@ public class SelecaoTimeView extends JFrame {
 			}
 		});
 		contentPane.add(btnOK);
-		lblEscolhaSeuTime.setForeground(SystemColor.textText);
-		lblEscolhaSeuTime.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblEscolhaSeuTime.setForeground(Color.WHITE);
+		lblEscolhaSeuTime.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblEscolhaSeuTime.setBackground(SystemColor.text);
 		lblEscolhaSeuTime.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEscolhaSeuTime.setBounds(114, 21, 128, 14);
-		
 		contentPane.add(lblEscolhaSeuTime);
+
 		JLabel lblFundoSelecao = new JLabel();
 		lblFundoSelecao.setIcon(new ImageIcon(OpcoesView.class.getResource("/fundoOpcoes.jpg")));
 		lblFundoSelecao.setBounds(0, 0, 354, 209);

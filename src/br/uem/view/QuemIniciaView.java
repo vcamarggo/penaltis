@@ -1,9 +1,12 @@
 package br.uem.view;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -12,6 +15,7 @@ import javax.swing.border.EmptyBorder;
 
 import br.uem.util.Util;
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 /**
  * Cria janela para seleção de quem inicia as cobranças de pênaltis
@@ -41,20 +45,22 @@ public class QuemIniciaView extends JFrame {
 		contentPane.setLayout(null);
 		setResizable(false);
 
-		JRadioButton rdbtnComearChutando = new JRadioButton("Começar Chutando");
-		rdbtnComearChutando.setBounds(51, 47, 166, 23);
-		rdbtnComearChutando.setSelected(true);
-		buttonGroupQuemComeca.add(rdbtnComearChutando);
-		contentPane.add(rdbtnComearChutando);
+		JRadioButton rdbtnComecarChutando = new JRadioButton("Começar Chutando");
+		rdbtnComecarChutando.setBounds(99, 64, 158, 23);
+		rdbtnComecarChutando.setBackground(new Color(245, 222, 179));
+		rdbtnComecarChutando.setSelected(true);
+		buttonGroupQuemComeca.add(rdbtnComecarChutando);
+		contentPane.add(rdbtnComecarChutando);
 
 		JRadioButton rdbtnComputadorDecide = new JRadioButton(
 				"Computador Decide");
-		rdbtnComputadorDecide.setBounds(51, 73, 180, 23);
+		rdbtnComputadorDecide.setBounds(99, 104, 158, 23);
+		rdbtnComputadorDecide.setBackground(new Color(245, 222, 179));
 		buttonGroupQuemComeca.add(rdbtnComputadorDecide);
 		contentPane.add(rdbtnComputadorDecide);
 
 		JButton btnOk = new JButton("OK");
-		btnOk.setBounds(77, 115, 89, 23);
+		btnOk.setBounds(161, 150, 47, 23);
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (rdbtnComputadorDecide.isSelected()
@@ -75,9 +81,18 @@ public class QuemIniciaView extends JFrame {
 		});
 		contentPane.add(btnOk);
 
-		JLabel lblEscolhaQuemComea = new JLabel(
+		JLabel lblEscolhaQuemComeca = new JLabel(
 				"Escolha quem come\u00E7a chutando");
-		lblEscolhaQuemComea.setBounds(41, 16, 190, 14);
-		contentPane.add(lblEscolhaQuemComea);
+		lblEscolhaQuemComeca.setHorizontalAlignment(SwingConstants.CENTER);
+		lblEscolhaQuemComeca.setBounds(65, 25, 223, 14);
+		lblEscolhaQuemComeca.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblEscolhaQuemComeca.setForeground(Color.WHITE);
+		contentPane.add(lblEscolhaQuemComeca);
+		
+		contentPane.add(lblEscolhaQuemComeca);
+		JLabel lblFundoSelecao = new JLabel();
+		lblFundoSelecao.setIcon(new ImageIcon(OpcoesView.class.getResource("/fundoOpcoes.jpg")));
+		lblFundoSelecao.setBounds(0, 0, 354, 209);
+		contentPane.add(lblFundoSelecao);
 	}
 }

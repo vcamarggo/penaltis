@@ -82,7 +82,7 @@ public class StartView {
 		btnComecarJogo.setBounds(10, 29, 132, 22);
 		getFrmPenaltis().getContentPane().add(btnComecarJogo);
 
-		JButton btnOpcoes = new JButton("Opções");
+		JButton btnOpcoes = new JButton("Instruções");
 		btnOpcoes.addActionListener(new ActionListener() {
 
 			@Override
