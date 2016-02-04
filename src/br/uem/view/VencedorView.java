@@ -33,7 +33,7 @@ public class VencedorView extends JFrame {
 		setIconImage(StartView.getImagembola());
 		setTitle(StartView.getFrasesuperiorjanela());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(400, 200, 386, 240);
+		setBounds(486, 150, 386, 240);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

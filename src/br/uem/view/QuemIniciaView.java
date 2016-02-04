@@ -34,7 +34,7 @@ public class QuemIniciaView extends JFrame {
 		setIconImage(StartView.getImagembola());
 		setTitle(StartView.getFrasesuperiorjanela());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(500, 200, 251, 188);
+		setBounds(500, 150, 360, 238);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
