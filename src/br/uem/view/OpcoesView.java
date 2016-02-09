@@ -33,7 +33,7 @@ public class OpcoesView extends JFrame {
 		textArea.setBackground(Color.WHITE);
 		textArea.setEditable(false);
 
-		textArea.setText(Instrucoes.OBJETIVO + Instrucoes.OBJETIVO.getInstrucoes() + "\n\n" + Instrucoes.COMOJOGAR
+		textArea.setText(Instrucoes.OBJETIVO + Instrucoes.OBJETIVO.getInstrucoes() + "\n\n" + "COMO JOGAR"
 				+ Instrucoes.COMOJOGAR.getInstrucoes());
 		textArea.setEditable(false);
 		textArea.setBounds(10, 20, 162, 179);

@@ -1,6 +1,8 @@
 package br.uem.view;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -95,10 +97,12 @@ public class StartView {
 		btnOpcoes.setBounds(10, 74, 132, 23);
 		getFrmPenaltis().getContentPane().add(btnOpcoes);
 
-		JLabel label = new JLabel("Bom jogo!");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setBounds(30, 108, 100, 22);
-		getFrmPenaltis().getContentPane().add(label);
+		JLabel lblBomJogo = new JLabel("Bom jogo!");
+		lblBomJogo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblBomJogo.setBounds(30, 108, 100, 22);
+		lblBomJogo.setForeground(Color.WHITE);
+		lblBomJogo.setFont(new Font("Tahoma", Font.BOLD, 13));
+		getFrmPenaltis().getContentPane().add(lblBomJogo);
 
 		JLabel imagemInicial = new JLabel("");
 		frmPenaltis.getContentPane().add(imagemInicial);

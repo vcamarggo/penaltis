@@ -60,7 +60,7 @@ public class QuemIniciaView extends JFrame {
 		contentPane.add(rdbtnComputadorDecide);
 
 		JButton btnOk = new JButton("OK");
-		btnOk.setBounds(161, 150, 47, 23);
+		btnOk.setBounds(151, 149, 54, 23);
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (rdbtnComputadorDecide.isSelected()
