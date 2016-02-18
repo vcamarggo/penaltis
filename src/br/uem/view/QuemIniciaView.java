@@ -63,8 +63,7 @@ public class QuemIniciaView extends JFrame {
 		btnOk.setBounds(151, 149, 54, 23);
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (rdbtnComputadorDecide.isSelected()
-						&& Util.gerarRandomAteN(1) == 1) {
+				if (rdbtnComputadorDecide.isSelected() && Util.geraBoolean()) {
 					// se computador decide, então qualquer um pode começar
 					// chutando
 					StartView.getMainGameController().setJogadorComeca(false);
@@ -88,10 +87,11 @@ public class QuemIniciaView extends JFrame {
 		lblEscolhaQuemComeca.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblEscolhaQuemComeca.setForeground(Color.WHITE);
 		contentPane.add(lblEscolhaQuemComeca);
-		
+
 		contentPane.add(lblEscolhaQuemComeca);
 		JLabel lblFundoSelecao = new JLabel();
-		lblFundoSelecao.setIcon(new ImageIcon(OpcoesView.class.getResource("/fundoOpcoes.jpg")));
+		lblFundoSelecao.setIcon(new ImageIcon(OpcoesView.class
+				.getResource("/fundoOpcoes.jpg")));
 		lblFundoSelecao.setBounds(0, 0, 354, 209);
 		contentPane.add(lblFundoSelecao);
 	}

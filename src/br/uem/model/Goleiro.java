@@ -13,10 +13,6 @@ import br.uem.enumeration.Ponto;
 public class Goleiro extends Jogador {
 
 	public Boolean defender(Ponto ponto) {
-		if (ponto.errar() == 1) {
-			return false;
-		} else {
-			return true;
-		}
+		return ponto.errar();
 	}
 }

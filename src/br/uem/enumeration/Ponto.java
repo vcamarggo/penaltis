@@ -14,7 +14,7 @@ public enum Ponto {
 
 	ESQUERDA_CIMA, ESQUERDA_BAIXO, DIREITA_CIMA, DIREITA_BAIXO, MEIO_CIMA, MEIO_BAIXO;
 
-	public int errar() {
-		return Util.gerarRandomAteN(1);
+	public boolean errar() {
+		return Util.geraBoolean();
 	}
 }

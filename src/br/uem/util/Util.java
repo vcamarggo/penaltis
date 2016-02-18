@@ -16,4 +16,7 @@ public class Util {
 		return new Random().nextInt(n + 1);
 	}
 
+	public static boolean geraBoolean() {
+		return new Random().nextBoolean();
+	}
 }
