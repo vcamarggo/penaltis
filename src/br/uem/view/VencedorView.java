@@ -28,10 +28,9 @@ public class VencedorView extends JFrame {
 	private JLabel lblVencedor = new JLabel();
 
 	public VencedorView(String nomeTimeVencedor) {
-		lblVencedor.setText(Times.valueOf(nomeTimeVencedor).toString()
-				+ " ganhou!");
+		lblVencedor.setText(Times.valueOf(nomeTimeVencedor).toString() + " ganhou!");
 		setIconImage(StartView.getImagembola());
-		setTitle(StartView.getFrasesuperiorjanela());
+		setTitle(StartView.getFraseSuperiorJanela());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(486, 150, 386, 240);
 		contentPane = new JPanel();
@@ -46,6 +45,7 @@ public class VencedorView extends JFrame {
 		JButton btnComearDeNovo = new JButton("Jogar novamente");
 		btnComearDeNovo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				StartView.getOpcoes().dispose();
 				dispose();
 				StartView window = new StartView();
 				window.getFrmPenaltis().setVisible(true);
@@ -55,8 +55,8 @@ public class VencedorView extends JFrame {
 		contentPane.add(btnComearDeNovo);
 
 		JLabel lblBandeiravencedor = new JLabel();
-		lblBandeiravencedor.setIcon(new ImageIcon(VencedorView.class
-				.getResource("/" + nomeTimeVencedor.toLowerCase() + ".gif")));
+		lblBandeiravencedor
+				.setIcon(new ImageIcon(VencedorView.class.getResource("/" + nomeTimeVencedor.toLowerCase() + ".gif")));
 		lblBandeiravencedor.setBounds(25, 11, 115, 78);
 		contentPane.add(lblBandeiravencedor);
 
@@ -84,8 +84,7 @@ public class VencedorView extends JFrame {
 		lblHistoricoPerdedor.setHorizontalAlignment(SwingConstants.LEFT);
 		lblHistoricoPerdedor.setBounds(271, 111, 113, 33);
 
-		atualizaTextosLabels(nomeTimeVencedor, labelNomeVencedor,
-				labelNomePerdedor, lblGolsVencedor, lblGolsPerdedor,
+		atualizaTextosLabels(nomeTimeVencedor, labelNomeVencedor, labelNomePerdedor, lblGolsVencedor, lblGolsPerdedor,
 				lblHistoricoVencedor, lblHistoricoPerdedor);
 		contentPane.add(labelNomeVencedor);
 		contentPane.add(labelNomePerdedor);
@@ -108,37 +107,22 @@ public class VencedorView extends JFrame {
 	 * @param lblHistoricoPerdedor
 	 * 
 	 */
-	private void atualizaTextosLabels(String nomeTimeVencedor,
-			JLabel labelNomeVencedor, JLabel labelNomePerdedor,
-			JLabel lblGolsVencedor, JLabel lblGolsPerdedor,
-			JLabel lblHistoricoVencedor, JLabel lblHistoricoPerdedor) {
-		if (nomeTimeVencedor.equalsIgnoreCase(StartView.getMainGameController()
-				.getTimeJogador().getNome())) {
-			labelNomeVencedor.setText(StartView.getMainGameController()
-					.getTimeJogador().getNome());
-			lblGolsVencedor.setText(StartView.getMainGameController()
-					.getGolsJogador().toString());
-			lblHistoricoVencedor.setText(StartView.getMainGameController()
-					.getHistoricoPenaltisJogador());
-			labelNomePerdedor.setText(StartView.getMainGameController()
-					.getTimeMaquina().getNome());
-			lblGolsPerdedor.setText(StartView.getMainGameController()
-					.getGolsMaquina().toString());
-			lblHistoricoPerdedor.setText(StartView.getMainGameController()
-					.getHistoricoPenaltisMaquina());
+	private void atualizaTextosLabels(String nomeTimeVencedor, JLabel labelNomeVencedor, JLabel labelNomePerdedor,
+			JLabel lblGolsVencedor, JLabel lblGolsPerdedor, JLabel lblHistoricoVencedor, JLabel lblHistoricoPerdedor) {
+		if (nomeTimeVencedor.equalsIgnoreCase(StartView.getMainGameController().getTimeJogador().getNome())) {
+			labelNomeVencedor.setText(StartView.getMainGameController().getTimeJogador().getNome());
+			lblGolsVencedor.setText(StartView.getMainGameController().getGolsJogador().toString());
+			lblHistoricoVencedor.setText(StartView.getMainGameController().getHistoricoPenaltisJogador());
+			labelNomePerdedor.setText(StartView.getMainGameController().getTimeMaquina().getNome());
+			lblGolsPerdedor.setText(StartView.getMainGameController().getGolsMaquina().toString());
+			lblHistoricoPerdedor.setText(StartView.getMainGameController().getHistoricoPenaltisMaquina());
 		} else {
-			labelNomeVencedor.setText(StartView.getMainGameController()
-					.getTimeMaquina().getNome());
-			lblGolsVencedor.setText(StartView.getMainGameController()
-					.getGolsMaquina().toString());
-			lblHistoricoVencedor.setText(StartView.getMainGameController()
-					.getHistoricoPenaltisMaquina());
-			labelNomePerdedor.setText(StartView.getMainGameController()
-					.getTimeJogador().getNome());
-			lblGolsPerdedor.setText(StartView.getMainGameController()
-					.getGolsJogador().toString());
-			lblHistoricoPerdedor.setText(StartView.getMainGameController()
-					.getHistoricoPenaltisJogador());
+			labelNomeVencedor.setText(StartView.getMainGameController().getTimeMaquina().getNome());
+			lblGolsVencedor.setText(StartView.getMainGameController().getGolsMaquina().toString());
+			lblHistoricoVencedor.setText(StartView.getMainGameController().getHistoricoPenaltisMaquina());
+			labelNomePerdedor.setText(StartView.getMainGameController().getTimeJogador().getNome());
+			lblGolsPerdedor.setText(StartView.getMainGameController().getGolsJogador().toString());
+			lblHistoricoPerdedor.setText(StartView.getMainGameController().getHistoricoPenaltisJogador());
 		}
 	}
 }

@@ -63,7 +63,7 @@ public class SelecaoTimeView extends JFrame {
 	 */
 	public SelecaoTimeView() {
 		setIconImage(StartView.getImagembola());
-		setTitle(StartView.getFrasesuperiorjanela());
+		setTitle(StartView.getFraseSuperiorJanela());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(500, 150, 360, 238);
 		contentPane = new JPanel();

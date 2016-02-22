@@ -36,7 +36,7 @@ public class QuemIniciaView extends JFrame {
 	 */
 	public QuemIniciaView() {
 		setIconImage(StartView.getImagembola());
-		setTitle(StartView.getFrasesuperiorjanela());
+		setTitle(StartView.getFraseSuperiorJanela());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(500, 150, 360, 238);
 		contentPane = new JPanel();
@@ -52,8 +52,7 @@ public class QuemIniciaView extends JFrame {
 		buttonGroupQuemComeca.add(rdbtnComecarChutando);
 		contentPane.add(rdbtnComecarChutando);
 
-		JRadioButton rdbtnComputadorDecide = new JRadioButton(
-				"Computador Decide");
+		JRadioButton rdbtnComputadorDecide = new JRadioButton("Computador Decide");
 		rdbtnComputadorDecide.setBounds(99, 104, 158, 23);
 		rdbtnComputadorDecide.setBackground(new Color(245, 222, 179));
 		buttonGroupQuemComeca.add(rdbtnComputadorDecide);
@@ -71,17 +70,17 @@ public class QuemIniciaView extends JFrame {
 					// senão, jogador começa chutando
 					StartView.getMainGameController().setJogadorComeca(true);
 				}
-				StartView.getMainGameController().setIsVezJogadorBater(
-						StartView.getMainGameController().getJogadorComeca());
+				StartView.getMainGameController()
+						.setIsVezJogadorBater(StartView.getMainGameController().getJogadorComeca());
 				dispose();
 				MainGameView mainGameView = new MainGameView();
+				mainGameView.setLocation(mainGameView.getLocation().x, mainGameView.getLocation().y - 140);
 				mainGameView.setVisible(true);
 			}
 		});
 		contentPane.add(btnOk);
 
-		JLabel lblEscolhaQuemComeca = new JLabel(
-				"Escolha quem come\u00E7a chutando");
+		JLabel lblEscolhaQuemComeca = new JLabel("Escolha quem come\u00E7a chutando");
 		lblEscolhaQuemComeca.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEscolhaQuemComeca.setBounds(65, 25, 223, 14);
 		lblEscolhaQuemComeca.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -90,8 +89,7 @@ public class QuemIniciaView extends JFrame {
 
 		contentPane.add(lblEscolhaQuemComeca);
 		JLabel lblFundoSelecao = new JLabel();
-		lblFundoSelecao.setIcon(new ImageIcon(OpcoesView.class
-				.getResource("/fundoOpcoes.jpg")));
+		lblFundoSelecao.setIcon(new ImageIcon(OpcoesView.class.getResource("/fundoOpcoes.jpg")));
 		lblFundoSelecao.setBounds(0, 0, 354, 209);
 		contentPane.add(lblFundoSelecao);
 	}

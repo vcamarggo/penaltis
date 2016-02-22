@@ -19,7 +19,7 @@ public class OpcoesView extends JFrame {
 
 	public OpcoesView() {
 		setIconImage(StartView.getImagembola());
-		setTitle(StartView.getFrasesuperiorjanela());
+		setTitle(StartView.getFraseSuperiorJanela());
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(500, 400, 360, 238);
 		contentPane = new JPanel();

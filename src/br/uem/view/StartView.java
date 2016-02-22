@@ -34,6 +34,7 @@ public class StartView {
 	private static final Image imagemBola = Toolkit.getDefaultToolkit()
 			.getImage(StartView.class.getResource("/bola.jpg"));
 	private static final String fraseSuperiorJanela = "Pênaltis";
+	private static OpcoesView opcoes;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -75,7 +76,6 @@ public class StartView {
 			public void actionPerformed(ActionEvent e) {
 				frmPenaltis.dispose();
 				setMainGameController(new MainGameController());
-				// TODO usar aqui para modelo das instruções
 				SelecaoTimeView timeview = new SelecaoTimeView();
 				timeview.setVisible(true);
 			}
@@ -89,7 +89,7 @@ public class StartView {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				OpcoesView opcoes = new OpcoesView();
+				opcoes = new OpcoesView();
 				opcoes.setVisible(true);
 			}
 		});
@@ -138,8 +138,12 @@ public class StartView {
 		StartView.mainGameController = mainGameController;
 	}
 
-	public static String getFrasesuperiorjanela() {
+	public static String getFraseSuperiorJanela() {
 		return fraseSuperiorJanela;
+	}
+
+	public static OpcoesView getOpcoes() {
+		return opcoes;
 	}
 
 }
