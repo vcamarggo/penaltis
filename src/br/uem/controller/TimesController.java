@@ -23,7 +23,7 @@ public class TimesController {
 	 *            forma randômica. Chama o controller da torcida para criacao
 	 *            das respectivas torcidas
 	 */
-	public static void w(String nomeDoTime) {
+	public static void createTimes(String nomeDoTime) {
 		timeJogador = new Time();
 		timeJogador.setNome(nomeDoTime.toUpperCase());
 		timeJogador.setJogadores(JogadorController.criaListaJogadores(
