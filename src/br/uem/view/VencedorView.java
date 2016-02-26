@@ -45,7 +45,8 @@ public class VencedorView extends JFrame {
 		JButton btnComearDeNovo = new JButton("Jogar novamente");
 		btnComearDeNovo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				StartView.getOpcoes().dispose();
+				if (StartView.getOpcoes() != null)
+					StartView.getOpcoes().dispose();
 				dispose();
 				StartView window = new StartView();
 				window.getFrmPenaltis().setVisible(true);

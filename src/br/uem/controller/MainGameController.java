@@ -29,7 +29,6 @@ public class MainGameController {
 		historicoPenaltisJogador = "";
 		historicoPenaltisMaquina = "";
 		numeroCobranca = 1;
-		nomeTimeGanhador = null;
 	}
 
 	private Time timeJogador;
@@ -45,7 +44,6 @@ public class MainGameController {
 	private String historicoPenaltisJogador;
 	private String historicoPenaltisMaquina;
 	private Integer numeroCobranca;
-	private String nomeTimeGanhador;
 
 	/**
 	 * @param nomeBatedor
@@ -56,57 +54,39 @@ public class MainGameController {
 	 */
 	public void direcionar(String nomeBatedor, Ponto pontoJogador) {
 
-		Ponto pontoMaquina = Ponto.values()[Util
-				.gerarRandomAteN(Ponto.values().length - 1)];
+		Ponto pontoMaquina = Ponto.values()[Util.gerarRandomAteN(Ponto.values().length - 1)];
 
 		Goleiro goleiro = null;
 		Batedor batedor = null;
 
 		if (isVezJogadorBater) {
 			goleiro = (Goleiro) timeMaquina.getJogadores().get(10);
-			batedor = JogadorController.procurarJogador(nomeBatedor,
-					timeJogador);
-			batedor = (Batedor) JogadorController.atualizarStatusJogador(
-					batedor, torcidaJogador, torcidaMaquina);
-			goleiro = (Goleiro) JogadorController.atualizarStatusJogador(
-					goleiro, torcidaMaquina, torcidaJogador);
-			testaBatedorFezGol(goleiro, pontoMaquina, batedor, pontoJogador,
-					isVezJogadorBater);
-
+			batedor = JogadorController.procurarJogador(nomeBatedor, timeJogador);
+			batedor = (Batedor) JogadorController.atualizarStatusJogador(batedor, torcidaJogador, torcidaMaquina);
+			goleiro = (Goleiro) JogadorController.atualizarStatusJogador(goleiro, torcidaMaquina, torcidaJogador);
+			testaBatedorFezGol(goleiro, pontoMaquina, batedor, pontoJogador, isVezJogadorBater);
 		} else {
-
 			goleiro = (Goleiro) timeJogador.getJogadores().get(10);
-			batedor = JogadorController.procurarJogador(nomeBatedor,
-					timeMaquina);
-			batedor = (Batedor) JogadorController.atualizarStatusJogador(
-					batedor, torcidaMaquina, torcidaJogador);
-			goleiro = (Goleiro) JogadorController.atualizarStatusJogador(
-					goleiro, torcidaJogador, torcidaMaquina);
-			testaBatedorFezGol(goleiro, pontoJogador, batedor, pontoMaquina,
-					isVezJogadorBater);
-
+			batedor = JogadorController.procurarJogador(nomeBatedor, timeMaquina);
+			batedor = (Batedor) JogadorController.atualizarStatusJogador(batedor, torcidaMaquina, torcidaJogador);
+			goleiro = (Goleiro) JogadorController.atualizarStatusJogador(goleiro, torcidaJogador, torcidaMaquina);
+			testaBatedorFezGol(goleiro, pontoJogador, batedor, pontoMaquina, isVezJogadorBater);
 		}
-
-		atualizarVencedor();
+		atualizarNumeroCobrancas();
 	}
 
 	/**
 	 * Verifica se há vencedor e chama método que atualiza numero cobranças
 	 */
-	private void atualizarVencedor() {
-		nomeTimeGanhador = calcularNomeVencedor(golsJogador, golsMaquina,
-				numeroCobranca, jogadorComeca, isVezJogadorBater);
-		atualizarNumeroCobrancas();
+	public String atualizarVencedor() {
+		return calcularNomeVencedor(golsJogador, golsMaquina, numeroCobranca, jogadorComeca, isVezJogadorBater);
 	}
 
 	/**
 	 * Atualiza o número de cobranças
 	 */
 	private void atualizarNumeroCobrancas() {
-		if (jogadorComeca && !isVezJogadorBater) {
-			numeroCobranca++;
-		}
-		if (!jogadorComeca && isVezJogadorBater) {
+		if (jogadorComeca ^ isVezJogadorBater) {
 			numeroCobranca++;
 		}
 	}
@@ -121,11 +101,9 @@ public class MainGameController {
 	 * @param isVezJogadorBater
 	 * @return nome do vencedor
 	 */
-	private String calcularNomeVencedor(Integer golsJogador,
-			Integer golsMaquina, Integer numeroCobranca, Boolean jogadorComeca,
-			Boolean isVezJogadorBater) {
-		if ((jogadorComeca && !isVezJogadorBater)
-				|| (!jogadorComeca && isVezJogadorBater)) {
+	private String calcularNomeVencedor(Integer golsJogador, Integer golsMaquina, Integer numeroCobranca,
+			Boolean jogadorComeca, Boolean isVezJogadorBater) {
+		if ((jogadorComeca && !isVezJogadorBater) || (!jogadorComeca && isVezJogadorBater)) {
 			int diferencaDeGols = Math.abs(golsJogador - golsMaquina);
 			if (numeroCobranca <= 5) {
 				if (diferencaDeGols > (5 - numeroCobranca)) {
@@ -157,22 +135,19 @@ public class MainGameController {
 	 * @param pontoChute
 	 * @param jogadorBatendo
 	 */
-	private void testaBatedorFezGol(Goleiro goleiro, Ponto pontoDefesa,
-			Batedor batedor, Ponto pontoChute, boolean jogadorBatendo) {
+	private void testaBatedorFezGol(Goleiro goleiro, Ponto pontoDefesa, Batedor batedor, Ponto pontoChute,
+			boolean jogadorBatendo) {
 		Boolean fezGol = false;
 		if (pontoChute.equals(pontoDefesa)) {
 			if (goleiro.defender(pontoDefesa) && batedor.chutar(pontoChute)) {
-				if (batedor.getPerfil().getQualidade() > goleiro.getPerfil()
-						.getQualidade()) {
+				if (batedor.getPerfil().getQualidade() > goleiro.getPerfil().getQualidade()) {
 					fezGol = true;
 				} else {
 					fezGol = false;
 				}
-			} else if (goleiro.defender(pontoDefesa)
-					&& !batedor.chutar(pontoChute)) {
+			} else if (goleiro.defender(pontoDefesa) && !batedor.chutar(pontoChute)) {
 				fezGol = false;
-			} else if (!goleiro.defender(pontoDefesa)
-					&& batedor.chutar(pontoChute)) {
+			} else if (!goleiro.defender(pontoDefesa) && batedor.chutar(pontoChute)) {
 				fezGol = true;
 			} else {
 				// caso ambos errem
@@ -188,7 +163,6 @@ public class MainGameController {
 		atualizarGols(jogadorBatendo, fezGol);
 		atualizarFrase(jogadorBatendo, fezGol);
 		atualizarHistoricoPenaltis(jogadorBatendo, fezGol);
-
 	}
 
 	/**
@@ -197,8 +171,7 @@ public class MainGameController {
 	 * @param jogadorBatendo
 	 * @param fezGol
 	 */
-	private void atualizarHistoricoPenaltis(boolean jogadorBatendo,
-			Boolean fezGol) {
+	private void atualizarHistoricoPenaltis(boolean jogadorBatendo, Boolean fezGol) {
 		if (jogadorBatendo) {
 			if (fezGol) {
 				historicoPenaltisJogador += " O ";
@@ -214,7 +187,6 @@ public class MainGameController {
 				historicoPenaltisMaquina += " X ";
 			}
 		}
-
 	}
 
 	/**
@@ -258,64 +230,48 @@ public class MainGameController {
 
 	}
 
-	public Time getTimeJogador() {
-		return timeJogador;
-	}
-
-	public void setTimeJogador(Time timeJogador) {
-		this.timeJogador = timeJogador;
-	}
-
-	public Time getTimeMaquina() {
-		return timeMaquina;
-	}
-
-	public void setTimeMaquina(Time timeMaquina) {
-		this.timeMaquina = timeMaquina;
-	}
-
-	public Boolean getJogadorComeca() {
-		return jogadorComeca;
-	}
-
-	public void setJogadorComeca(Boolean jogadorComeca) {
-		this.jogadorComeca = jogadorComeca;
-	}
-
-	public Integer getGolsJogador() {
-		return golsJogador;
-	}
-
-	public void setGolsJogador(Integer golsJogador) {
-		this.golsJogador = golsJogador;
-	}
-
-	public Integer getGolsMaquina() {
-		return golsMaquina;
-	}
-
-	public void setGolsMaquina(Integer golsMaquina) {
-		this.golsMaquina = golsMaquina;
-	}
-
-	public String getFraseTorcidaMaquina() {
-		return fraseTorcidaMaquina;
-	}
-
-	public void setFraseTorcidaMaquina(String fraseTorcidaMaquina) {
-		this.fraseTorcidaMaquina = fraseTorcidaMaquina;
-	}
-
-	public String getFraseTorcidaJogador() {
-		return fraseTorcidaJogador;
-	}
-
 	public void setTorcidaMaquina(Torcida torcidaMaquina) {
 		this.torcidaMaquina = torcidaMaquina;
 	}
 
 	public void setTorcidaJogador(Torcida torcidaJogador) {
 		this.torcidaJogador = torcidaJogador;
+	}
+
+	public void setTimeJogador(Time timeJogador) {
+		this.timeJogador = timeJogador;
+	}
+
+	public void setTimeMaquina(Time timeMaquina) {
+		this.timeMaquina = timeMaquina;
+	}
+
+	public Time getTimeJogador() {
+		return timeJogador;
+	}
+
+	public Time getTimeMaquina() {
+		return timeMaquina;
+	}
+
+	public Boolean getJogadorComeca() {
+		return jogadorComeca;
+	}
+
+	public Integer getGolsJogador() {
+		return golsJogador;
+	}
+
+	public Integer getGolsMaquina() {
+		return golsMaquina;
+	}
+
+	public Boolean getIsVezJogadorBater() {
+		return isVezJogadorBater;
+	}
+
+	public void setIsVezJogadorBater(Boolean isVezJogadorBater) {
+		this.isVezJogadorBater = isVezJogadorBater;
 	}
 
 	public String getHistoricoPenaltisJogador() {
@@ -326,16 +282,16 @@ public class MainGameController {
 		return historicoPenaltisMaquina;
 	}
 
-	public String getNomeTimeGanhador() {
-		return nomeTimeGanhador;
+	public String getFraseTorcidaMaquina() {
+		return fraseTorcidaMaquina;
 	}
 
-	public Boolean getIsVezJogadorBater() {
-		return isVezJogadorBater;
+	public String getFraseTorcidaJogador() {
+		return fraseTorcidaJogador;
 	}
 
-	public void setIsVezJogadorBater(Boolean isVezJogadorBater) {
-		this.isVezJogadorBater = isVezJogadorBater;
+	public void setJogadorComeca(Boolean jogadorComeca) {
+		this.jogadorComeca = jogadorComeca;
 	}
 
 }

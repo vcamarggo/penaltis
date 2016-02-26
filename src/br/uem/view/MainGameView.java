@@ -317,7 +317,7 @@ public class MainGameView extends JFrame {
 	 * vencedor possa ser exibida
 	 */
 	private void verificaERedirecionaCasoHajaVencedor() {
-		String nomeTimeVencedor = StartView.getMainGameController().getNomeTimeGanhador();
+		String nomeTimeVencedor = StartView.getMainGameController().atualizarVencedor();
 		if (nomeTimeVencedor != null) {
 			dispose();
 			VencedorView vencedorView = new VencedorView(nomeTimeVencedor);
