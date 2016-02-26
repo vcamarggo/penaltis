@@ -187,7 +187,7 @@ public class SelecaoTimeView extends JFrame {
 		contentPane.add(lblEscolhaSeuTime);
 
 		JLabel lblFundoSelecao = new JLabel();
-		lblFundoSelecao.setIcon(new ImageIcon(OpcoesView.class.getResource("/fundoOpcoes.jpg")));
+		lblFundoSelecao.setIcon(new ImageIcon(InstrucoesView.class.getResource("/fundoOpcoes.jpg")));
 		lblFundoSelecao.setBounds(0, 0, 354, 209);
 		contentPane.add(lblFundoSelecao);
 

@@ -12,12 +12,12 @@ import java.awt.TextArea;
 import java.awt.Color;
 import java.awt.Font;
 
-public class OpcoesView extends JFrame {
+public class InstrucoesView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
-	public OpcoesView() {
+	public InstrucoesView() {
 		setIconImage(StartView.getImagembola());
 		setTitle(StartView.getFraseSuperiorJanela());
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -40,7 +40,7 @@ public class OpcoesView extends JFrame {
 		contentPane.add(textArea);
 
 		JLabel lblFundoOpcoes = new JLabel();
-		lblFundoOpcoes.setIcon(new ImageIcon(OpcoesView.class.getResource("/fundoOpcoes.jpg")));
+		lblFundoOpcoes.setIcon(new ImageIcon(InstrucoesView.class.getResource("/fundoOpcoes.jpg")));
 		lblFundoOpcoes.setBounds(0, 0, 354, 209);
 		contentPane.add(lblFundoOpcoes);
 	}

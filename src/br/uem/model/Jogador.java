@@ -1,7 +1,5 @@
 package br.uem.model;
 
-import br.uem.enumeration.Ponto;
-
 /**
  * Modelo base para batedor e goleiro
  * 
@@ -40,11 +38,6 @@ public abstract class Jogador {
 
 	public void setPerfil(Perfil perfil) {
 		this.perfil = perfil;
-	}
-
-	public Ponto direcionar() {
-		Ponto ponto = null;
-		return ponto;
 	}
 
 }

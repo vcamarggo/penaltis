@@ -34,7 +34,7 @@ public class StartView {
 	private static final Image imagemBola = Toolkit.getDefaultToolkit()
 			.getImage(StartView.class.getResource("/bola.jpg"));
 	private static final String fraseSuperiorJanela = "Pênaltis";
-	private static OpcoesView opcoes;
+	private static InstrucoesView opcoes;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -89,7 +89,7 @@ public class StartView {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				opcoes = new OpcoesView();
+				opcoes = new InstrucoesView();
 				opcoes.setVisible(true);
 			}
 		});
@@ -142,7 +142,7 @@ public class StartView {
 		return fraseSuperiorJanela;
 	}
 
-	public static OpcoesView getOpcoes() {
+	public static InstrucoesView getOpcoes() {
 		return opcoes;
 	}
 
