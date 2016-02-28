@@ -20,7 +20,6 @@ public class InstrucoesView extends JFrame {
 	public InstrucoesView() {
 		setIconImage(StartView.getImagembola());
 		setTitle(StartView.getFraseSuperiorJanela());
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(500, 400, 360, 238);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
